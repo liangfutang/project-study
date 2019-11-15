@@ -1,4 +1,4 @@
-package com.zjut.study.thread;
+package com.zjut.study.thread.test.before;
 
 public class ThreadLocalStu2 {
     Object lock = new Object();

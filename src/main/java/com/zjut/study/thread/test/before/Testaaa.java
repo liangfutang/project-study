@@ -1,4 +1,4 @@
-package com.zjut.study.thread;
+package com.zjut.study.thread.test.before;
 
 import lombok.Cleanup;
 
