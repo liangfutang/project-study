@@ -1,4 +1,4 @@
-package com.zjut.study.thread.keywords;
+package com.zjut.study.thread.keywords.volatiles;
 
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
