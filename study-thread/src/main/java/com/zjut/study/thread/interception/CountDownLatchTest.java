@@ -1,4 +1,4 @@
-package com.zjut.study.thread.test.before;
+package com.zjut.study.thread.interception;
 
 import java.util.concurrent.CountDownLatch;
 
