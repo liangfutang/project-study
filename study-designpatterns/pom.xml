@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <version>${project-study.version}</version>
-    <artifactId>study-enum</artifactId>
+    <artifactId>study-designpatterns</artifactId>
 
+    <dependencies>
 
+    </dependencies>
 </project>
