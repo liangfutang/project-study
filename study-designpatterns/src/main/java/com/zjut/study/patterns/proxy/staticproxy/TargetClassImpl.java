@@ -6,6 +6,6 @@ package com.zjut.study.patterns.proxy.staticproxy;
 public class TargetClassImpl implements TargetClass {
     @Override
     public void sayHi() {
-        System.out.println("hi");
+        System.out.println("hi, static proxy");
     }
 }
