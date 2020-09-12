@@ -12,6 +12,9 @@
     <artifactId>study-designpatterns</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
     </dependencies>
 </project>

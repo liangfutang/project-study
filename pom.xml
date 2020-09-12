@@ -48,7 +48,13 @@
 
     <!--管理模块内单独使用的依赖-->
     <dependencyManagement>
-
+        <dependencies>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.2.10</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <build>

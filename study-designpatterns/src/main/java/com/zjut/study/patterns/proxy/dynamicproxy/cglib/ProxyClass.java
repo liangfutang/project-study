@@ -1,14 +1,14 @@
-package com.zjut.study.patterns.proxy.dynamicproxy.jdk;
+package com.zjut.study.patterns.proxy.dynamicproxy.cglib;
 
+
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-/**
- * ProxyClass是动态代理的一部分，不是真正的代理类，是协助真正的代理类去工作的
- */
-public class ProxyClass implements InvocationHandler {
+public class ProxyClass implements MethodInterceptor {
     private Object target;
     public ProxyClass(Object target) {
         this.target = target;
@@ -25,17 +25,19 @@ public class ProxyClass implements InvocationHandler {
      * @throws Throwable
      */
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("jdk代理前显示一下接受到的参数:" + ((args==null||args.length<=0) ? args : Arrays.asList(args)));
+    public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+        System.out.println("cglib代理前显示一下接受到的参数:" + ((args==null||args.length<=0) ? args : Arrays.asList(args)));
+        System.out.println("cglib代理方法:" + methodProxy);
 
-        System.out.println("jdk代理方法执行前");
+        System.out.println("cglib代理方法执行前");
         Object invoke = method.invoke(target, args);
-        System.out.println("jdk代理方法执行后");
+        System.out.println("cglib代理方法执行后");
 
         if (TEST_METHOD.equals(method.getName())) {
-            System.out.println("jdk返回代理对象\n");
+            System.out.println("cglib返回代理对象\n");
             return proxy;
         }
         return invoke;
     }
+
 }
