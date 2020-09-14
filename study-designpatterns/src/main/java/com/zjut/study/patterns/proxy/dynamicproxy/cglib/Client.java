@@ -1,9 +1,9 @@
 package com.zjut.study.patterns.proxy.dynamicproxy.cglib;
 
 import net.sf.cglib.proxy.Enhancer;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 
 public class Client {
@@ -73,15 +73,15 @@ public class Client {
 
     // ====================================================================华丽的分割线===============================================================================
 
-    @BeforeAll
-    public static void beforeAll() {
+    @Before
+    public void beforeAll() {
         System.out.println("开始...\n");
         // 代理类class文件存入本地磁盘方便我们反编译查看源码
 //      System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\code");
     }
 
-    @AfterAll
-    public static void afterAll() {
+    @After
+    public void afterAll() {
         System.out.println("\n结束...");
     }
 }

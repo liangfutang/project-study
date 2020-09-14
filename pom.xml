@@ -15,6 +15,7 @@
         <module>study-enum</module>
         <module>study-encryption</module>
         <module>study-designpatterns</module>
+        <module>study-spring</module>
     </modules>
 
     <properties>
@@ -39,10 +40,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
     </dependencies>
 
