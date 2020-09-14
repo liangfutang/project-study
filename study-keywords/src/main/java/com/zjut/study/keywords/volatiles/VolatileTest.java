@@ -1,7 +1,7 @@
 package com.zjut.study.keywords.volatiles;
 
 import lombok.extern.java.Log;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 @Log
 public class VolatileTest {

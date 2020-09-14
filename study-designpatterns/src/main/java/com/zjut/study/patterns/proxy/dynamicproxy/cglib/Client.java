@@ -1,12 +1,13 @@
 package com.zjut.study.patterns.proxy.dynamicproxy.cglib;
 
+import com.zjut.study.common.junit.CommonFilter;
 import net.sf.cglib.proxy.Enhancer;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-
-public class Client {
+/**
+ * 测试cglib动态代理的客户端
+ */
+public class Client extends CommonFilter {
 
     /**
      * 通过新建Enhancer的方式创建代理类
@@ -71,17 +72,4 @@ public class Client {
         o.sayHiMethodProxyinvokeSuper();
     }
 
-    // ====================================================================华丽的分割线===============================================================================
-
-    @Before
-    public void beforeAll() {
-        System.out.println("开始...\n");
-        // 代理类class文件存入本地磁盘方便我们反编译查看源码
-//      System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\code");
-    }
-
-    @After
-    public void afterAll() {
-        System.out.println("\n结束...");
-    }
 }

@@ -16,6 +16,7 @@
         <module>study-encryption</module>
         <module>study-designpatterns</module>
         <module>study-spring</module>
+        <module>study-common</module>
     </modules>
 
     <properties>
@@ -26,34 +27,75 @@
         <maven-source.version>3.0.1</maven-source.version>
     </properties>
 
-    <!--所有或大部分模块都会用到的依赖-->
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.45</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-    </dependencies>
-
-    <!--管理模块内单独使用的依赖-->
     <dependencyManagement>
         <dependencies>
+            <!--子模块 start-->
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-common</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-designpatterns</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-encryption</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-enum</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-keywords</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-spring</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-thread</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <!--子模块 end-->
+
+            <!--第三方依赖 start-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.12</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.70</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>3.2.10</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>5.2.2.RELEASE</version>
+            </dependency>
+            <!--第三方依赖 end-->
         </dependencies>
     </dependencyManagement>
 

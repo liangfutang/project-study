@@ -11,5 +11,10 @@
     <version>${project-study.version}</version>
     <artifactId>study-enum</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.zjut.study</groupId>
+            <artifactId>study-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>

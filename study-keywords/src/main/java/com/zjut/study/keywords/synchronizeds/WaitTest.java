@@ -1,6 +1,7 @@
 package com.zjut.study.keywords.synchronizeds;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 public class WaitTest {
 
