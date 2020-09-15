@@ -19,6 +19,7 @@
         <module>study-common</module>
         <module>study-tomcat</module>
         <module>study-springboot</module>
+        <module>study-mybatis</module>
     </modules>
 
     <properties>

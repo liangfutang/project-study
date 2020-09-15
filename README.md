@@ -24,3 +24,6 @@
 
 ## study-springboot
 用作springboot相关的学习和测试
+
+## study-mybatis
+用作springboot相关的学习和测试
