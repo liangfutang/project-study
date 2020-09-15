@@ -18,6 +18,7 @@
         <module>study-spring</module>
         <module>study-common</module>
         <module>study-tomcat</module>
+        <module>study-springboot</module>
     </modules>
 
     <properties>
