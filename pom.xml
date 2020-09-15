@@ -29,7 +29,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-source.version>3.0.1</maven-source.version>
 
-        <tomcat.version>8.5.50</tomcat.version>
+        <tomcat.version>8.5.55</tomcat.version>
     </properties>
 
     <dependencyManagement>
