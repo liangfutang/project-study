@@ -10,9 +10,6 @@
 ## study-keywords
 用作关键字相关的学习和测试
 
-## study-enmu
-用作枚举相关的学习和测试
-
 ## study-encryption
 用作秘钥加密解密相关的学习和测试
 
@@ -27,3 +24,6 @@
 
 ## study-mybatis
 用作springboot相关的学习和测试
+
+## study-others
+用作其他相关的相关小知识点的学习和测试

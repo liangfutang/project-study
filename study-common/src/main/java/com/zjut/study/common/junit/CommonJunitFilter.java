@@ -6,7 +6,7 @@ import org.junit.Before;
 /**
  * 每个测试方法的前后执行的方法
  */
-public class CommonFilter {
+public class CommonJunitFilter {
     @Before
     public void beforeAll() {
         System.out.println("开始...\n");

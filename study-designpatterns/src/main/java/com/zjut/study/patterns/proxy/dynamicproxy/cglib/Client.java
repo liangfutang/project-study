@@ -1,13 +1,13 @@
 package com.zjut.study.patterns.proxy.dynamicproxy.cglib;
 
-import com.zjut.study.common.junit.CommonFilter;
+import com.zjut.study.common.junit.CommonJunitFilter;
 import net.sf.cglib.proxy.Enhancer;
 import org.junit.Test;
 
 /**
  * 测试cglib动态代理的客户端
  */
-public class Client extends CommonFilter {
+public class Client extends CommonJunitFilter {
 
     /**
      * 通过新建Enhancer的方式创建代理类
