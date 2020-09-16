@@ -1,4 +1,4 @@
-package com.zjut.study.enums.method;
+package com.zjut.study.others.java.enums.method;
 
 public enum Startegy1 {
 

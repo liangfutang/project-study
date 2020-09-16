@@ -12,7 +12,6 @@
     <modules>
         <module>study-thread</module>
         <module>study-keywords</module>
-        <module>study-enum</module>
         <module>study-encryption</module>
         <module>study-designpatterns</module>
         <module>study-spring</module>
@@ -20,6 +19,8 @@
         <module>study-tomcat</module>
         <module>study-springboot</module>
         <module>study-mybatis</module>
+        <module>study-others</module>
+        <module>study-spi</module>
     </modules>
 
     <properties>
@@ -52,11 +53,6 @@
             </dependency>
             <dependency>
                 <groupId>com.zjut.study</groupId>
-                <artifactId>study-enum</artifactId>
-                <version>${project-study.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zjut.study</groupId>
                 <artifactId>study-keywords</artifactId>
                 <version>${project-study.version}</version>
             </dependency>
@@ -68,6 +64,26 @@
             <dependency>
                 <groupId>com.zjut.study</groupId>
                 <artifactId>study-thread</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-mybatis</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-springboot</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-tomcat</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study</groupId>
+                <artifactId>study-others</artifactId>
                 <version>${project-study.version}</version>
             </dependency>
             <!--子模块 end-->
@@ -111,6 +127,23 @@
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-jasper</artifactId>
                 <version>${tomcat.version}</version>
+            </dependency>
+
+            <!--日志-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.21</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>1.1.7</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.1.7</version>
             </dependency>
 
             <!--第三方依赖 end-->
