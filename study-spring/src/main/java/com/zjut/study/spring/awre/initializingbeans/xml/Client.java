@@ -1,18 +1,20 @@
-package com.zjut.study.spring.awre.interfaces;
+package com.zjut.study.spring.awre.initializingbeans.xml;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 
 /**
- * 用来测试接口实现方式的生命周期回调的客户端
+ * 测试xml版本的生命周期回调的客户端
  */
-@ComponentScan("com.zjut.study.spring.awre.interfaces")
+@ComponentScan("com.zjut.study.spring.awre.initializingbeans.xml")
+@ImportResource("classpath:awre/spring.xml")
 public class Client extends CommonJunitFilter {
 
     /**
-     * 用来测试
+     * 1. 当AnnotationConfigApplicationContext中不传参数时，只是扫描了，没有实例化，此时不会打印出构造函数中的日志
      */
     @Test
     public void test1() {
@@ -20,4 +22,5 @@ public class Client extends CommonJunitFilter {
         // 此步不调的话不会触发@PreDestroy的销毁回调
         ac.close();
     }
+
 }

@@ -1,11 +1,8 @@
-package com.zjut.study.spring.awre.interfaces;
+package com.zjut.study.spring.awre.initializingbeans.interfaces;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 /**
  * 测试接口实现版本的回调

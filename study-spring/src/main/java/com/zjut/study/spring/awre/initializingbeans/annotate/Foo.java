@@ -1,4 +1,4 @@
-package com.zjut.study.spring.awre.annotate;
+package com.zjut.study.spring.awre.initializingbeans.annotate;
 
 import org.springframework.stereotype.Component;
 
