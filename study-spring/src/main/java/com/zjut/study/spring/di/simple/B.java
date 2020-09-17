@@ -1,4 +1,4 @@
-package com.zjut.study.spring.di;
+package com.zjut.study.spring.di.simple;
 
 public class B {
     public B() {

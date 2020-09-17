@@ -1,4 +1,4 @@
-package com.zjut.study.spring.di;
+package com.zjut.study.spring.awre.xml;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import org.junit.Test;
@@ -6,8 +6,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
-@ComponentScan("com.zjut.study.spring")
-@ImportResource("classpath:spring.xml")
+/**
+ * 测试xml版本的生命周期回调的客户端
+ */
+@ComponentScan("com.zjut.study.spring.awre.xml")
+@ImportResource("classpath:awre/spring.xml")
 public class Client extends CommonJunitFilter {
 
     /**
@@ -15,10 +18,9 @@ public class Client extends CommonJunitFilter {
      */
     @Test
     public void testDi1() {
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Client.class);
-        A a = (A) annotationConfigApplicationContext.getBean("a");
-        B b = (B) annotationConfigApplicationContext.getBean("b");
-        System.out.println("输出:" + a +" " + b);
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(Client.class);
+        // 此步不调的话不会触发@PreDestroy的销毁回调
+        ac.close();
     }
 
 }
