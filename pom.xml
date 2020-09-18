@@ -12,7 +12,6 @@
     <modules>
         <module>study-thread</module>
         <module>study-keywords</module>
-        <module>study-encryption</module>
         <module>study-designpatterns</module>
         <module>study-spring</module>
         <module>study-common</module>
@@ -44,11 +43,6 @@
             <dependency>
                 <groupId>com.zjut.study</groupId>
                 <artifactId>study-designpatterns</artifactId>
-                <version>${project-study.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zjut.study</groupId>
-                <artifactId>study-encryption</artifactId>
                 <version>${project-study.version}</version>
             </dependency>
             <dependency>
@@ -144,6 +138,13 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>1.1.7</version>
+            </dependency>
+
+            <!--mybatis-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.5.5</version>
             </dependency>
 
             <!--第三方依赖 end-->

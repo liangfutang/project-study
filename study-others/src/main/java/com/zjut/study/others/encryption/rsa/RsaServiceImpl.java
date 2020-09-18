@@ -1,4 +1,4 @@
-package com.zjut.study.encryption.rsa;
+package com.zjut.study.others.encryption.rsa;
 
 import javax.crypto.Cipher;
 import java.security.*;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Laughstorm
+ * @author jack
  */
 public class RsaServiceImpl {
 

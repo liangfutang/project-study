@@ -10,9 +10,6 @@
 ## study-keywords
 用作关键字相关的学习和测试
 
-## study-encryption
-用作秘钥加密解密相关的学习和测试
-
 ## study-spring
 用作spring框架相关的学习和测试
 
