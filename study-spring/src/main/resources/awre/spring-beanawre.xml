@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byType">
+    <!--default-autowire="byType"-->
+    <!-- 程序员不指定装配的具体参数，容器自动查询后装配-->
+    <!--当然除了这种写法还可以直接在bean标签上为特定类指定自动装配模型-->
+
+    <bean id="beer" class="com.zjut.study.spring.awre.beanaware.Beer" autowire="byName" init-method="init" destroy-method="destory">
+        <property name="bread" ref="bread"/>
+    </bean>
+</beans>
