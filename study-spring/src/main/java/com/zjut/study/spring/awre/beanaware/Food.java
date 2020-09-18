@@ -82,9 +82,9 @@ public class Food implements BeanFactoryAware, BeanNameAware, ApplicationContext
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
-        Food food = (Food) applicationContext.getBean("food");
+        Bread bread = (Bread) applicationContext.getBean("bread");
         System.out.println("调用ApplicationContextAware的setApplicationContext()...传入:" + applicationContext);
-        System.out.println("输出从ApplicationContext中查询的结果:" + food);
+        System.out.println("输出从ApplicationContext中Bean :" + bread.eatWay("Food的aware中获取的ApplicationContext的大米"));
     }
 
     @Override
