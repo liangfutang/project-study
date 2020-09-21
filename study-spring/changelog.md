@@ -4,4 +4,4 @@
 | :-----: |  :-------: |  :------------------:  | :------: | :----: |
 |  1.0.0  | 2020.09.14 |       1.0-SNAPSHOT     | 1.添加Spring模块及简单的spring容器化 | jack |
 |  1.0.1  | 2020.09.17 |       1.0-SNAPSHOT     | 1.三种方式实现spring生命周期中的InitializingBean回调  2.BeanNameAware、BeanFactoryAware、ApplicationContextAware回调  3.beanaware添加setter方式的注入 | jack |
-|  1.0.1  | 2020.09.21 |       1.0-SNAPSHOT     | 1.添加对FactoryBean的测试 | jack |
+|  1.0.2  | 2020.09.21 |       1.0-SNAPSHOT     | 1.添加对FactoryBean的测试 | jack |
