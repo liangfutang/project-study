@@ -1,4 +1,4 @@
-package com.zjut.study.spring.process;
+package com.zjut.study.spring.di.simple;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
