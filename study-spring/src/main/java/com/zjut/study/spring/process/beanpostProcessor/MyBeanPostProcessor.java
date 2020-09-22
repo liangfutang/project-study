@@ -21,7 +21,10 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
      */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("后置处理器--before, bean:" + bean + ",beanName" + beanName);
+        System.out.println("后置处理器--before, bean:" + bean + ",beanName:" + beanName);
+        if (bean instanceof Dog) {
+            System.out.println("传进前置来的是Dog");
+        }
         return bean;
     }
 
@@ -36,7 +39,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("后置处理器--after, bean:" + bean + ",beanName" + beanName);
+        System.out.println("后置处理器--after, bean:" + bean + ",beanName:" + beanName);
         return bean;
     }
 }
