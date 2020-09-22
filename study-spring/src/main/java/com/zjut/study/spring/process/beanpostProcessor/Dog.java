@@ -11,20 +11,20 @@ public class Dog {
     private String name;
 
     static {
-        System.out.println("静态代码块");
+        System.out.println("Dog静态代码块");
     }
 
     public Dog() {
-        System.out.println("构造函数");
+        System.out.println("Dog构造函数");
     }
 
     @PostConstruct
     public void init() {
-        System.out.println("初始化方法中");
+        System.out.println("Dog初始化方法中");
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println("销毁方法中");
+        System.out.println("Dog销毁方法中");
     }
 }
