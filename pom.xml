@@ -30,6 +30,7 @@
         <maven-source.version>3.0.1</maven-source.version>
 
         <tomcat.version>8.5.55</tomcat.version>
+        <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
     </properties>
 
     <dependencyManagement>
@@ -145,6 +146,22 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>3.5.5</version>
+            </dependency>
+
+            <!--springboot starter-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--aop-->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.9.6</version>
             </dependency>
 
             <!--第三方依赖 end-->
