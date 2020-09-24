@@ -8,7 +8,7 @@ import javax.annotation.PreDestroy;
 @Component
 public class Dog {
 
-    private String name;
+    private static DogSun name = new DogSun();
 
     static {
         System.out.println("Dog静态代码块");
@@ -26,5 +26,11 @@ public class Dog {
     @PreDestroy
     public void destroy() {
         System.out.println("Dog销毁方法中");
+    }
+
+    private static class DogSun{
+        public DogSun() {
+            System.out.println("Dog静态属性中构建");
+        }
     }
 }

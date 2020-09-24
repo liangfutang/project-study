@@ -20,11 +20,13 @@ public class Client extends CommonJunitFilter {
     }
 
     /**
-     * 简单测测试aop的使用
+     * 1. 简单测测试aop的使用
+     * 2. 比较获取的代理的和没代理的bean的区别。 发现被代理的bean是CGLIB动态代理的bean,没被代理的就是简单的bean
      */
     @Test
     public void test01() {
         PeopleService bean = ac.getBean(PeopleService.class);
+        DogManager bean1 = ac.getBean(DogManager.class);
         bean.eat("大便");
         bean.run("厕所");
     }
