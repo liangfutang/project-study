@@ -20,6 +20,7 @@
         <module>study-mybatis</module>
         <module>study-others</module>
         <module>study-spi</module>
+        <module>study-redis</module>
     </modules>
 
     <properties>
