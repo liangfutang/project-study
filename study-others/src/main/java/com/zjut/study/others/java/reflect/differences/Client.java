@@ -38,7 +38,7 @@ public class Client extends CommonJunitFilter {
 
     /**
      * 目的：通过ClassLoader内部的方法反射
-     * 总结：不会初始化操作
+     * 总结：不会初始化静态代码块
      *
      * 测试结果如下：
      *
