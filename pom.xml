@@ -21,6 +21,7 @@
         <module>study-others</module>
         <module>study-spi</module>
         <module>study-redis</module>
+        <module>study-zookeeper</module>
     </modules>
 
     <properties>

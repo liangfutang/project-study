@@ -22,5 +22,8 @@
 ## study-mybatis
 用作springboot相关的学习和测试
 
+## study-zookeeper
+用作zookeeper相关的学习和测试
+
 ## study-others
 用作其他相关的相关小知识点的学习和测试
