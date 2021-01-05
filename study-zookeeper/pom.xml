@@ -11,5 +11,21 @@
 
     <artifactId>study-zookeeper</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zjut.study</groupId>
+            <artifactId>study-common</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.11</version>
+        </dependency>
+    </dependencies>
 </project>
