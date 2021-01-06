@@ -1,15 +1,13 @@
 package com.zjut.study.zookeeper;
 
 import org.I0Itec.zkclient.ZkClient;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.GetChildrenBuilder;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Stat;
 import org.junit.Test;
@@ -84,5 +82,61 @@ public class NodeTest {
         client.start();
 
         List<String> children = client.getChildren().forPath("services");
+    }
+
+    ZooKeeper zooKeeper = null;
+    @Test
+    public void watch01() throws IOException, InterruptedException {
+        zooKeeper = new ZooKeeper(connectionURL, sessionTimeout, watchedEvent -> {
+            List<String> children = null;
+            try {
+                children = zooKeeper.getChildren("/", true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (CollectionUtils.isNotEmpty(children)) {
+                System.out.println("==================start======================");
+                children.forEach(System.out::println);
+                System.out.println("==================end======================");
+            }
+        });
+
+        // 新增一个节点
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                zooKeeper.create("/jack", "make".getBytes(), ZooDefs.Ids.READ_ACL_UNSAFE, CreateMode.EPHEMERAL);
+            } catch (KeeperException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        // 删除一个节点
+        new Thread(() -> {
+            try {
+                Thread.sleep(600);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Stat stat = new Stat();
+                zooKeeper.getData("/jack", false, stat);
+                zooKeeper.delete("/jack", stat.getVersion());
+            } catch (KeeperException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        Thread.sleep(30000);
     }
 }
