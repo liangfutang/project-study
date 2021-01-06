@@ -1,6 +1,11 @@
 package com.zjut.study.zookeeper;
 
 import org.I0Itec.zkclient.ZkClient;
+import org.apache.curator.RetryPolicy;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.api.GetChildrenBuilder;
+import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -54,5 +59,30 @@ public class NodeTest {
 
         System.out.println("打印出所有的结点:" + children);
         System.out.println("打印出所有的acl:" + acl);
+    }
+
+    @Test
+    public void connection03() throws Exception {
+        /**
+         * baseSleepTimeMs：初始的重试等待时间
+         * maxRetries：最多重试次数
+         *
+         *
+         * ExponentialBackoffRetry：重试一定次数，每次重试时间依次递增
+         * RetryNTimes：重试N次
+         * RetryOneTime：重试一次
+         * RetryUntilElapsed：重试一定时间
+         */
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
+        CuratorFramework client = CuratorFrameworkFactory.builder()
+                        .connectString(connectionURL)
+                        .sessionTimeoutMs(sessionTimeout)
+                        .connectionTimeoutMs(connectionTimeout)
+                        .retryPolicy(retryPolicy)
+                        .namespace("base")
+                        .build();
+        client.start();
+
+        List<String> children = client.getChildren().forPath("services");
     }
 }
