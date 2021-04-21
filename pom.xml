@@ -22,6 +22,7 @@
         <module>study-spi</module>
         <module>study-redis</module>
         <module>study-zookeeper</module>
+        <module>study-io</module>
     </modules>
 
     <properties>
