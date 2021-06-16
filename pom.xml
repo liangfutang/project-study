@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-source.version>3.0.1</maven-source.version>
 
-        <tomcat.version>8.5.55</tomcat.version>
+        <tomcat.version>8.5.61</tomcat.version>
         <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
         <commons_lang3.version>3.10</commons_lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
