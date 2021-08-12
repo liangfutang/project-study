@@ -3,11 +3,11 @@ package com.zjut.study.spring.factorybean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
-@Component
-public class FactoryBeanService  implements FactoryBean {
+@Component()
+public class FactoryBeanService  implements FactoryBean<TargetClass> {
 
     @Override
-    public Object getObject() throws Exception {
+    public TargetClass getObject() throws Exception {
         TargetClass targetClass = new TargetClass();
         targetClass.setName("jack");
         return targetClass;
