@@ -1,4 +1,4 @@
-package com.zjut.study.patterns.proxy.dynamicproxy.cglib;
+package com.zjut.study.patterns.proxy.dynamicproxy.cglib.demo;
 
 
 /**

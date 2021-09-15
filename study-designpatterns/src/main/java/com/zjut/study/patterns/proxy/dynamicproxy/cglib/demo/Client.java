@@ -1,4 +1,4 @@
-package com.zjut.study.patterns.proxy.dynamicproxy.cglib;
+package com.zjut.study.patterns.proxy.dynamicproxy.cglib.demo;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import net.sf.cglib.proxy.Enhancer;
