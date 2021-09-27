@@ -34,7 +34,7 @@ public class HelloClient {
                 })
                 // 5. 连接到服务器
                 .connect(new InetSocketAddress("localhost", 8080))
-                .sync()
+                .sync()  // 阻塞方法，直到连接建立
                 .channel()
                 // 6. 向服务器发送数据
                 .writeAndFlush("hello world!");
