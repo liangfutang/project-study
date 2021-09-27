@@ -69,13 +69,13 @@ public class MultiThreadServer {
          */
         public void register(SocketChannel sc) throws IOException {
             if (!start) {
-                selector = Selector.open();
+                selector = Selector.open();  // 新开的一个，和上面的boss不是同一个
                 thread = new Thread(this, name);
                 thread.start();
                 start = true;
             }
             selector.wakeup(); // 叫醒被阻塞的select()，不区分执行的前后顺序
-            sc.register(selector, SelectionKey.OP_READ);
+            sc.register(selector, SelectionKey.OP_READ);  // 接收到一个客户端的连接后，将其注册到select上，然后交给子线程去处理后续的工作
         }
 
         @Override
