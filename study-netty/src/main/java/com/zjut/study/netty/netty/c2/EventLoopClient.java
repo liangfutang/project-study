@@ -117,6 +117,10 @@ public class EventLoopClient {
         LockSupport.park();
     }
 
+    /**
+     * 客户端和服务端断开连接后优雅的处理关闭资源等相关操作
+     * @throws InterruptedException
+     */
     @Test
     public void test04() throws InterruptedException {
         EventLoopGroup group = new NioEventLoopGroup();
