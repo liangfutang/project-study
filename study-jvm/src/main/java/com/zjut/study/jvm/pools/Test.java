@@ -8,6 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
+    static int a;
+    static int b = 16;
+    static {
+        int c = 9;
+    }
+    public Test() {
+        System.out.println("jack");
+    }
     public static void main(String[] args) throws IOException {
         // 1.1 简单案例一
 //        String s1 = "a";
