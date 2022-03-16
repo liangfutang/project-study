@@ -1,4 +1,4 @@
-**记录设计模式相关较大的变动** 
+**记录SPI相关较大的变动** 
 
 | version |    data    |  current code version  | comments | author |
 | :-----: |  :-------: |  :------------------:  | :------: | :----: |
