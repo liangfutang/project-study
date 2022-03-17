@@ -1,5 +1,6 @@
 package com.zjut.study.spring.awre.initializingbeans.annotate;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.annotation.PreDestroy;
  * 测试注解版本的回调
  */
 @Component
+//@Scope("prototype")  // 多例模式会导致@PostConstruct@PreDestroy失效
 public class Foo {
 
     /**

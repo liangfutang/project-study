@@ -8,6 +8,7 @@
     <!-- 程序员不指定装配的具体参数，容器自动查询后装配-->
     <!--当然除了这种写法还可以直接在bean标签上为特定类指定自动装配模型-->
 
+    <!-- scope="prototype"会导致init-method、estroy-method失效 -->
     <bean id="b" class="com.zjut.study.spring.awre.initializingbeans.xml.Foo" autowire="byName" init-method="init" destroy-method="destory">
     </bean>
 </beans>
