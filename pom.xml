@@ -34,10 +34,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-source.version>3.0.1</maven-source.version>
 
-        <tomcat.version>8.5.55</tomcat.version>
         <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
         <commons_lang3.version>3.10</commons_lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
+
+        <!--依赖模块中的版本-->
+        <study-tomcat.version>8.5.55</study-tomcat.version>
     </properties>
 
     <dependencyManagement>
@@ -123,12 +125,12 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>${tomcat.version}</version>
+                <version>${study-tomcat.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-jasper</artifactId>
-                <version>${tomcat.version}</version>
+                <version>${study-tomcat.version}</version>
             </dependency>
 
             <!--日志-->
