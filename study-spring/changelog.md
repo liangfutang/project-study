@@ -7,3 +7,4 @@
 |  1.0.2  | 2020.09.21 |       1.0-SNAPSHOT     | 1.添加对FactoryBean的测试 2.添加BeanFactoryPostProcessor后置处理器 | jack |
 |  1.0.3  | 2020.09.23 |       1.0-SNAPSHOT     | 1.aop简单的应用 | jack |
 |  1.0.4  | 2020.09.27 |       1.0-SNAPSHOT     | 1.简单的java间的循环依赖，内部新建和注入两种方式 | jack |
+|  1.0.5  | 2022.03.17 |       1.0-SNAPSHOT     | 1.简单的测试多例下导致init和destory失效 | jack |
