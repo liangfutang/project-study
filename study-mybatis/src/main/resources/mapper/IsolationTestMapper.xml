@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.study.mybatis.IsolationTestMapper">
+    <resultMap id="BaseResultMap" type="com.zjut.study.mybatis.entity.IsolationTestDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="audit" jdbcType="TINYINT" property="audit"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+    </resultMap>
+
+    <sql id="base_column_list">
+        id, 'name', audit, age
+    </sql>
+
+    <sql id="base_column_where">
+        <if test="id !=null">AND id = #{id}</if>
+        <if test="name !=null">AND 'name' = #{name}</if>
+        <if test="audit !=null">AND audit = #{audit}</if>
+        <if test="age !=null">AND age = #{age}</if>
+    </sql>
+
+    <select id="selectById" parameterType="integer" resultMap="BaseResultMap">
+        select <include refid="base_column_list"/>
+        from isolation_test
+        where id=#{id}
+    </select>
+</mapper>
