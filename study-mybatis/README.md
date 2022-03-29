@@ -26,3 +26,14 @@
 ![mybatis二级缓存组织结构(装饰器模式+责任链模式)](pic/mybatis二级缓存组织结构(装饰器模式+责任链模式).png)   
 ![mybatis二级缓存命中](pic/mybatis二级缓存命中.png)   
 ![mybatis二级缓存配置表](pic/mybatis二级缓存配置表.png)   
+
+![mybatis二级缓存需要提交后查找才能命中缓存](pic/mybatis二级缓存需要提交后查找才能命中缓存.png)   
+暂存区需要commit后才能存储都缓存区供其他缓存查询
+![mybatis二级缓存结构关系](pic/mybatis二级缓存结构关系.png)  
+![mybatis二级缓存源码中结构关系](pic/mybatis二级缓存源码中结构关系.png)  
+![mybatis二级缓存执行流程](pic/mybatis二级缓存执行流程.png)  
+![mybatis执行过程总结](pic/mybatis执行过程总结.png)  
+
+## 2.4 StatementHandler
+![StatementHandler定义](pic/StatementHandler定义.png)    
+![StatementHandler继承关系](pic/StatementHandler继承关系.png)    
