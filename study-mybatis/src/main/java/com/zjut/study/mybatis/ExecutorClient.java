@@ -2,6 +2,8 @@ package com.zjut.study.mybatis;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.study.common.junit.CommonJunitFilter;
+import com.zjut.study.mybatis.entity.IsolationTestDO;
+import com.zjut.study.mybatis.mapper.IsolationTestMapper;
 import org.apache.ibatis.executor.SimpleExecutor;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -27,13 +29,17 @@ public class ExecutorClient extends CommonJunitFilter {
     private Configuration configuration;
     private JdbcTransaction jdbcTransaction;
 
+    private SqlSessionFactory sqlSessionFactory;
+
     @Before
     public void before() throws SQLException, IOException {
         SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
-        SqlSessionFactory build = sqlSessionFactoryBuilder.build(Resources.getResourceAsStream("mybatis-config.xml"));
-        configuration = build.getConfiguration();
+        sqlSessionFactory = sqlSessionFactoryBuilder.build(Resources.getResourceAsStream("mybatis-config.xml"));
+        configuration = sqlSessionFactory.getConfiguration();
 
-        Connection connection = configuration.getEnvironment().getDataSource().getConnection();
+        Connection connection = sqlSessionFactory.openSession().getConnection();
+        // 下面的连接导致失败
+//        Connection connection = configuration.getEnvironment().getDataSource().getConnection();
         jdbcTransaction = new JdbcTransaction(connection);
     }
 
@@ -44,9 +50,26 @@ public class ExecutorClient extends CommonJunitFilter {
     @Test
     public void testSimple() throws SQLException {
         SimpleExecutor executor = new SimpleExecutor(configuration, jdbcTransaction);
-        MappedStatement ms = configuration.getMappedStatement("com.zjut.study.mybatis.IsolationTestMapper.selectById");
+        MappedStatement ms = configuration.getMappedStatement("com.zjut.study.mybatis.mapper.IsolationTestMapper.selectById1");
         // doQuery是处理器中具体实现业务的方法，查询不带缓存
-        List<Object> objects = executor.doQuery(ms, 1, RowBounds.DEFAULT, SimpleExecutor.NO_RESULT_HANDLER, ms.getBoundSql(1));
+        Object objects = executor.doQuery(ms, "xixixi", RowBounds.DEFAULT, SimpleExecutor.NO_RESULT_HANDLER, ms.getBoundSql("xixixi"));
+        System.out.println(JSONObject.toJSONString(objects));
+        // 多次请求，会有多次预编译
+        Object objects1 = executor.doQuery(ms, "xixixi", RowBounds.DEFAULT, SimpleExecutor.NO_RESULT_HANDLER, ms.getBoundSql("xixixi"));
+        System.out.println(JSONObject.toJSONString(objects1));
+    }
+
+
+    /**
+     * sqlsession查询的不通方式
+     */
+    @Test
+    public void testMapper() {
+        IsolationTestMapper mapper = sqlSessionFactory.openSession(true).getMapper(IsolationTestMapper.class);
+        List<IsolationTestDO> o = mapper.selectById1("xixixi");
+        System.out.println(JSONObject.toJSONString(o));
+
+        List<IsolationTestDO> objects = sqlSessionFactory.openSession(true).selectList("com.zjut.study.mybatis.mapper.IsolationTestMapper.selectById1", "xixixi");
         System.out.println(JSONObject.toJSONString(objects));
     }
 }

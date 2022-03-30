@@ -1,9 +1,12 @@
 package com.zjut.study.mybatis.entity;
 
+import lombok.Data;
+
 /**
  * 对数据库isolation_test表结果的映射
  * @author jack
  */
+@Data
 public class IsolationTestDO {
 
     /**

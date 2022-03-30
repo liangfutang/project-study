@@ -5,9 +5,9 @@
 <configuration>
     <properties resource="dbconfig.properties"/>
 
-<!--    <settings>-->
-<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
-<!--    </settings>-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
+    </settings>
 
     <environments default="development">
         <environment id="development">
@@ -20,8 +20,13 @@
             </dataSource>
         </environment>
     </environments>
+
     <mappers>
-        <mapper resource="mapper/IsolationTestMapper.xml"/>
-<!--        <package name="classpath:mapper/*.xml"/>-->
+<!--        <mapper resource="mapper/IsolationTestMapper.xml"/>-->
+<!--        <package name="mapper/*.xml"/>-->
+        <package name="com/zjut/study/mybatis/mapper"/>
+
+<!--        <mapper class="com.zjut.study.mybatis.mapper.IsolationTestMapper"/>-->
+<!--        <package name="com.zjut.study.mybatis.*"/>-->
     </mappers>
 </configuration>
