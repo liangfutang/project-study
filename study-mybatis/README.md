@@ -37,3 +37,13 @@
 ## 2.4 StatementHandler
 ![StatementHandler定义](pic/StatementHandler定义.png)    
 ![StatementHandler继承关系](pic/StatementHandler继承关系.png)    
+![StatementHandler执行流程](pic/StatementHandler执行流程.png) 
+
+
+## 2.5 参数映射处理
+基于映射进行具体的参数赋值处理。
+![参数映射处理](pic/参数映射处理.png) 
+
+
+## 2.6 结果集处理
+
