@@ -45,6 +45,7 @@ public class Client  extends CommonJunitFilter {
     /**
      * 容器中动态删除一个bean(被依赖的)
      * 被依赖的会被删除，依赖的还存在
+     * 如果在springboot中，本次请求能正常的请求完成，下次再请求进来的时候会报异常
      */
     @Test
     public void remove() {
@@ -62,6 +63,7 @@ public class Client  extends CommonJunitFilter {
     /**
      * 删除依赖的bean
      * 依赖的 对象删除，被依赖的对象还存在
+     * 如果在springboot中，本次请求能正常的请求完成，下次再请求进来的时候会报异常
      */
     @Test
     public void removeRely() {
