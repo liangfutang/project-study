@@ -46,4 +46,15 @@
 
 
 ## 2.6 结果集处理
-![参数映射处理](pic/结果集处理流程.png) 
+![参数映射处理](pic/结果集处理流程.png)  
+
+## 2.7 MetaObject
+[MetaObject测试类](src/main/java/com/zjut/study/mybatis/MetaObjectClient.java)
+
+![MetaObject原理结构示意图](pic/MetaObject原理结构示意图.png)  
+![以获取博客某条评论下评论者为案例说明MetaObject内部原理流程](pic/以获取博客某条评论下评论者为案例说明MetaObject内部原理流程.png)  
+
+
+## 2.8 ResultMap结果集映射
+![手动映射](pic/手动映射.png)  
+![自动映射](pic/自动映射.png)  
