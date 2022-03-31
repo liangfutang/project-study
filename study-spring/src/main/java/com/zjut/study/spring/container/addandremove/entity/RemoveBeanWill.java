@@ -5,6 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * 注入到容器中的bean，容器启动成功后会移除测试
@@ -22,6 +23,10 @@ public class RemoveBeanWill implements InitializingBean, BeanNameAware {
 
     public static String getBeanName() {
         return BEAN_NAME;
+    }
+
+    public void testRelyBean() {
+        System.out.println("依赖的对象: " + (Objects.isNull(relyBean) ? "依赖对象被移除了" : relyBean.testHealth()));
     }
 
 

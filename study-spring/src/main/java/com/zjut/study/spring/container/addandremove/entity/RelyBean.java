@@ -18,6 +18,14 @@ public class RelyBean implements BeanNameAware {
         return BEAN_NAME;
     }
 
+    /**
+     * 用来测试当前对象是否还存在
+     * @return 正常返回则对象还存在
+     */
+    public String testHealth () {
+        return "ok";
+    }
+
 
 
     @Override

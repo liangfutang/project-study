@@ -2,6 +2,7 @@ package com.zjut.study.spring.container.addandremove;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import com.zjut.study.spring.container.addandremove.entity.NoRegisterBefore;
+import com.zjut.study.spring.container.addandremove.entity.RelyBean;
 import com.zjut.study.spring.container.addandremove.entity.RemoveBeanWill;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,8 @@ public class Client  extends CommonJunitFilter {
     }
 
     /**
-     * 容器中动态删除一个bean
+     * 容器中动态删除一个bean(被依赖的)
+     * 被依赖的会被删除，依赖的还存在
      */
     @Test
     public void remove() {
@@ -54,5 +56,29 @@ public class Client  extends CommonJunitFilter {
         beanDefReg.removeBeanDefinition(willRemoveBean);
 
         System.out.println("容器中存在: " + ac.containsBean(willRemoveBean));
+        System.out.println("容器中依赖对象还存在么: " + ac.containsBean(RelyBean.getBeanName()));
+    }
+
+    /**
+     * 删除依赖的bean
+     * 依赖的 对象删除，被依赖的对象还存在
+     */
+    @Test
+    public void removeRely() {
+        String beanName = RelyBean.getBeanName();
+
+        System.out.println("依赖的对象是否存在: " + ac.containsBean(beanName));
+        BeanDefinitionRegistry beanDefReg = (DefaultListableBeanFactory) ac.getBeanFactory();
+        beanDefReg.removeBeanDefinition(beanName);
+
+        System.out.println("依赖的对象是否存在: " + ac.containsBean(beanName));
+        // 依赖的对象被删除，被注入的对象还存在
+        System.out.println("被依赖的对象是否存在: " + ac.containsBean(RemoveBeanWill.getBeanName()));
+        // 通过下面直接获取bean的操作会导致重新注入当前bean到容器中，会应为依赖的bean不存在而导致异常发生
+        try {
+            RelyBean relyBean = ac.getBean(RelyBean.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
