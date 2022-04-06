@@ -1,5 +1,6 @@
 package com.zjut.study.thread.completablefuture;
 
+import com.zjut.study.common.utils.SmallThreadTool;
 import org.junit.Test;
 
 import java.util.concurrent.*;
@@ -29,14 +30,14 @@ public class CompletableFutureTest {
      */
     @Test
     public void test01 () {
-        SmallUtil.printTimeAndThread("小明进入饭店");
-        SmallUtil.printTimeAndThread("小明开始点餐");
+        SmallThreadTool.printTimeAndThread("小明进入饭店");
+        SmallThreadTool.printTimeAndThread("小明开始点餐");
         CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> {
-            SmallUtil.printTimeAndThread("开始做菜");
-            SmallUtil.sleep(5000);
+            SmallThreadTool.printTimeAndThread("开始做菜");
+            SmallThreadTool.sleep(5000);
             return "鹤顶红做好了";
         }, poolExecutor);
-        SmallUtil.printTimeAndThread(cf.join());
-        SmallUtil.printTimeAndThread("小明开干了");
+        SmallThreadTool.printTimeAndThread(cf.join());
+        SmallThreadTool.printTimeAndThread("小明开干了");
     }
 }

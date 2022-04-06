@@ -1,8 +1,12 @@
-package com.zjut.study.thread.completablefuture;
+package com.zjut.study.common.utils;
 
 import java.util.StringJoiner;
 
-public class SmallUtil {
+/**
+ * 一些简单的线程工具
+ * @author jack
+ */
+public class SmallThreadTool {
 
 
     public static void sleep(long milis) {
