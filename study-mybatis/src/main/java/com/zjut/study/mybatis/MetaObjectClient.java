@@ -4,11 +4,16 @@ import com.zjut.study.common.junit.CommonJunitFilter;
 import com.zjut.study.mybatis.entity.Blog;
 import com.zjut.study.mybatis.util.Mock;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.property.PropertyTokenizer;
+import org.apache.ibatis.reflection.wrapper.BeanWrapper;
 import org.apache.ibatis.session.Configuration;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @author jack
@@ -61,5 +66,32 @@ public class MetaObjectClient extends CommonJunitFilter {
         MetaObject metaObject = configuration.newMetaObject(blog);
         Object value = metaObject.getValue("comments[0].user.name");
         System.out.println(value);
+    }
+
+    /**
+     * 简单测试PropertyTokenizer分词器
+     */
+    @Test
+    public void test1() {
+        // 装饰器模式
+        Object blog=  Mock.newBlog();
+        Configuration configuration=new Configuration();
+        // 装饰
+        MetaObject metaObject = configuration.newMetaObject(blog);
+        metaObject.getValue("comments[0].user.name");
+        BeanWrapper beanWrapper=new BeanWrapper(metaObject,blog);
+
+        beanWrapper.get(new PropertyTokenizer("comments[0]"));
+        beanWrapper.get(new PropertyTokenizer("comments"));
+    }
+
+    @Test
+    public void t() {
+        List<String> aa = new ArrayList<>();
+
+        ListIterator<String> stringListIterator = aa.listIterator();
+        while (stringListIterator.hasNext()) {
+            String next = stringListIterator.next();
+        }
     }
 }
