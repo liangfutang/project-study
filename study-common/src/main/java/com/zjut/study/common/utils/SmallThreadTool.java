@@ -8,7 +8,10 @@ import java.util.StringJoiner;
  */
 public class SmallThreadTool {
 
-
+    /**
+     * 当前线程睡眠 毫秒
+     * @param milis
+     */
     public static void sleep(long milis) {
         try {
             Thread.sleep(milis);
@@ -17,6 +20,10 @@ public class SmallThreadTool {
         }
     }
 
+    /**
+     * 打印当前时间戳和线程的基本信息
+     * @param tag
+     */
     public static void printTimeAndThread (String tag){
         StringJoiner result = new StringJoiner("\t|\t")
                 .add(String.valueOf(System.currentTimeMillis()))
