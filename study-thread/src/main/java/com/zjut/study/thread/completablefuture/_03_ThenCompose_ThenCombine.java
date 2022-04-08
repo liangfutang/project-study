@@ -49,11 +49,15 @@ public class _03_ThenCompose_ThenCombine extends CommonJunitFilter {
             SmallThreadTool.printTimeAndThread("厨师开始炒菜");
             SmallThreadTool.sleep(200);
             return "番茄鸡蛋";
-        }).thenCompose(dish -> CompletableFuture.supplyAsync(() -> {
+        }).thenCompose(dish -> {
+            SmallThreadTool.printTimeAndThread("中间干了点杂活");
+            // thenCompose: 在return之前的部分和上面的在同一个线程
+            // thenComposeAsync: 在return之前是另一个线程执行，return的内容是第三个不相干的线程执行的
+            return CompletableFuture.supplyAsync(() -> {
             SmallThreadTool.printTimeAndThread("厨师开始打饭");
             SmallThreadTool.sleep(200);
             return dish + " + 米饭做好了";
-        }));
+        });});
 
         SmallThreadTool.printTimeAndThread("小白在刷抖音");
         SmallThreadTool.printTimeAndThread(String.format("%s, 小白开吃", async.join()));
