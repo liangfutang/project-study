@@ -28,6 +28,10 @@ public class SimpleTestController {
         return hello;
     }
 
+    /**
+     * 简单的使用 Flux
+     * @return
+     */
     @GetMapping(value = "/flux", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> flux() {
         Flux<String> flux = Flux.fromArray(new String[]{"张三", "李四", "王五", "李六"}).map(one -> {

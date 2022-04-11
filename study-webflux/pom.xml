@@ -11,9 +11,6 @@
     <version>${project-study.version}</version>
     <name>study-webflux</name>
     <description>Demo project for webflux</description>
-<!--    <properties>-->
-<!--        <java.version>1.8</java.version>-->
-<!--    </properties>-->
 
     <dependencies>
         <dependency>
