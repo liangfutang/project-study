@@ -38,8 +38,6 @@
         <commons_lang3.version>3.10</commons_lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
 
-        <!--依赖模块中的版本-->
-        <study-tomcat.version>8.5.55</study-tomcat.version>
     </properties>
 
     <dependencyManagement>
@@ -124,18 +122,6 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>5.2.2.RELEASE</version>
-            </dependency>
-
-            <!--tomcat-->
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-core</artifactId>
-                <version>${study-tomcat.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-jasper</artifactId>
-                <version>${study-tomcat.version}</version>
             </dependency>
 
             <!--日志-->
