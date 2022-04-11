@@ -1,4 +1,4 @@
-package com.zjut.study.studywebflux.controller;
+package com.zjut.study.webflux.controller;
 
 import com.zjut.study.common.utils.SmallThreadTool;
 import org.springframework.http.MediaType;
