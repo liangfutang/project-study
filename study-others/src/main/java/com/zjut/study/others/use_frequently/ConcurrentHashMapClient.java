@@ -1,10 +1,9 @@
-package com.zjut.study.others.frequently;
+package com.zjut.study.others.use_frequently;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

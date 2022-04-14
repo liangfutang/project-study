@@ -1,4 +1,4 @@
-package com.zjut.study.others.frequently;
+package com.zjut.study.others.use_frequently;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.study.common.junit.CommonJunitFilter;
