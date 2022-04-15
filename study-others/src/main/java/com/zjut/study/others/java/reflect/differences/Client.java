@@ -24,7 +24,7 @@ public class Client extends CommonJunitFilter {
     }
 
     /**
-     * 目的：通过Class.forName内部的方法发射，修改Class.forName默认的初始化为false，不做初始化操作
+     * 目的：通过Class.forName内部的方法反射，修改Class.forName默认的初始化为false，不做初始化操作
      * 总结：不会初始化操作
      *
      * 测试结果如下：
