@@ -1,4 +1,4 @@
-package com.zjut.study.patterns.proxy.dynamicproxy.jdk;
+package com.zjut.study.patterns.proxy.dynamicproxy.jdk.proxy;
 
 
 import java.lang.reflect.InvocationHandler;
