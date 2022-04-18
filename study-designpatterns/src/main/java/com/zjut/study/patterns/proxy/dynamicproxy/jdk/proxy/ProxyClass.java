@@ -9,6 +9,7 @@ import java.util.Arrays;
  * ProxyClass是动态代理的一部分，不是真正的代理类，是协助真正的代理类去工作的
  */
 public class ProxyClass implements InvocationHandler {
+    // 代理的接口实现类，对该类实现代理，在该类方法前后实现逻辑
     private Object target;
     public ProxyClass(Object target) {
         this.target = target;

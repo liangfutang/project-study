@@ -74,7 +74,7 @@ public class JavassistProxyClient {
     }
 
     /**
-     *
+     * @see pic/createProxy3结构图.png
      * @throws Exception
      */
     @Test

@@ -6,6 +6,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * 此处只为单元测试中使用工具
@@ -31,7 +32,7 @@ public class JedisPoolUtil {
                     jedisPoolConfig.setMaxIdle(redisProperties.getMaxIdle());
                     jedisPoolConfig.setTestOnBorrow(redisProperties.getTestOnBorrow());
 
-                    jedisPool = new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), 5000, "123456", 3);
+                    jedisPool = new JedisPool(jedisPoolConfig, redisProperties.getHost(), redisProperties.getPort(), 5000, redisProperties.getPassword(), redisProperties.getDb());
 
                 }
             }
@@ -61,8 +62,15 @@ public class JedisPoolUtil {
     public static void release(Jedis jedis) {
         if (jedis != null) {
             synchronized (JedisPoolUtil.class) {
-                jedisPool.returnResource(jedis);
+                jedis.close();
             }
         }
+    }
+
+    /**
+     * 关闭连接池
+     */
+    public static void closePool() {
+        Optional.ofNullable(jedisPool).ifPresent(jp -> jedisPool.close());
     }
 }
