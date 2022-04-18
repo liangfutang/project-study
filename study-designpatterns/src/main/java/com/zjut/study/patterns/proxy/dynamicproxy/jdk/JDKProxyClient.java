@@ -14,7 +14,10 @@ public class JDKProxyClient {
 
     @Test
     public void test01() {
-        TargetClass o = (TargetClass) Proxy.newProxyInstance(TargetClass.class.getClassLoader(), new Class[]{TargetClass.class}, new ProxyClass(new TargetClassImpl()));
+        TargetClass o = (TargetClass) Proxy.newProxyInstance(
+                TargetClass.class.getClassLoader(),
+                new Class[]{TargetClass.class},
+                new ProxyClass(new TargetClassImpl()));
         o.sayHi();
         System.out.println("\n\n\n");
 
