@@ -1,4 +1,4 @@
-package com.zjut.study.patterns.proxy.dynamicproxy.jdk;
+package com.zjut.study.patterns.proxy.dynamicproxy.javassist;
 
 import javassist.CannotCompileException;
 import javassist.ClassPool;
@@ -12,7 +12,6 @@ import org.junit.Test;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * 通过Javassist类库逐步演示jdk内部动态代理
@@ -26,7 +25,7 @@ public class JavassistProxyClient {
      * 经实验发现，通过该池创建的对象，不需要实现接口的所有方法，添加的方法可以是接口中没有的，可以通过反射调用添加的方法
      */
     @Test
-    public void createProxy01() throws NotFoundException, CannotCompileException, InstantiationException, IllegalAccessException {
+    public void createProxy01() throws Exception {
         // 类池: Javassist ---> ASM ---> 编辑JVM指令
         // 1. 用类池创建一个类
         ClassPool classPool = new ClassPool();
@@ -110,7 +109,7 @@ public class JavassistProxyClient {
         CtClass proxy = classPool.makeClass("$proxy" + count++);
         proxy.addInterface(classPool.get(classInterface.getName()));
         // 2. 添加一个属性
-        CtField field = CtField.make("public com.zjut.study.patterns.proxy.dynamicproxy.jdk.JavassistProxyClient.InvocationHandler handler = null;", proxy);
+        CtField field = CtField.make("public com.zjut.study.patterns.proxy.dynamicproxy.javassist.JavassistProxyClient.InvocationHandler handler = null;", proxy);
         proxy.addField(field);
         // 3. 填充所有的方法
         String methodBody = "return ($r)this.handler.invoke(\"%s\", $args);";
