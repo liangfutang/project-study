@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <contextName>dubbo-provider</contextName>
+    <contextName>dubbo-consumer</contextName>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
@@ -13,7 +13,7 @@
     <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${LOG_PATH}/dubbo-provider/info.dubbo-provider.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/dubbo-consumer/info.dubbo-consumer.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
             <!-- each file should be at most 30MB, keep 30 days worth of history -->
             <MaxHistory>5</MaxHistory>
             <MaxFileSize>50MB</MaxFileSize>
@@ -28,7 +28,7 @@
     <appender name="callFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${LOG_PATH}/dubbo-provider/call.dubbo-provider.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/dubbo-consumer/call.dubbo-consumer.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
             <!-- each file should be at most 30MB, keep 30 days worth of history -->
             <MaxHistory>5</MaxHistory>
             <MaxFileSize>50MB</MaxFileSize>
@@ -43,7 +43,7 @@
     <appender name="openserviceFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${LOG_PATH}/dubbo-provider/openservice.dubbo-provider.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/dubbo-consumer/openservice.dubbo-consumer.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
             <!-- each file should be at most 30MB, keep 30 days worth of history -->
             <MaxHistory>5</MaxHistory>
             <MaxFileSize>50MB</MaxFileSize>
@@ -58,7 +58,7 @@
     <appender name="sqlFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${LOG_PATH}/dubbo-provider/sql.dubbo-provider.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/dubbo-consumer/sql.dubbo-consumer.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
             <!-- each file should be at most 30MB, keep 30 days worth of history -->
             <MaxHistory>5</MaxHistory>
             <MaxFileSize>50MB</MaxFileSize>

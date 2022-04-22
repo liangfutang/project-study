@@ -15,6 +15,7 @@
     <version>${dubbo-provider.version}</version>
 
     <properties>
+        <dubbo-provider.version>1.0-SNAPSHOT</dubbo-provider.version>
         <dubbo-provider-client.version>1.0-SNAPSHOT</dubbo-provider-client.version>
     </properties>
 

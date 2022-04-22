@@ -13,23 +13,10 @@
     <artifactId>study-dubbo</artifactId>
     <version>${project-study.version}</version>
 
-    <properties>
-        <dubbo-provider.version>1.0-SNAPSHOT</dubbo-provider.version>
-    </properties>
-
     <modules>
         <module>dubbo-provider</module>
+        <module>dubbo-consumer</module>
     </modules>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.zjut.study.dubbo.provider</groupId>
-                <artifactId>dubbo-provider</artifactId>
-                <version>${dubbo-provider.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
 
     <build>

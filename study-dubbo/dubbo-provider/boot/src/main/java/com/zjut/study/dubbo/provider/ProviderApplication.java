@@ -10,10 +10,10 @@ import java.util.concurrent.CompletableFuture;
 
 @SpringBootApplication
 @RestController
-public class StudyApplication {
+public class ProviderApplication {
     private static ConfigurableApplicationContext context;
     public static void main(String[] args) {
-        context = SpringApplication.run(StudyApplication.class, args);
+        context = SpringApplication.run(ProviderApplication.class, args);
 
         // 添加一个钩子程序，在jvm最终关闭之前执行最后的动作
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{
