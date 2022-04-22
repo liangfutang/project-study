@@ -25,6 +25,7 @@
         <module>study-io</module>
         <module>study-netty</module>
         <module>study-jvm</module>
+        <module>study-dubbo</module>
     </modules>
 
     <properties>
@@ -91,6 +92,11 @@
             <dependency>
                 <groupId>com.zjut.study</groupId>
                 <artifactId>study-webflux</artifactId>
+                <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study.dubbo</groupId>
+                <artifactId>study-dubbo</artifactId>
                 <version>${project-study.version}</version>
             </dependency>
             <!--子模块 end-->

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>study-dubbo</artifactId>
+        <groupId>com.zjut.study.dubbo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.zjut.study.dubbo.provider</groupId>
+    <artifactId>dubbo-provider</artifactId>
+    <packaging>pom</packaging>
+    <version>${dubbo-provider.version}</version>
+
+    <properties>
+        <dubbo-provider-client.version>1.0-SNAPSHOT</dubbo-provider-client.version>
+    </properties>
+
+    <modules>
+        <module>client</module>
+        <module>boot</module>
+        <module>biz</module>
+        <module>openservice</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.zjut.study.dubbo.provider.client</groupId>
+                <artifactId>provider-client</artifactId>
+                <version>${dubbo-provider-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study.dubbo.provider.boot</groupId>
+                <artifactId>provider-boot</artifactId>
+                <version>${dubbo-provider.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study.dubbo.provider.openservice</groupId>
+                <artifactId>provider-openservice</artifactId>
+                <version>${dubbo-provider.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study.dubbo.provider.biz</groupId>
+                <artifactId>provider-biz</artifactId>
+                <version>${dubbo-provider.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
