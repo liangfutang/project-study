@@ -26,6 +26,7 @@
         <module>study-netty</module>
         <module>study-jvm</module>
         <module>study-dubbo</module>
+        <module>study-webflux</module>
     </modules>
 
     <properties>
