@@ -20,10 +20,10 @@
     </properties>
 
     <modules>
-        <module>client</module>
-        <module>boot</module>
-        <module>biz</module>
-        <module>openservice</module>
+        <module>provider-client</module>
+        <module>provider-boot</module>
+        <module>provider-biz</module>
+        <module>provider-openservice</module>
     </modules>
 
     <dependencyManagement>
