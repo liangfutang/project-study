@@ -15,10 +15,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>client</module>
-        <module>biz</module>
-        <module>boot</module>
-        <module>openservice</module>
+        <module>consumer-client</module>
+        <module>consumer-biz</module>
+        <module>consumer-boot</module>
+        <module>consumer-openservice</module>
     </modules>
 
     <properties>
