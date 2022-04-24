@@ -15,16 +15,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>consumer-client</module>
-        <module>consumer-biz</module>
         <module>consumer-boot</module>
-        <module>consumer-openservice</module>
         <module>consumer-call</module>
     </modules>
 
     <properties>
         <dubbo-consumer.version>1.0-SNAPSHOT</dubbo-consumer.version>
-        <dubbo-consumer-client.version>1.0-SNAPSHOT</dubbo-consumer-client.version>
         <dubbo-provider-client.version>1.0-SNAPSHOT</dubbo-provider-client.version>
     </properties>
 
@@ -32,23 +28,8 @@
         <dependencies>
             <!-- 子模块依赖 start -->
             <dependency>
-                <groupId>com.zjut.study.dubbo.consumer.client</groupId>
-                <artifactId>consumer-client</artifactId>
-                <version>${dubbo-consumer-client.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.zjut.study.dubbo.consumer.boot</groupId>
                 <artifactId>consumer-boot</artifactId>
-                <version>${dubbo-consumer.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zjut.study.dubbo.consumer.biz</groupId>
-                <artifactId>consumer-biz</artifactId>
-                <version>${dubbo-consumer.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zjut.study.dubbo.consumer.openservice</groupId>
-                <artifactId>consumer-openservice</artifactId>
                 <version>${dubbo-consumer.version}</version>
             </dependency>
             <dependency>

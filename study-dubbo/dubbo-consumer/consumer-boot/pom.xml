@@ -15,8 +15,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zjut.study.dubbo.consumer.openservice</groupId>
-            <artifactId>consumer-openservice</artifactId>
+            <groupId>com.zjut.study.dubbo.consumer.call</groupId>
+            <artifactId>consumer-call</artifactId>
         </dependency>
     </dependencies>
 </project>

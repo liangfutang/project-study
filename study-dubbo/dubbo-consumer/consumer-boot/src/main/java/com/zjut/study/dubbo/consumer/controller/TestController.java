@@ -1,7 +1,6 @@
 package com.zjut.study.dubbo.consumer.controller;
 
 import com.zjut.study.dubbo.consumer.call.TestDubboConsumerService;
-import com.zjut.study.dubbo.consumer.biz.service.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,15 +16,14 @@ import javax.annotation.Resource;
 public class TestController {
 
     @Resource
-    private TestService testService;
-    @Resource
     private TestDubboConsumerService testDubboConsumerService;
 
-    @GetMapping("/trace")
-    public String test() {
-        return testService.test();
-    }
-
+    /**
+     * 请求dubbo接口
+     * 将传入的参数直接透传回来
+     * @param name
+     * @return
+     */
     @GetMapping("/dubbo")
     public String dubbo(@RequestParam String name) {
         return testDubboConsumerService.test(name);

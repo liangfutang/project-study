@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 @SpringBootApplication
 @RestController
-@DubboComponentScan(basePackages = {""})
+//@DubboComponentScan(basePackages = {""})
 public class ConsumerApplication {
     private static ConfigurableApplicationContext context;
     public static void main(String[] args) {
