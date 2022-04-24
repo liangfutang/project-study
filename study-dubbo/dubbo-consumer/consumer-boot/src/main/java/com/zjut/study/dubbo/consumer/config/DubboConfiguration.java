@@ -26,9 +26,8 @@ public class DubboConfiguration {
         ApplicationConfig applicationConfig = new ApplicationConfig();
         applicationConfig.setName(dubboProperties.getApplicationName());
         applicationConfig.setEnvironment(dubboProperties.getApplicationEnvironment());
-        // QOS是dubbo的在线运维命令,默认端口2222，本地同时启动两个dubbo服务，端口冲突了，这里暂时先关闭
-        applicationConfig.setQosEnable(false);
-        applicationConfig.setQosAcceptForeignIp(false);
+        // QOS是dubbo的在线运维命令,默认端口2222，本地同时启动两个dubbo服务，端口冲突了
+        applicationConfig.setQosPort(2223);
         return applicationConfig;
     }
 
@@ -54,14 +53,6 @@ public class DubboConfiguration {
         return registry;
     }
 
-    @Bean
-    public MonitorConfig monitorConfig() {
-        // 连接注册中心配置
-        MonitorConfig registry = new MonitorConfig();
-        registry.setProtocol(dubboProperties.getMonitorProtocol());
-        registry.setAddress(dubboProperties.getRegistryAddress());
-        return registry;
-    }
 
     /**
      * 默认基于dubbo协议提供服务

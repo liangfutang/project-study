@@ -50,15 +50,6 @@ public class DubboConfiguration {
         return registry;
     }
 
-    @Bean
-    public MonitorConfig monitorConfig() {
-        // 连接注册中心配置
-        MonitorConfig registry = new MonitorConfig();
-        registry.setProtocol(dubboProperties.getMonitorProtocol());
-        registry.setAddress(dubboProperties.getRegistryAddress());
-        return registry;
-    }
-
     /**
      * 默认基于dubbo协议提供服务
      *
