@@ -64,18 +64,18 @@ public class DubboConfiguration {
      *
      * @return
      */
-//    @Bean(name = "defaultConsumer")
-//    public ProviderConfig providerConfig() {
-//
-//        ProviderConfig providerConfig = new ProviderConfig();
-//        providerConfig.setGroup("dubbo");
-////        if (DevParamUtil.isLocalTest()) {
-////            providerConfig.setGroup(DevParamUtil.getDubboGroupName());
-////        }
-//
-//        providerConfig.setFilter("dubboTraceIdFilter,dubboProviderFilter");
-//        return providerConfig;
-//    }
+    @Bean(name = "defaultConsumer")
+    public ProviderConfig providerConfig() {
+
+        ProviderConfig providerConfig = new ProviderConfig();
+        providerConfig.setGroup("dubbo");
+//        if (DevParamUtil.isLocalTest()) {
+//            providerConfig.setGroup(DevParamUtil.getDubboGroupName());
+//        }
+
+        providerConfig.setFilter("dubboTraceIdFilter,dubboProviderFilter");
+        return providerConfig;
+    }
 
     @Bean
     public ProtocolConfig protocolConfig() {

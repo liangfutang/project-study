@@ -1,0 +1,2 @@
+dubboTraceIdFilter=com.zjut.study.dubbo.provider.filters.DubboTraceIdFilter
+dubboProviderFilter=com.zjut.study.dubbo.provider.filters.DubboProviderFilter

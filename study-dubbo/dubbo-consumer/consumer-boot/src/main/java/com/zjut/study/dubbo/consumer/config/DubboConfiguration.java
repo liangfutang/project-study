@@ -2,6 +2,7 @@ package com.zjut.study.dubbo.consumer.config;
 
 import com.zjut.study.dubbo.consumer.properties.DubboProperties;
 import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ConsumerConfig;
 import org.apache.dubbo.config.MonitorConfig;
 import org.apache.dubbo.config.ProtocolConfig;
 import org.apache.dubbo.config.RegistryConfig;
@@ -92,16 +93,16 @@ public class DubboConfiguration {
     /**
      * dubbo消费
      */
-//    @Bean
-//    public ConsumerConfig consumerConfig() {
-//        ConsumerConfig consumerConfig = new ConsumerConfig();
-//        consumerConfig.setCheck(false);
-//        consumerConfig.setGroup("dubbo");
-////        if (DevParamUtil.isLocalTest()) {
-////            consumerConfig.setGroup(DevParamUtil.getDubboGroupName());
-////        }
-//
-//        consumerConfig.setFilter("dubboTraceIdFilter,dubboConsumerFilter");
-//        return consumerConfig;
-//    }
+    @Bean
+    public ConsumerConfig consumerConfig() {
+        ConsumerConfig consumerConfig = new ConsumerConfig();
+        consumerConfig.setCheck(false);
+        consumerConfig.setGroup("dubbo");
+//        if (DevParamUtil.isLocalTest()) {
+//            consumerConfig.setGroup(DevParamUtil.getDubboGroupName());
+//        }
+
+        consumerConfig.setFilter("dubboTraceIdFilter,dubboConsumerFilter");
+        return consumerConfig;
+    }
 }
