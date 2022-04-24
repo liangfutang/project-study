@@ -22,5 +22,20 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <groupId>org.springframework.boot</groupId>
         </dependency>
+
+        <dependency>
+            <artifactId>dubbo</artifactId>
+            <groupId>org.apache.dubbo</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+            <groupId>com.alibaba.boot</groupId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zjut.study.dubbo.provider.client</groupId>
+            <artifactId>provider-client</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
