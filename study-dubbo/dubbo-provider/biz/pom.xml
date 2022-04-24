@@ -18,9 +18,19 @@
             <groupId>com.zjut.study</groupId>
             <artifactId>study-common</artifactId>
         </dependency>
+
         <dependency>
             <artifactId>spring-boot-starter-web</artifactId>
             <groupId>org.springframework.boot</groupId>
+        </dependency>
+
+        <dependency>
+            <artifactId>dubbo</artifactId>
+            <groupId>org.apache.dubbo</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+            <groupId>com.alibaba.boot</groupId>
         </dependency>
     </dependencies>
 

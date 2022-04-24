@@ -39,6 +39,8 @@
         <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
         <commons_lang3.version>3.10</commons_lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
+        <dubbo.version>2.7.3</dubbo.version>
+        <nacos-boot.version>0.2.7</nacos-boot.version>
 
     </properties>
 
@@ -180,6 +182,16 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>${commons-collections4.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>dubbo</artifactId>
+                <groupId>org.apache.dubbo</groupId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+                <groupId>com.alibaba.boot</groupId>
+                <version>${nacos-boot.version}</version>
             </dependency>
             <!--第三方依赖 end-->
         </dependencies>

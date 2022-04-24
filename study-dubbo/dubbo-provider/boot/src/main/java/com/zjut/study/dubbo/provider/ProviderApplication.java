@@ -1,5 +1,6 @@
 package com.zjut.study.dubbo.provider;
 
+import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,6 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 @SpringBootApplication
 @RestController
+@DubboComponentScan(basePackages = {"com.zjut.study.dubbo.provider.openservice.service.impl"})
 public class ProviderApplication {
     private static ConfigurableApplicationContext context;
     public static void main(String[] args) {
