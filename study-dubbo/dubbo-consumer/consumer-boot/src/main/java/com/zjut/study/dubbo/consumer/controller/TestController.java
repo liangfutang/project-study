@@ -1,6 +1,6 @@
 package com.zjut.study.dubbo.consumer.controller;
 
-import com.zjut.study.dubbo.consumer.biz.service.TestDubboConsumerService;
+import com.zjut.study.dubbo.consumer.call.TestDubboConsumerService;
 import com.zjut.study.dubbo.consumer.biz.service.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
-package com.zjut.study.dubbo.consumer.biz.service.impl;
+package com.zjut.study.dubbo.consumer.call.Impl;
 
-import com.zjut.study.dubbo.consumer.biz.service.TestDubboConsumerService;
+import com.zjut.study.dubbo.consumer.call.TestDubboConsumerService;
 import com.zjut.study.dubbo.provider.client.service.TestDubboService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestDubboConsumerServiceImpl implements TestDubboConsumerService {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", check = false)
     private TestDubboService testDubboService;
 
 

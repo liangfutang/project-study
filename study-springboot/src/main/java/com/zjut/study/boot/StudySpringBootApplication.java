@@ -1,7 +1,5 @@
 package com.zjut.study.boot;
 
-import com.zjut.study.common.utils.SmallThreadTool;
-import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,10 +10,10 @@ import java.util.concurrent.CompletableFuture;
 
 @SpringBootApplication
 @RestController
-public class StudyApplication {
+public class StudySpringBootApplication {
     private static ConfigurableApplicationContext context;
     public static void main(String[] args) {
-        context = SpringApplication.run(StudyApplication.class, args);
+        context = SpringApplication.run(StudySpringBootApplication.class, args);
 
         // 添加一个钩子程序，在jvm最终关闭之前执行最后的动作
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{

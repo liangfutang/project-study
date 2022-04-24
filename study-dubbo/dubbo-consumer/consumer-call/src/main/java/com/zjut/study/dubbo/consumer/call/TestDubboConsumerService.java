@@ -1,4 +1,4 @@
-package com.zjut.study.dubbo.consumer.biz.service;
+package com.zjut.study.dubbo.consumer.call;
 
 public interface TestDubboConsumerService {
 

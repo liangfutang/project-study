@@ -87,16 +87,16 @@
         <appender-ref ref="sqlFile"/>
     </logger>
 
-    <springProfile name="dev,test,stage,prod">
-        <root level="info">
-            <appender-ref ref="rollingFileAsync"/>
-        </root>
-    </springProfile>
+<!--    <springProfile name="dev,test,stage,prod">-->
+<!--        <root level="info">-->
+<!--            <appender-ref ref="rollingFileAsync"/>-->
+<!--        </root>-->
+<!--    </springProfile>-->
 
-    <springProfile name="local">
+<!--    <springProfile name="local">-->
         <root level="info">
             <appender-ref ref="STDOUT"/>
         </root>
-    </springProfile>
+<!--    </springProfile>-->
 
 </configuration>
