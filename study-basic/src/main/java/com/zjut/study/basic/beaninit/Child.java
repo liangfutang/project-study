@@ -1,4 +1,4 @@
-package com.zjut.study.others.java.beaninit;
+package com.zjut.study.basic.beaninit;
 
 /**
  * 用来测试实例后初始化的加载过程，测试结果如下：

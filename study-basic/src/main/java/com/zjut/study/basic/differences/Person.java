@@ -1,4 +1,4 @@
-package com.zjut.study.others.java.reflect.differences;
+package com.zjut.study.basic.differences;
 
 import lombok.Getter;
 

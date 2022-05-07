@@ -1,11 +1,11 @@
-package com.zjut.study.others.java.reflect.differences;
+package com.zjut.study.basic.differences;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import org.junit.Test;
 
 public class Client extends CommonJunitFilter {
 
-    private final String className = "com.zjut.study.others.java.reflect.differences.Person";
+    private final String className = "com.zjut.study.basic.differences.Person";
 
 
     /**

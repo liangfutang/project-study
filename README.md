@@ -39,3 +39,6 @@
 
 ## study-dubbo
 用作dubbo相关的相关小知识点的学习和测试
+
+## study-basic
+用作java基础相关的相关小知识点的学习和测试

@@ -1,4 +1,4 @@
-package com.zjut.study.others.java.beaninit;
+package com.zjut.study.basic.beaninit;
 
 public class Parent {
 

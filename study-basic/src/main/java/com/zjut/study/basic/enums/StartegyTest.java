@@ -1,4 +1,4 @@
-package com.zjut.study.others.java.enums.method;
+package com.zjut.study.basic.enums;
 
 
 import org.junit.Test;
@@ -27,6 +27,15 @@ public class StartegyTest {
             default:
                 System.out.println("没有满足的类型值");
         }
+    }
+
+    /**
+     * 枚举值中对方法重写
+     */
+    @Test
+    public void test03() {
+        Startegy aDefault = Startegy.DEFAULT;
+        aDefault.eat();
     }
 
 }
