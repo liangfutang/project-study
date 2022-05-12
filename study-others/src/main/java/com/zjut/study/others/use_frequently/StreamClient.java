@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -22,7 +22,7 @@ public class StreamClient extends CommonJunitFilter {
     @Before
     public void init(){
         apples.add(new Apple("red", 300, "安徽"));
-        apples.add(new Apple("red", 400, "湖南"));
+        apples.add(new Apple("red", 300, "湖南"));
         apples.add(new Apple("red", 500, "山东"));
         apples.add(new Apple("green", 600, "辽宁"));
         apples.add(new Apple("green", 700, "甘肃"));
@@ -47,6 +47,7 @@ public class StreamClient extends CommonJunitFilter {
     private List<Apple> appleList = new ArrayList<>();
     private List<Personal> personals = new ArrayList<>();
 
+
     /**
      * 根据颜色分类，并对每组取其中一个属性计算平均值
      */
@@ -65,5 +66,23 @@ public class StreamClient extends CommonJunitFilter {
         List<Apple> apples = personals.stream().flatMap(one -> one.getApples().stream().filter(af -> af.getWeight()<0)).collect(Collectors.toList());
         System.out.println("所有人的苹果加起来:" + JSONObject.toJSONString(apples));
         System.out.println("一共:" + apples.size());
+    }
+
+    /**
+     * 按照某个字段分组，并计算每个组的数量
+     */
+    @Test
+    public void groupAndCount() {
+        Map<String, Long> collect = apples.stream().collect(Collectors.groupingBy(Apple::getColor, Collectors.counting()));
+        System.out.println(collect);
+    }
+
+    /**
+     * 按照其中一个字段分组，再按照两一个字段分组
+     */
+    @Test
+    public void groupAndGroup() {
+        Map<String, Map<Integer, Apple>> collect = apples.stream().collect(Collectors.groupingBy(Apple::getColor, Collectors.toMap(Apple::getWeight, Function.identity(), (k1, k2)->k1)));
+        System.out.println(JSONObject.toJSONString(collect));
     }
 }
