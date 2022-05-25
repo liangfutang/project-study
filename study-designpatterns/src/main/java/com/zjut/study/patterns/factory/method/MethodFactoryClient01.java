@@ -1,6 +1,9 @@
 package com.zjut.study.patterns.factory.method;
 
-public class MethodFacotryTest {
+/**
+ * @author jack
+ */
+public class MethodFactoryClient01 {
 
     public static void main(String[] args) {
         Phone phoneFactory = new MIPhoneFactory().createPhone();

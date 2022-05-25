@@ -1,6 +1,12 @@
 [toc]
 
 # [一. 工厂模式](src/main/java/com/zjut/study/patterns/factory)
+## 1.1 [工厂方法模式](src/main/java/com/zjut/study/patterns/factory/method)
+![工厂方法UML图](./pic/工厂方法UML图.png)    
+![简单工厂模式](./pic/简单工厂模式类图-简化使用.png)    
+![多个工厂类的类图](./pic/多个工厂类的类图.png)   
+![多个工厂类的类图](./pic/使用工厂方法模式替代单例模式类图.png)
+
 
 # [二. 代理模式](src/main/java/com/zjut/study/patterns/proxy)
 ## 2.1 静态代理
