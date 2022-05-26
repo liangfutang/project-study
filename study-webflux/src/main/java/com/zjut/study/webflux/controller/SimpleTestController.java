@@ -34,10 +34,12 @@ public class SimpleTestController {
      */
     @GetMapping(value = "/flux", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> flux() {
+        long start = System.currentTimeMillis();
         Flux<String> flux = Flux.fromArray(new String[]{"张三", "李四", "王五", "李六"}).map(one -> {
             SmallThreadTool.sleep(2000);
             return "二班: " + one;
         });
+        SmallThreadTool.printTimeAndThread("接口耗时:" + (System.currentTimeMillis() - start));
         return flux;
     }
 }
