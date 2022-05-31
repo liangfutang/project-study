@@ -1,5 +1,6 @@
 package com.zjut.study.auth.oauth2.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zjut.common.exception.ParameterException;
 import com.zjut.common.utils.HttpClientUtil;
 import com.zjut.study.auth.oauth2.constants.OAuth2Constant;
@@ -72,10 +73,20 @@ public class OAuth2Controller {
         String tokenResult = HttpClientUtil.getHttpGet(accessTokenUrl, new HashMap<>(), new HashMap<>(), 5000, 5000, 5000);
         log.info("从微信公众号平台获取到token信息:{}", tokenResult);
         // 获取用户信息
+        JSONObject tokenJson = JSONObject.parseObject(tokenResult);
+        String accessToken = tokenJson.getString("access_token");
+        String openid = tokenJson.getString("openid");
 
+        String userinfoUrl = "https://api.weixin.qq.com/sns/userinfo?" +
+                "access_token=" + accessToken +
+                "&openid=" + openid +
+                "&lang=zh_CN";
+        String userinfoResult = HttpClientUtil.getHttpGet(userinfoUrl, new HashMap<>(), new HashMap<>(), 5000, 5000, 5000);
+        log.info("从微信公众号平台获取到用户信息:{}", userinfoResult);
+        JSONObject userinfoJson = JSONObject.parseObject(userinfoResult);
 
         // 跳转到最终页面
-
+        response.sendRedirect("https://www.baidu.com");
     }
 
     /**
