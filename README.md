@@ -42,3 +42,6 @@
 
 ## study-basic
 用作java基础相关的相关小知识点的学习和测试
+
+## study-auth
+用作认证、授权及oauth相关测试使用

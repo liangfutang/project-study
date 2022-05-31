@@ -47,5 +47,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
         </dependency>
+
+        <!--   依赖当前github仓库中的 project-common 模块  -->
+        <!--   git@github.com:liangfutang/project-common.git  -->
+        <dependency>
+            <groupId>com.zjut.common</groupId>
+            <artifactId>project-common</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

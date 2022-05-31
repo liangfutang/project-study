@@ -28,6 +28,7 @@
         <module>study-dubbo</module>
         <module>study-webflux</module>
         <module>study-basic</module>
+        <module>study-auth</module>
     </modules>
 
     <properties>
