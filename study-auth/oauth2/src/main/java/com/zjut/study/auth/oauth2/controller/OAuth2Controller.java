@@ -6,6 +6,7 @@ import com.zjut.common.utils.HttpClientUtil;
 import com.zjut.study.auth.oauth2.constants.OAuth2Constant;
 import com.zjut.study.auth.oauth2.enums.ThirdPartyEnum;
 import com.zjut.study.auth.oauth2.service.SignatureCheckService;
+import com.zjut.study.auth.oauth2.utils.OAuthURLUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 /**
  * 微信公众号网页授权文档  https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#1
+ * @author jack
  */
 @RestController
 @RequestMapping("/oauth/2.0")
@@ -39,18 +40,14 @@ public class OAuth2Controller {
      */
     @GetMapping("/call/{thirdParty}")
     public void callThirdOAuth(@PathVariable String thirdParty, HttpServletResponse response) throws IOException {
-        this.checkCallParam(thirdParty);
+        log.info("使用:{},第三方授权", thirdParty);
+        if (!ThirdPartyEnum.checkThirdPartyByCode(thirdParty)) {
+            log.warn("无效第三方授权code:{}", thirdParty);
+            throw new ParameterException("当前授权的第三方不存在");
+        }
 
-
-        String codeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
-                "appid=" + OAuth2Constant.TEST_WEIXIN_APP_ID +
-                "&redirect_uri=" + URLEncoder.encode(OAuth2Constant.TEST_WEIXIN_REDIRECT_URI, "UTF-8") +
-                "&response_type=code" +
-                "&scope=" + OAuth2Constant.WEIXIN_SCOPE_USERINFO +
-                "&state=STATE" +
-                "#wechat_redirect";
-
-        response.sendRedirect(codeUrl);
+        // 引导用到跳转到确认授权界面并生成临时code
+        response.sendRedirect(OAuthURLUtil.getUserAuthorizeURLByThirdPartCode(thirdParty, "STATE"));
     }
 
     /**
@@ -64,6 +61,7 @@ public class OAuth2Controller {
             log.error("获取临时code为空");
             throw new ParameterException("获取临时code为空");
         }
+
         // 获取token
         String accessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?" +
                 "appid=" + OAuth2Constant.TEST_WEIXIN_APP_ID +
@@ -108,13 +106,4 @@ public class OAuth2Controller {
         return signatureCheckService.wxSignatureCheck(echostr, signature, timestamp, nonce, OAuth2Constant.TEST_WEIXIN_TOKEN);
     }
 
-
-
-    private void checkCallParam(String thirdParty) {
-        log.info("使用:{},第三方授权", thirdParty);
-        if (!ThirdPartyEnum.checkThirdPartyByCode(thirdParty)) {
-            log.warn("无效第三方授权code:{}", thirdParty);
-            throw new ParameterException("当前授权的第三方不存在");
-        }
-    }
 }
