@@ -1,8 +1,8 @@
-package com.zjut.study.mybatis.jdbc.util;
+package com.zjut.study.mybatis.mj.util;
 
-import com.zjut.study.mybatis.jdbc.entity.Blog;
-import com.zjut.study.mybatis.jdbc.entity.Comment;
-import com.zjut.study.mybatis.jdbc.entity.User;
+import com.zjut.study.mybatis.mj.entity.Blog;
+import com.zjut.study.mybatis.mj.entity.Comment;
+import com.zjut.study.mybatis.mj.entity.User;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

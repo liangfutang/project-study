@@ -24,7 +24,7 @@
     <mappers>
 <!--        <mapper resource="mapper/IsolationTestMapper.xml"/>-->
 <!--        <package name="mapper/*.xml"/>-->
-        <package name="com/zjut/study/mybatis/jdbc/mapper"/>
+        <package name="com/zjut/study/mybatis/mj/mapper"/>
 
 <!--        <mapper class="com.zjut.study.mybatis.mapper.IsolationTestMapper"/>-->
 <!--        <package name="com.zjut.study.mybatis.*"/>-->

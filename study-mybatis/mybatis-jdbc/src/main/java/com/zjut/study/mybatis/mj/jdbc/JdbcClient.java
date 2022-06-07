@@ -1,4 +1,4 @@
-package com.zjut.study.mybatis.jdbc.jdbc;
+package com.zjut.study.mybatis.mj.jdbc;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import org.junit.After;

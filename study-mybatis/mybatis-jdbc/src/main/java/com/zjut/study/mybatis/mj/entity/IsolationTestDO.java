@@ -1,4 +1,4 @@
-package com.zjut.study.mybatis.jdbc.entity;
+package com.zjut.study.mybatis.mj.entity;
 
 import lombok.Data;
 
