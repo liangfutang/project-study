@@ -16,11 +16,28 @@
 
     <properties>
         <mybatis-boot.version>1.0-SNAPSHOT</mybatis-boot.version>
+        <mybatis-jdbc.version>1.0-SNAPSHOT</mybatis-jdbc.version>
     </properties>
 
     <modules>
         <module>mybatis-boot</module>
+        <module>mybatis-jdbc</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.zjut.study.mybatis.boot</groupId>
+                <artifactId>mybatis-boot</artifactId>
+                <version>${mybatis-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study.mybatis.jdbc</groupId>
+                <artifactId>mybatis-jdbc</artifactId>
+                <version>${mybatis-jdbc.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>

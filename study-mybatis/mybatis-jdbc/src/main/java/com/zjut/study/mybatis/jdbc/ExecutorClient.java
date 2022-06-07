@@ -1,9 +1,9 @@
-package com.zjut.study.mybatis;
+package com.zjut.study.mybatis.jdbc;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.study.common.junit.CommonJunitFilter;
-import com.zjut.study.mybatis.entity.IsolationTestDO;
-import com.zjut.study.mybatis.mapper.IsolationTestMapper;
+import com.zjut.study.mybatis.jdbc.entity.IsolationTestDO;
+import com.zjut.study.mybatis.jdbc.mapper.IsolationTestMapper;
 import org.apache.ibatis.executor.SimpleExecutor;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -50,7 +50,7 @@ public class ExecutorClient extends CommonJunitFilter {
     @Test
     public void testSimple() throws SQLException {
         SimpleExecutor executor = new SimpleExecutor(configuration, jdbcTransaction);
-        MappedStatement ms = configuration.getMappedStatement("com.zjut.study.mybatis.mapper.IsolationTestMapper.selectById1");
+        MappedStatement ms = configuration.getMappedStatement("com.zjut.study.mybatis.jdbc.mapper.IsolationTestMapper.selectById1");
         // doQuery是处理器中具体实现业务的方法，查询不带缓存
         Object objects = executor.doQuery(ms, "xixixi", RowBounds.DEFAULT, SimpleExecutor.NO_RESULT_HANDLER, ms.getBoundSql("xixixi"));
         System.out.println(JSONObject.toJSONString(objects));
@@ -69,7 +69,7 @@ public class ExecutorClient extends CommonJunitFilter {
         List<IsolationTestDO> o = mapper.selectById1("xixixi");
         System.out.println(JSONObject.toJSONString(o));
 
-        List<IsolationTestDO> objects = sqlSessionFactory.openSession(true).selectList("com.zjut.study.mybatis.mapper.IsolationTestMapper.selectById1", "xixixi");
+        List<IsolationTestDO> objects = sqlSessionFactory.openSession(true).selectList("com.zjut.study.mybatis.jdbc.mapper.IsolationTestMapper.selectById1", "xixixi");
         System.out.println(JSONObject.toJSONString(objects));
     }
 }

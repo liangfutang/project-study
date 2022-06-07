@@ -1,5 +1,5 @@
 
-package com.zjut.study.mybatis.entity;
+package com.zjut.study.mybatis.jdbc.entity;
 
 import java.util.List;
 import java.util.Map;

@@ -1,8 +1,8 @@
-package com.zjut.study.mybatis;
+package com.zjut.study.mybatis.jdbc;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
-import com.zjut.study.mybatis.entity.Blog;
-import com.zjut.study.mybatis.util.Mock;
+import com.zjut.study.mybatis.jdbc.entity.Blog;
+import com.zjut.study.mybatis.jdbc.util.Mock;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
 import org.apache.ibatis.reflection.wrapper.BeanWrapper;

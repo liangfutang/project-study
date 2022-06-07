@@ -1,4 +1,4 @@
-package com.zjut.study.mybatis.jdbc;
+package com.zjut.study.mybatis.jdbc.jdbc;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import org.junit.After;
@@ -9,11 +9,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 /**

@@ -1,10 +1,6 @@
-package com.zjut.study.mybatis.mapper;
+package com.zjut.study.mybatis.jdbc.mapper;
 
-import com.zjut.study.mybatis.entity.IsolationTestDO;
-import org.apache.ibatis.annotations.CacheNamespace;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
+import com.zjut.study.mybatis.jdbc.entity.IsolationTestDO;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
