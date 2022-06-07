@@ -1,16 +1,17 @@
 [toc]
 
-# 一. JDBC
+# 一. mybatis
+## 1.1. JDBC
 [jdbc测试使用类](src/main/java/com/zjut/study/mybatis/jdbc/JdbcClient.java)
 
 ![JDBC基本操作流程](pic/JDBC操作流程.png)
 
-# 二. mybatis
-## 2.1 执行器Executor
+## 1.2. mybatis
+### 1.2.1 执行器Executor
 ![mybatis基本执行体](pic/mybatis执行体系.png)   
 ![mybatis执行器抽象类执行过程](pic/mybatis执行器抽象类执行过程.png)
 
-## 2.2 一级缓存
+### 1.2.2 一级缓存
 ![mybatis一级缓存命中场景](pic/mybatis一级缓存命中场景.png)  
 ![mybatis一级缓存中key的内容](pic/mybatis一级缓存中key的内容.png)  
 ![mybatis一级缓存源码流程1](pic/mybatis一级缓存源码流程1.png)  
@@ -18,7 +19,7 @@
 ![Spring整合mybatis后源码流程图](pic/Spring整合mybatis后源码流程图.png)  
 ![mybatis一级缓存总结](pic/mybatis一级缓存总结.png)
 
-## 2.3 二级缓存
+### 1.2.3 二级缓存
 ![mybatis缓存体系](pic/mybatis缓存体系.png)    
 ![mybatis二级缓存定义](pic/mybatis二级缓存定义.png)    
 ![mybatis二级缓存扩展性需求](pic/mybatis二级缓存扩展性需求.png)    
@@ -34,30 +35,33 @@
 ![mybatis二级缓存执行流程](pic/mybatis二级缓存执行流程.png)  
 ![mybatis执行过程总结](pic/mybatis执行过程总结.png)  
 
-## 2.4 StatementHandler
+### 1.2.4 StatementHandler
 ![StatementHandler定义](pic/StatementHandler定义.png)    
 ![StatementHandler继承关系](pic/StatementHandler继承关系.png)    
 ![StatementHandler执行流程](pic/StatementHandler执行流程.png) 
 
 
-## 2.5 参数映射处理
+### 1.2.5 参数映射处理
 基于映射进行具体的参数赋值处理。
 ![参数映射处理](pic/参数映射处理.png) 
 
 
-## 2.6 结果集处理
+### 1.2.6 结果集处理
 ![参数映射处理](pic/结果集处理流程.png)  
 
-## 2.7 MetaObject
+### 1.2.7 MetaObject
 [MetaObject测试类](src/main/java/com/zjut/study/mybatis/MetaObjectClient.java)
 
 ![MetaObject原理结构示意图](pic/MetaObject原理结构示意图.png)  
 ![以获取博客某条评论下评论者为案例说明MetaObject内部原理流程](pic/以获取博客某条评论下评论者为案例说明MetaObject内部原理流程.png)  
 
 
-## 2.8 ResultMap结果集映射
+### 1.2.8 ResultMap结果集映射
 ![手动映射](pic/手动映射.png)  
 ![自动映射](pic/自动映射.png)  
 
-## 2.9 循环依赖
+### 1.2.9 循环依赖
 ![自动映射](pic/循环依赖流程解析.png)  
+
+# 二. spring-mybatis
+
