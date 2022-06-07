@@ -32,7 +32,9 @@
     </modules>
 
     <properties>
+        <!--   项目版本版本   -->
         <project-study.version>1.0-SNAPSHOT</project-study.version>
+
         <maven-compiler.version>3.3</maven-compiler.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,6 +46,8 @@
         <dubbo.version>2.7.3</dubbo.version>
         <nacos-boot.version>0.2.7</nacos-boot.version>
 
+        <!--   一级子模块版本   -->
+        <study-mybatis.version>1.0-SNAPSHOT</study-mybatis.version>
     </properties>
 
     <dependencyManagement>
@@ -75,9 +79,10 @@
                 <version>${project-study.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zjut.study</groupId>
+                <groupId>com.zjut.study.mybatis</groupId>
                 <artifactId>study-mybatis</artifactId>
-                <version>${project-study.version}</version>
+                <version>${study-mybatis.version}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>com.zjut.study</groupId>
