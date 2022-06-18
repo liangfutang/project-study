@@ -29,6 +29,7 @@
         <module>study-webflux</module>
         <module>study-basic</module>
         <module>study-auth</module>
+        <module>study-log</module>
     </modules>
 
     <properties>
