@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 微信支付
+ * @author jack
  */
 @Slf4j
 public class WXPay extends Pay{

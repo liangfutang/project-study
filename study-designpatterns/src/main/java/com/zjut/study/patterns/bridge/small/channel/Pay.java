@@ -4,6 +4,7 @@ import com.zjut.study.patterns.bridge.small.paymodel.PayModel;
 
 /**
  * 支付工作
+ * @author jack
  */
 public abstract class Pay {
 

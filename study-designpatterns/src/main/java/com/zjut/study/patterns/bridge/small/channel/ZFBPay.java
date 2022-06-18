@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 支付宝支付
+ * @author jack
  */
 @Slf4j
 public class ZFBPay extends Pay{
