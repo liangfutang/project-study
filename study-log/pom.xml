@@ -17,6 +17,7 @@
     <modules>
         <module>log-jul</module>
         <module>log-log4j</module>
+        <module>log-jcl</module>
     </modules>
 
     <dependencies>
