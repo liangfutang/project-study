@@ -1,4 +1,4 @@
-package com.zjut.study.log.log4j;
+package com.zjut.study.log.log4j.log4j;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
