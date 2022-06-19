@@ -13,5 +13,24 @@
     <artifactId>slf4j-logback</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
+    <dependencies>
+        <!--    门面 slf4j    -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+        <!--   配上logback实现     -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+        <!--    这里是logback的核心包，其实引入这个包就够了，内部包含以上两个包，此处都引入是为了方便查看    -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+    </dependencies>
 </project>
