@@ -5,6 +5,7 @@ import org.junit.Before;
 
 /**
  * 每个测试方法的前后执行的方法
+ * @author jack
  */
 public class CommonJunitFilter {
     @Before

@@ -17,6 +17,7 @@
     <modules>
         <module>slf4j-logback</module>
         <module>slf4j-log4j</module>
+        <module>log4j-2-slf4j</module>
     </modules>
 
 </project>
