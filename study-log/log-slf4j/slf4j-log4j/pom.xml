@@ -13,5 +13,18 @@
     <artifactId>slf4j-log4j</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
+    <dependencies>
+        <!--    门面 slf4j    -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+        <!--   桥接到log4j，内部包含slf4j-api，所以slf4j-api可不引入，slf4j-api和slf4j-log4j12最好一致     -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+    </dependencies>
 </project>
