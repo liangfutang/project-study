@@ -15,6 +15,26 @@
     <artifactId>log4j-2-slf4j</artifactId>
 
     <dependencies>
+        <!--    引入的第三方包    -->
+        <dependency>
+            <groupId>com.zjut.study.log.log4j</groupId>
+            <artifactId>log-log4j</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--    1. 引入桥接包    -->
+        <!--    2. 注意：桥接器的优先级要比第三方中日志高，要么手动排除log包，要么把桥接包放到第三方包上面去    -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <!--    当前应用日志    -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
