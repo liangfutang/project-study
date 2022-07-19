@@ -1,0 +1,20 @@
+package com.zjut.study.boot.validate.servicevalid;
+
+import com.alibaba.fastjson.JSONObject;
+import com.zjut.study.boot.validate.entity.Employee;
+import com.zjut.study.boot.validate.group.EmpAddGroup;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
+
+@Service
+@Slf4j
+@Validated(EmpAddGroup.class)
+public class EmployeeServiceImpl {
+
+    public void add(@Valid Employee employee) {
+        log.info("方法层参数校验:{}", JSONObject.toJSONString(employee));
+    }
+}

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.util.stream.Collectors;
 
 /**
  * 全局异常捕获
@@ -33,6 +36,20 @@ public class WebExceptionHandlerCustomizer {
             errorMessage.append(fieldError.getDefaultMessage()).append("\n");
         }
         log.error("处理uri:{}参数异常MethodArgumentNotValidException:{}", request.getRequestURI(), errorMessage);
+        return Results.error(ResultCodeEnum.PARAMETER_ILLEGAL.getCode(), errorMessage.toString());
+    }
+
+    /**
+     * ConstraintViolationException是原始层的校验异常
+     * @param ex
+     * @param request
+     * @return
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    public Result<?> serviceMethodArgumentNotValidExceptionHandler(ConstraintViolationException ex, HttpServletRequest request) {
+        StringBuilder errorMessage = new StringBuilder("Service Invalid Request:\n");
+        ex.getConstraintViolations().forEach(one -> errorMessage.append(one.getPropertyPath()).append(one.getMessage()));
+        log.error("处理uri:{},service参数异常ConstraintViolationException:{}", request.getRequestURI(), errorMessage);
         return Results.error(ResultCodeEnum.PARAMETER_ILLEGAL.getCode(), errorMessage.toString());
     }
 }
