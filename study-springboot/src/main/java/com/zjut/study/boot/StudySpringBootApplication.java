@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author jack
+ */
 @SpringBootApplication
 @RestController
 public class StudySpringBootApplication {

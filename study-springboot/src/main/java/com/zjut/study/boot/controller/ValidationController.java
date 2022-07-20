@@ -2,17 +2,22 @@ package com.zjut.study.boot.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.study.boot.validate.entity.Department;
+import com.zjut.study.boot.validate.entity.Employee;
+import com.zjut.study.boot.validate.entity.Job;
 import com.zjut.study.boot.validate.group.DeptAddGroup;
 import com.zjut.study.boot.validate.group.EmpAddGroup;
-import com.zjut.study.boot.validate.entity.Employee;
 import com.zjut.study.boot.validate.servicevalid.DepartmentService;
-import com.zjut.study.boot.validate.servicevalid.EmployeeServiceImpl;
 import com.zjut.study.boot.validate.servicevalid.EmployeeServiceImpl;
 import com.zjut.study.common.convention.result.Result;
 import com.zjut.study.common.convention.result.Results;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.groups.Default;
@@ -85,8 +90,16 @@ public class ValidationController {
         return Results.success();
     }
     @PutMapping("/service/one/2/one/dept")
-    public Result<?> updateAge(@RequestParam(required = false) Integer id) {
+    public Result<?> getById(@RequestParam(required = false) Integer id) {
         departmentService.getById(id);
+        return Results.success();
+    }
+
+    // =============================自定义校验=================================
+
+    @PutMapping("/customize/validator/multi")
+    public Result<?> updateAge(@Validated @RequestBody Job job) {
+        log.info("自定义注解校验传入的参数是否是指定数的倍数:{}", job);
         return Results.success();
     }
 }
