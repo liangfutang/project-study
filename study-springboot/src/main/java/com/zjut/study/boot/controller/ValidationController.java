@@ -15,9 +15,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.groups.Default;
 
 /**
  * 参数校验
+ *
  * @author jack
  */
 @RestController
@@ -28,6 +30,7 @@ public class ValidationController {
     /**
      * 一对一的关系的级联参数校验
      * 需要对内部的嵌套对象添加 @Valid 说明，否则不会对其校验
+     *
      * @param employee 员工
      * @return
      */
@@ -40,11 +43,13 @@ public class ValidationController {
     /**
      * 一对多的级联校验
      * 需要在多上添加 @Valid 说明
+     * 分组的时候使用  Default.class  表示使用默认的分组，会对属性上没有添加任何分组(有分组则不是Default了)的也做校验
+     *
      * @param department
      * @return
      */
     @PostMapping("/one/2/one/many")
-    public Result<?> one2many(@Validated(DeptAddGroup.class) @RequestBody Department department) {
+    public Result<?> one2many(@Validated({DeptAddGroup.class, Default.class}) @RequestBody Department department) {
         log.info("一对多关系下参数级联校验:{}", JSONObject.toJSONString(department));
         return Results.success();
     }
@@ -58,10 +63,11 @@ public class ValidationController {
 
     /**
      * service层校验异常是ConstraintViolationException
+     *
      * @param employee
      * @return
      */
-    @PostMapping("/service/one/2/one")
+    @PostMapping("/service/one/2/one/emp")
     public Result<?> serviceOne2one(@RequestBody Employee employee) {
         mployeeServiceImpl.add(employee);
         return Results.success();
@@ -74,8 +80,8 @@ public class ValidationController {
     }
 
     @PutMapping("/service/one/2/one/dept")
-    public Result<?> updateAge(@RequestParam(required = false) Integer age) {
-        departmentService.updateAge(age);
+    public Result<?> updateAge(@RequestParam(required = false) Integer id) {
+        departmentService.getById(id);
         return Results.success();
     }
 }

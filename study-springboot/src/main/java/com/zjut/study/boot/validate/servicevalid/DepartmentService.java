@@ -16,9 +16,10 @@ public interface DepartmentService {
     void add(@Valid Department department);
 
     /**
-     * 这里如果不加group，但是@Validated中有group，则校验会失效
-     * @param age
+     * 对返回值的是否为空的校验 @NotNull 可以加在这里也能加在方法实现上，有一处加了就可以
+     *
+     * @param id
      * @return
      */
-    @NotNull(groups = {DeptAddGroup.class}) Integer updateAge(Integer age);
+    Department getById(Integer id);
 }

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
@@ -16,16 +17,16 @@ import java.util.Objects;
  */
 @Service
 @Slf4j
-@Validated(DeptAddGroup.class)
+@Validated
 public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
-    public void add(Department department) {
+    public void add(@Validated(DeptAddGroup.class)Department department) {
         log.info("实现接口方法层接口校验:{}", JSONObject.toJSONString(department));
     }
 
     @Override
-    public Integer updateAge(Integer age) {
-        return Objects.isNull(age) ? null : 1;
+    public @NotNull(message = "不能返回空部门") Department getById(Integer id) {
+        return Objects.isNull(id) ? null : new Department();
     }
 }
