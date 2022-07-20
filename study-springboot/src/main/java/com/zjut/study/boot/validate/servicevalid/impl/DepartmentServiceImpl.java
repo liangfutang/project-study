@@ -17,7 +17,7 @@ import java.util.Objects;
  */
 @Service
 @Slf4j
-@Validated
+@Validated // 此处校验注解不能少，否则会失效
 public class DepartmentServiceImpl implements DepartmentService {
 
     @Override

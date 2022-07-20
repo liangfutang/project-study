@@ -18,6 +18,10 @@ import javax.validation.Valid;
 @Validated(EmpAddGroup.class)
 public class EmployeeServiceImpl {
 
+    /**
+     * 此种校验方法能行，但是存在很大的弊端，后期看看怎么改进下
+     * @param employee
+     */
     public void add(@Valid Employee employee) {
         log.info("不实现接口方法层参数校验:{}", JSONObject.toJSONString(employee));
     }

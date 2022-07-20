@@ -62,6 +62,7 @@ public class ValidationController {
     private DepartmentService departmentService;
 
     /**
+     * 没实现接口的方法层校验
      * service层校验异常是ConstraintViolationException
      *
      * @param employee
@@ -73,12 +74,16 @@ public class ValidationController {
         return Results.success();
     }
 
+    /**
+     * 有实现接口的方法层校验
+     * @param department
+     * @return
+     */
     @PostMapping("/service/one/2/one/dept")
     public Result<?> serviceOne2many(@RequestBody Department department) {
         departmentService.add(department);
         return Results.success();
     }
-
     @PutMapping("/service/one/2/one/dept")
     public Result<?> updateAge(@RequestParam(required = false) Integer id) {
         departmentService.getById(id);
