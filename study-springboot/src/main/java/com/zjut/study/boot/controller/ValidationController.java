@@ -8,6 +8,7 @@ import com.zjut.study.boot.validate.group.DeptAddGroup;
 import com.zjut.study.boot.validate.group.EmpAddGroup;
 import com.zjut.study.boot.validate.servicevalid.DepartmentService;
 import com.zjut.study.boot.validate.servicevalid.EmployeeServiceImpl;
+import com.zjut.study.boot.validate.validation.ValidList;
 import com.zjut.study.common.convention.result.Result;
 import com.zjut.study.common.convention.result.Results;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.groups.Default;
+import java.util.List;
 
 /**
  * 参数校验
@@ -30,6 +32,7 @@ import javax.validation.groups.Default;
 @RestController
 @Slf4j
 @RequestMapping("/valid")
+@Validated
 public class ValidationController {
 
     /**
@@ -100,6 +103,19 @@ public class ValidationController {
     @PutMapping("/customize/validator/multi")
     public Result<?> updateAge(@Validated @RequestBody Job job) {
         log.info("自定义注解校验传入的参数是否是指定数的倍数:{}", job);
+        return Results.success();
+    }
+
+    // ============================入参是数组的参数校验===========================
+
+    /**
+     * 必须要在类上添加 @Validated 注解，否则不生效，后期看能不能重新定义一下
+     * @param employeeList
+     * @return
+     */
+    @PostMapping("/customize/list")
+    public Result<?> validList(@RequestBody @ValidList(quickFail = true, groupings = {Default.class}) List<Employee> employeeList) {
+        log.info("自定义校验器校验入参是数组的:{}", JSONObject.toJSONString(employeeList));
         return Results.success();
     }
 }
