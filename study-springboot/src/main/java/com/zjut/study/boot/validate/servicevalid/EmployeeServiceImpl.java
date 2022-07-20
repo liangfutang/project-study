@@ -15,6 +15,6 @@ import javax.validation.Valid;
 public class EmployeeServiceImpl {
 
     public void add(@Valid Employee employee) {
-        log.info("方法层参数校验:{}", JSONObject.toJSONString(employee));
+        log.info("不实现接口方法层参数校验:{}", JSONObject.toJSONString(employee));
     }
 }
