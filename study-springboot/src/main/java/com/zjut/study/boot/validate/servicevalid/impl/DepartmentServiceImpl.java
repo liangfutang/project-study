@@ -10,6 +10,10 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.Objects;
 
+/**
+ * 实现接口的方法参数校验
+ * @author jack
+ */
 @Service
 @Slf4j
 @Validated(DeptAddGroup.class)

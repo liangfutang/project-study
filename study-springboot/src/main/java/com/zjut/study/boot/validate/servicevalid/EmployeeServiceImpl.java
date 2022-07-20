@@ -9,6 +9,10 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 
+/**
+ * 不实现接口，对方法中参数校验
+ * @author jack
+ */
 @Service
 @Slf4j
 @Validated(EmpAddGroup.class)
