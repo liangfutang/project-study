@@ -1,11 +1,15 @@
 package com.zjut.study.boot;
 
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -22,6 +26,27 @@ public class StudySpringBootApplication {
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{
             System.out.println("最终还是钩子抗下了所有");
         }));
+
+        // beanFactory相关
+        try {
+            beanFactory(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 查看BeanFactory中相关内容
+     * @param context
+     * @throws NoSuchFieldException
+     */
+    private static void beanFactory(ConfigurableApplicationContext context) throws NoSuchFieldException, IllegalAccessException {
+        // 通过反射获取单例池
+        Field singletonObjects = DefaultSingletonBeanRegistry.class.getDeclaredField("singletonObjects");
+        singletonObjects.setAccessible(true);
+        ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
+        Map<String, Object> map = (Map<String, Object>) singletonObjects.get(beanFactory);
+        System.out.printf("单例池中有%d个bean%n", map.size());
     }
 
 
