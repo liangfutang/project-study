@@ -2,6 +2,7 @@ package com.zjut.study.auth.oauth2.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.common.exception.ParameterException;
+import com.zjut.common.exception.ServiceException;
 import com.zjut.common.utils.HttpClientUtil;
 import com.zjut.study.auth.oauth2.constants.OAuth2Constant;
 import com.zjut.study.auth.oauth2.enums.ThirdPartyEnum;
@@ -39,7 +40,7 @@ public class OAuth2Controller {
      * @param thirdParty
      */
     @GetMapping("/call/{thirdParty}")
-    public void callThirdOAuth(@PathVariable String thirdParty, HttpServletResponse response) throws IOException {
+    public void callThirdOAuth(@PathVariable String thirdParty, HttpServletResponse response) throws IOException, ServiceException {
         log.info("使用:{},第三方授权", thirdParty);
         if (!ThirdPartyEnum.checkThirdPartyByCode(thirdParty)) {
             log.warn("无效第三方授权code:{}", thirdParty);

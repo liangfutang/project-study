@@ -17,6 +17,7 @@
 ![mybatis一级缓存源码流程1](pic/mybatis一级缓存源码流程1.png)  
 ![mybatis一级缓存源码流程2](pic/mybatis一级缓存源码流程2.png)  
 ![Spring整合mybatis后源码流程图](pic/Spring整合mybatis后源码流程图.png)  
+spring中的Mapper代理类中用的是会话模板SqlSessionTemplate，该模板也是继承的SQLSession，创建该模板的时候内部使用SqlSessionInterceptor生成代理方便拦截(因为spring中直接掉的是模板。所以模板中的方法需要再代理一下，最终目的是要实现事务)，该拦截器中在获取SQLSession的时候会用SqlSessionHolder(ThreadLocal)判断当前线程中是否存在SQLSession，存在则用现有的    
 ![mybatis一级缓存总结](pic/mybatis一级缓存总结.png)
 
 ### 1.2.3 二级缓存

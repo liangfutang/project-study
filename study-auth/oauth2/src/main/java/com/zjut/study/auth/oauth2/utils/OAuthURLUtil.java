@@ -32,7 +32,7 @@ public class OAuthURLUtil {
      * @param code
      * @return
      */
-    public static String getUserAuthorizeURLByThirdPartCode(String code, String state) {
+    public static String getUserAuthorizeURLByThirdPartCode(String code, String state) throws ServiceException {
         Function<String, String> urlFunction = CODE_USER_AUTHORIZE_URL_MAP.get(code);
         if (Objects.isNull(urlFunction)) {
             log.error("查无对应的第三方，请联系管理人员:{}", code);
