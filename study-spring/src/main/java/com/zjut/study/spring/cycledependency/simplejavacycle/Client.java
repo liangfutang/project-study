@@ -26,7 +26,8 @@ public class Client extends CommonJunitFilter {
 
     /**
      * 目的：测试简单java间的循环依赖，内部直接new出实例的方式
-     * 总结：测试爆出异常StackOverflowError，线程中循环依赖的栈深度大于虚拟机所允许的深度了
+     * 总结：爆出异常StackOverflowError，创建对象初始化属性时，该属性内部也出现需要初始化的属性，造成创建的栈溢出
+     * 线程中循环依赖的栈深度大于虚拟机所允许的深度了
      *
      * 测试结果如下：
      *      java.lang.StackOverflowError
@@ -36,10 +37,11 @@ public class Client extends CommonJunitFilter {
      *      	at com.zjut.study.spring.cycledependency.simplejavacycle.A.<init>(A.java:4)
      * 	        at com.zjut.study.spring.cycledependency.simplejavacycle.B.<init>(B.java:4)
      *      	at com.zjut.study.spring.cycledependency.simplejavacycle.A.<init>(A.java:4)
+     *          ......
      */
     @Test
     public void test02() {
-        // 只实例化一个A或者B的话也会爆出上述的异常
+        // 实例化A或者B时会爆出栈溢出error
         A a = new A();
 //        B b = new B();
     }
