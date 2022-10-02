@@ -1,4 +1,4 @@
-package com.zjut.study.spring.cycledependency.simplejavacycle;
+package com.zjut.study.spring.cycledependency.simplejavacycle.initcycle;
 
 import lombok.Getter;
 import lombok.Setter;

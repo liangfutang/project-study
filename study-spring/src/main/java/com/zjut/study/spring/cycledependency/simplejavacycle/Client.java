@@ -1,17 +1,19 @@
 package com.zjut.study.spring.cycledependency.simplejavacycle;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
+import com.zjut.study.spring.cycledependency.simplejavacycle.initcycle.Cat;
+import com.zjut.study.spring.cycledependency.simplejavacycle.initcycle.Dog;
+import com.zjut.study.spring.cycledependency.simplejavacycle.objectcycle.A;
 import org.junit.Test;
 
+/**
+ * 简单的java对象间的循环依赖
+ * @author jack
+ */
 public class Client extends CommonJunitFilter {
 
     /**
-     * 目的：测试java对象间的简单依赖，通过注入的方式
-     * 总结：通过setter的注入方式能成功注入，不会产生循环依赖的问题，因为是实例化后有了对象，所以可以依赖进去
-     *
-     * 测试结果如下：
-     *      依赖方叫:小喵
-     *      依赖方名叫:小汪
+     * 测试简单的对象间的循环依赖，对象创建完成后再set进去
      */
     @Test
     public void test01() {
@@ -25,18 +27,14 @@ public class Client extends CommonJunitFilter {
     }
 
     /**
-     * 目的：测试简单java间的循环依赖，内部直接new出实例的方式
-     * 总结：爆出异常StackOverflowError，创建对象初始化属性时，该属性内部也出现需要初始化的属性，造成创建的栈溢出
-     * 线程中循环依赖的栈深度大于虚拟机所允许的深度了
-     *
+     * 对象创建过程中初始化属性，属性对象内部又需要创建属性，都是在对象的创建过程中进行
+     * 线程中循环依赖的栈深度大于虚拟机所允许的深度了爆出异常StackOverflowError，
      * 测试结果如下：
      *      java.lang.StackOverflowError
-     *      	at com.zjut.study.spring.cycledependency.simplejavacycle.B.<init>(B.java:4)
-     *      	at com.zjut.study.spring.cycledependency.simplejavacycle.A.<init>(A.java:4)
-     * 	        at com.zjut.study.spring.cycledependency.simplejavacycle.B.<init>(B.java:4)
-     *      	at com.zjut.study.spring.cycledependency.simplejavacycle.A.<init>(A.java:4)
-     * 	        at com.zjut.study.spring.cycledependency.simplejavacycle.B.<init>(B.java:4)
-     *      	at com.zjut.study.spring.cycledependency.simplejavacycle.A.<init>(A.java:4)
+     *      	at com.zjut.study.spring.cycledependency.simplejavacycle.objectcycle.B.<init>(B.java:4)
+     *      	at com.zjut.study.spring.cycledependency.simplejavacycle.objectcycle.A.<init>(A.java:4)
+     * 	        at com.zjut.study.spring.cycledependency.simplejavacycle.objectcycle.B.<init>(B.java:4)
+     *      	at com.zjut.study.spring.cycledependency.simplejavacycle.objectcycle.A.<init>(A.java:4)
      *          ......
      */
     @Test
