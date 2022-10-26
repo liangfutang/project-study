@@ -1,7 +1,6 @@
 package com.zjut.study.boot.exception;
 
-import com.zjut.common.enums.ResultCodeEnum;
-import com.zjut.common.utils.ResponseUtil;
+import com.zjut.study.common.convention.code.ResultCodeEnum;
 import com.zjut.study.common.convention.result.Result;
 import com.zjut.study.common.convention.result.Results;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ public class WebExceptionHandlerCustomizer {
             errorMessage.append(fieldError.getDefaultMessage()).append("\n");
         }
         log.error("处理uri:{}参数异常MethodArgumentNotValidException:{}", request.getRequestURI(), errorMessage);
-        return Results.error(ResultCodeEnum.PARAMETER_ILLEGAL.getCode(), errorMessage.toString());
+        return Results.error(ResultCodeEnum.PARAMETER_ILLEGAL.code(), errorMessage.toString());
     }
 
     /**
@@ -50,6 +49,6 @@ public class WebExceptionHandlerCustomizer {
         StringBuilder errorMessage = new StringBuilder("Service Invalid Request:\n");
         ex.getConstraintViolations().forEach(one -> errorMessage.append(one.getPropertyPath()).append(one.getMessage()));
         log.error("处理uri:{},service参数异常ConstraintViolationException:{}", request.getRequestURI(), errorMessage);
-        return Results.error(ResultCodeEnum.PARAMETER_ILLEGAL.getCode(), errorMessage.toString());
+        return Results.error(ResultCodeEnum.PARAMETER_ILLEGAL.code(), errorMessage.toString());
     }
 }

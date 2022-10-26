@@ -48,12 +48,21 @@
             <artifactId>commons-collections4</artifactId>
         </dependency>
 
-        <!--   依赖当前github仓库中的 project-common 模块  -->
-        <!--   git@github.com:liangfutang/project-common.git  -->
+        <!--    http请求    -->
         <dependency>
-            <groupId>com.zjut.common</groupId>
-            <artifactId>project-common</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>4.1.4</version>
         </dependency>
     </dependencies>
 </project>

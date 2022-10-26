@@ -1,10 +1,11 @@
 package com.zjut.study.auth.oauth2.exception;
 
-import com.zjut.common.enums.ResultCodeEnum;
-import com.zjut.common.exception.ParameterException;
-import com.zjut.common.utils.ResponseUtil;
+import com.zjut.study.common.convention.code.ResultCodeEnum;
+import com.zjut.study.common.convention.result.Results;
+import com.zjut.study.common.exception.ParameterException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,13 +23,13 @@ public class WebExceptionHandlerCustomizer {
     @ExceptionHandler(ParameterException.class)
     public ResponseEntity<?> operateParameterException(ParameterException ex, HttpServletRequest request) {
         log.error("{} ParameterException:{},", request.getRequestURI(), ex.getMessage(), ex);
-        return ResponseUtil.wrapFailureResult(null, ex.getCode(), ex.getMessage());
+        return new ResponseEntity<>(Results.error(ex.getCode(), ex.getMessage()), HttpStatus.OK);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> operateException(Exception ex, HttpServletRequest request) {
         log.error("{} Exception:{},", request.getRequestURI(), ex.getMessage(), ex);
-        String message = StringUtils.isBlank(ex.getLocalizedMessage()) ? ResultCodeEnum.INTERNAL_SERVER_ERROR.getMessage() : ex.getLocalizedMessage();
-        return ResponseUtil.wrapFailureResult(null, ResultCodeEnum.INTERNAL_SERVER_ERROR.getCode(), message);
+        String message = StringUtils.isBlank(ex.getLocalizedMessage()) ? ResultCodeEnum.INTERNAL_SERVER_ERROR.message() : ex.getLocalizedMessage();
+        return new ResponseEntity<>(Results.error(ResultCodeEnum.INTERNAL_SERVER_ERROR.code(), message), HttpStatus.OK);
     }
 }

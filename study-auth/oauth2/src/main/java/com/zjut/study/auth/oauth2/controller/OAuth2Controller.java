@@ -1,13 +1,13 @@
 package com.zjut.study.auth.oauth2.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zjut.common.exception.ParameterException;
-import com.zjut.common.exception.ServiceException;
-import com.zjut.common.utils.HttpClientUtil;
 import com.zjut.study.auth.oauth2.constants.OAuth2Constant;
 import com.zjut.study.auth.oauth2.enums.ThirdPartyEnum;
 import com.zjut.study.auth.oauth2.service.SignatureCheckService;
 import com.zjut.study.auth.oauth2.utils.OAuthURLUtil;
+import com.zjut.study.common.exception.ParameterException;
+import com.zjut.study.common.exception.ServiceException;
+import com.zjut.study.common.utils.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;

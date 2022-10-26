@@ -1,7 +1,5 @@
 package com.zjut.study.common.convention.code;
 
-import com.zjut.study.common.convention.code.ResultCode;
-
 /**
  * 错误码
  * @author jack
