@@ -15,7 +15,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zjut.study</groupId>
+            <groupId>com.zjut.study.common</groupId>
             <artifactId>study-common</artifactId>
         </dependency>
     </dependencies>
