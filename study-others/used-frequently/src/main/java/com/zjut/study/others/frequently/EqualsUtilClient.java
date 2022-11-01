@@ -1,7 +1,7 @@
-package com.zjut.study.others.use_frequently;
+package com.zjut.study.others.frequently;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
-import com.zjut.study.others.use_frequently.entity.Personal;
+import com.zjut.study.others.frequently.entity.Personal;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.Before;
 import org.junit.Test;

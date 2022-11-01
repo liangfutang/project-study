@@ -1,4 +1,4 @@
-package com.zjut.study.others.use_frequently.entity;
+package com.zjut.study.others.frequently.entity;
 
 import lombok.Data;
 

@@ -1,9 +1,9 @@
-package com.zjut.study.others.use_frequently;
+package com.zjut.study.others.frequently;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.study.common.junit.CommonJunitFilter;
-import com.zjut.study.others.use_frequently.entity.Apple;
-import com.zjut.study.others.use_frequently.entity.Personal;
+import com.zjut.study.others.frequently.entity.Apple;
+import com.zjut.study.others.frequently.entity.Personal;
 import org.junit.Before;
 import org.junit.Test;
 

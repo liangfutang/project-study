@@ -8,8 +8,17 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>${project-study.version}</version>
+    <packaging>pom</packaging>
+
+    <groupId>com.zjut.study.others</groupId>
     <artifactId>study-others</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>mapstruct</module>
+        <module>cipher</module>
+        <module>used-frequently</module>
+    </modules>
 
     <dependencies>
         <dependency>
