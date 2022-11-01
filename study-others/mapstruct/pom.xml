@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zjut.study.mapstruct</groupId>
+    <groupId>com.zjut.study.others.mapstruct</groupId>
     <artifactId>mapstruct</artifactId>
     <version>1.0-SNAPSHOT</version>
 
