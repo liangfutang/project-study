@@ -1,0 +1,4 @@
+# 默认使用dev配置，如需换成其他环境配置，可再启动参数添加配置spring.profiles.active=prod
+spring:
+  profiles:
+    active: dev

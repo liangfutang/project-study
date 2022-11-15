@@ -65,5 +65,19 @@
             <artifactId>httpasyncclient</artifactId>
             <version>4.1.4</version>
         </dependency>
+
+        <!--    对象间转换    -->
+        <!--  mapstruct核心库  -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.3.Final</version>
+        </dependency>
+        <!--  mapstruct编译  -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.3.Final</version>
+        </dependency>
     </dependencies>
 </project>

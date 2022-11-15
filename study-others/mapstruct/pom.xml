@@ -14,17 +14,21 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <!--  mapstruct核心库  -->
+<!--        &lt;!&ndash;  mapstruct核心库  &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.mapstruct</groupId>-->
+<!--            <artifactId>mapstruct</artifactId>-->
+<!--            <version>1.5.3.Final</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash;  mapstruct编译  &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.mapstruct</groupId>-->
+<!--            <artifactId>mapstruct-processor</artifactId>-->
+<!--            <version>1.5.3.Final</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>1.5.3.Final</version>
-        </dependency>
-        <!--  mapstruct编译  -->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>1.5.3.Final</version>
+            <groupId>com.zjut.study.common</groupId>
+            <artifactId>study-common</artifactId>
         </dependency>
     </dependencies>
 </project>

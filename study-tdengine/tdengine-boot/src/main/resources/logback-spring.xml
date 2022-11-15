@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <contextName>ts-api</contextName>
+    <property name="LOG_PATH" value="/home/kalman/log"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/ts-api/info.ts-api.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <!-- each file should be at most 30MB, keep 30 days worth of history -->
+            <MaxHistory>5</MaxHistory>
+            <MaxFileSize>50MB</MaxFileSize>
+            <TotalSizeCap>250MB</TotalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="sqlFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/ts-api/sql.ts-api.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <!-- each file should be at most 30MB, keep 30 days worth of history -->
+            <MaxHistory>5</MaxHistory>
+            <MaxFileSize>50MB</MaxFileSize>
+            <TotalSizeCap>250MB</TotalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFileAsync" class="ch.qos.logback.classic.AsyncAppender">
+        <!--队列深度-->
+        <queueSize>1024</queueSize>
+        <appender-ref ref="rollingFile"/>
+    </appender>
+
+    <logger name="sql" level="INFO" additivity="false">
+        <appender-ref ref="sqlFile"/>
+    </logger>
+
+    <!--  根据当前所处环境，如果是线上生产环境，则异步打印且不打印控制台信息,dev和test环境会打印控制台信息  -->
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="rollingFileAsync"/>
+        </root>
+    </springProfile>
+    <springProfile name="dev,test">
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+
+</configuration>

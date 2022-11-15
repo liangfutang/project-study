@@ -30,6 +30,7 @@
         <module>study-basic</module>
         <module>study-auth</module>
         <module>study-log</module>
+        <module>study-tdengine</module>
     </modules>
 
     <properties>
