@@ -15,4 +15,10 @@ public class UserDTO {
     private String name;
 
     private Integer age;
+
+    /**
+     * 测试DTO中Double向VO中的Long转换
+     */
+    private Long money;
+    private Double moneyDoub;
 }
