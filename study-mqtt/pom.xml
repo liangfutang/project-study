@@ -11,11 +11,15 @@
 
     <groupId>com.zjut.study.mqtt</groupId>
     <artifactId>study-mqtt</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mqtt-boot</module>
+    </modules>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.zjut.study.common</groupId>
+            <artifactId>study-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>
