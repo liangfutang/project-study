@@ -40,6 +40,7 @@ public class MqttAutoConfig {
         options.setServerURIs(mqttProperties.getHostUrl().split(","));
         options.setUserName(mqttProperties.getUsername());
         options.setPassword(mqttProperties.getPassword().toCharArray());
+        options.setAutomaticReconnect(true);
         factory.setConnectionOptions(options);
         return factory;
     }
