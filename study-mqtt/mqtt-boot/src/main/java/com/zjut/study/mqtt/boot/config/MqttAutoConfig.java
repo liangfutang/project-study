@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
+import org.springframework.integration.channel.ExecutorChannel;
 import org.springframework.integration.core.MessageProducer;
 import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
@@ -17,11 +18,15 @@ import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
+ * 当前配置较多，可参考官网一种简单的 Java DSL 配置方法，
+ * 地址:<a href="https://docs.spring.io/spring-integration/reference/html/mqtt.html">Java DSL</a>
  * @author jack
  */
 @Configuration
@@ -53,7 +58,7 @@ public class MqttAutoConfig {
      */
     @Bean
     public MessageChannel mqttOutboundChannel(){
-        return new DirectChannel();
+        return new ExecutorChannel(mqttThreadPoolTaskExecutor());
     }
 
     /**
@@ -61,7 +66,7 @@ public class MqttAutoConfig {
      */
     @Bean
     public MessageChannel mqttInboundChannel(){
-        return new DirectChannel();
+        return new ExecutorChannel(mqttThreadPoolTaskExecutor());
     }
 
     /**
@@ -108,4 +113,15 @@ public class MqttAutoConfig {
         return handler;
     }
 
+
+    @Bean
+    public ThreadPoolTaskExecutor mqttThreadPoolTaskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setMaxPoolSize(200);
+        executor.setCorePoolSize(20);
+        executor.setQueueCapacity(1000);
+        executor.setKeepAliveSeconds(300);
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        return executor;
+    }
 }
