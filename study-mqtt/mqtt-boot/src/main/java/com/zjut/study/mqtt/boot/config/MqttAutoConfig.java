@@ -1,5 +1,7 @@
 package com.zjut.study.mqtt.boot.config;
 
+import com.zjut.study.mqtt.boot.config.handle.MessageConsumer;
+import com.zjut.study.mqtt.boot.config.handle.MqttMessageHandler;
 import com.zjut.study.mqtt.boot.properties.MqttProperties;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.context.annotation.Bean;
@@ -13,12 +15,11 @@ import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
-import org.springframework.messaging.MessagingException;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author jack
@@ -29,6 +30,8 @@ public class MqttAutoConfig {
 
     @Resource
     private MqttProperties mqttProperties;
+    @Resource
+    private List<MessageConsumer> messageConsumerList;
 
     /**
      * @return 客户端工厂
@@ -92,16 +95,7 @@ public class MqttAutoConfig {
     @Bean
     @ServiceActivator(inputChannel = "mqttInboundChannel")
     public MessageHandler handleMessage() {
-        // 这个 mqttMessageHandle 其实就是一个 MessageHandler 的实现类(这个类我放下面)
-//        return null;
-        // 你也可以这样写
-        return new MessageHandler() {
-            @Override
-            public void handleMessage(Message<?> message) throws MessagingException {
-                // do something
-                System.out.println(message);
-            }
-        };
+        return new MqttMessageHandler(messageConsumerList);
     }
 
     @Bean

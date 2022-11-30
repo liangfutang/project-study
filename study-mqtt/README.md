@@ -13,3 +13,8 @@ http://127.0.0.1:18083
 8083：MQTT/WebSocket 端口
 8080：HTTP API 端口
 18083：Dashboard 管理控制台端口
+
+# 二. 内部模块划分
+## 2.1 mqtt-boot
++ 消费订阅消息
+只要实现了`com.zjut.study.mqtt.boot.config.handle.MessageConsumer`接口并注入到spring容器即可，如`com.zjut.study.mqtt.boot.consumer.TopicMqttBootUpConsumer`
