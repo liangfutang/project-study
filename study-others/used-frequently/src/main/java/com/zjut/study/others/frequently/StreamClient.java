@@ -81,8 +81,20 @@ public class StreamClient extends CommonJunitFilter {
      * 按照其中一个字段分组，再按照两一个字段分组
      */
     @Test
-    public void groupAndGroup() {
+    public void groupAndGroupMap() {
         Map<String, Map<Integer, Apple>> collect = apples.stream().collect(Collectors.groupingBy(Apple::getColor, Collectors.toMap(Apple::getWeight, Function.identity(), (k1, k2)->k1)));
+        System.out.println(JSONObject.toJSONString(collect));
+    }
+
+    /**
+     * 按照一个字段分组，按照另一个字段求集合
+     */
+    @Test
+    public void groupAndGroupList() {
+        Map<String, List<Integer>> collect = apples.stream()
+                .collect(
+                        Collectors.groupingBy(Apple::getColor
+                                , Collectors.mapping(Apple::getWeight, Collectors.toList())));
         System.out.println(JSONObject.toJSONString(collect));
     }
 }
