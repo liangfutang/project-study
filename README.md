@@ -1,4 +1,5 @@
-# project-study
+# 一. 说明介绍
+## project-study
 此项目主要用来做自己学习或者写代码过程中一些小的测试使用，每个子模块作为一个小模块知识点
 
 ## study-common
@@ -54,3 +55,6 @@ taos时序数据库
 
 ## study-mqtt
 mqtt中间件
+
+# 二. 相关资料
+[JavaGuide](https://javaguide.cn)

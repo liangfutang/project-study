@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -96,5 +97,19 @@ public class StreamClient extends CommonJunitFilter {
                         Collectors.groupingBy(Apple::getColor
                                 , Collectors.mapping(Apple::getWeight, Collectors.toList())));
         System.out.println(JSONObject.toJSONString(collect));
+    }
+
+    @Test
+    public void collectingAndThen() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+        Double result = list.stream().collect(Collectors.collectingAndThen(Collectors.averagingLong(v -> {
+                    System.out.println("v--" + v + "--> " + v * 2);
+                    return v * 2;
+                }),
+                s -> {
+                    System.out.println("s--" + s + "--> " + s * s);
+                    return s * s;
+                }));
+        System.out.println(result);
     }
 }
