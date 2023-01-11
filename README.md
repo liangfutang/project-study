@@ -35,9 +35,6 @@
 ## study-netty
 用作netty相关的相关小知识点的学习和测试
 
-## study-webflux
-用作webflux相关的相关小知识点的学习和测试
-
 ## study-dubbo
 用作dubbo相关的相关小知识点的学习和测试
 

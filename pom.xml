@@ -26,7 +26,6 @@
         <module>study-netty</module>
         <module>study-jvm</module>
         <module>study-dubbo</module>
-        <module>study-webflux</module>
         <module>study-basic</module>
         <module>study-auth</module>
         <module>study-log</module>
@@ -102,11 +101,6 @@
                 <groupId>com.zjut.study.others</groupId>
                 <artifactId>study-others</artifactId>
                 <version>1.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zjut.study</groupId>
-                <artifactId>study-webflux</artifactId>
-                <version>${project-study.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zjut.study.dubbo</groupId>
