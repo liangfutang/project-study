@@ -10,7 +10,7 @@ import org.springframework.web.servlet.function.RouterFunctions;
 import org.springframework.web.servlet.function.ServerResponse;
 
 /**
- * 函数式接口
+ * 函数式接口，响应式编程 webflux也可以使用这个添加注解式接口外的接口
  * @author tlf
  */
 @Configuration
