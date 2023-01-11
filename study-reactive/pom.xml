@@ -16,6 +16,7 @@
 
     <modules>
         <module>project-reactor</module>
+        <module>project-webflux</module>
     </modules>
 
     <dependencies>
