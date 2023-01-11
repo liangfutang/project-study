@@ -32,6 +32,7 @@
         <module>study-log</module>
         <module>study-tdengine</module>
         <module>study-mqtt</module>
+        <module>study-reactive</module>
     </modules>
 
     <properties>
@@ -116,6 +117,11 @@
                 <groupId>com.zjut.study.basic</groupId>
                 <artifactId>study-basic</artifactId>
                 <version>${project-study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zjut.study.reactive</groupId>
+                <artifactId>study-reactive</artifactId>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <!--子模块 end-->
 
