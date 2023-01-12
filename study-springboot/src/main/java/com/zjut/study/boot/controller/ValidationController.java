@@ -1,6 +1,7 @@
 package com.zjut.study.boot.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zjut.study.boot.validate.entity.Company;
 import com.zjut.study.boot.validate.entity.Department;
 import com.zjut.study.boot.validate.entity.Employee;
 import com.zjut.study.boot.validate.entity.Job;
@@ -116,6 +117,12 @@ public class ValidationController {
     @PostMapping("/customize/list")
     public Result<?> validList(@RequestBody @ValidList(quickFail = true, groupings = {Default.class}) List<Employee> employeeList) {
         log.info("自定义校验器校验入参是数组的:{}", JSONObject.toJSONString(employeeList));
+        return Results.success();
+    }
+
+    @PostMapping("/in/enum")
+    public Result<?> validInEnum(@RequestBody @Validated(EmpAddGroup.class) Company company) {
+        log.info("校验自定义的in 枚举值的参数:{}",company);
         return Results.success();
     }
 }
