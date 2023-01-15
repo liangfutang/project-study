@@ -1194,7 +1194,7 @@ SelectionKey key = channel.register(selector, 绑定事件);
 
 * channel 必须工作在非阻塞模式
 * FileChannel 没有非阻塞模式，因此不能配合 selector 一起使用
-* 绑定的事件类型可以有
+* 绑定的事件类型(SelectionKey)可以有
   * connect - 客户端连接成功时触发
   * accept - 服务器端成功接受连接时触发
   * read - 数据可读入时触发，有因为接收能力弱，数据暂不能读入的情况
@@ -1299,6 +1299,7 @@ public class ChannelDemo6 {
                         log.debug("{}", sc);
                     }
                     // 处理完毕，必须将事件移除
+                  // 注册后会有一个保持长链接的SelectionKey集合，和一个正在处理的SelectionKey集合，必须对正在处理的集合做出删除操作
                     iter.remove();
                 }
             }
@@ -1318,7 +1319,7 @@ public class ChannelDemo6 {
 
 
 ### 4.4 处理 read 事件
-
+客户端异常断开的时候必须selectkey remove和事件cancle操作，因为不取消的话，断开还是会有reader触发导致外层循环不断
 ```java
 @Slf4j
 public class ChannelDemo6 {
@@ -1356,6 +1357,7 @@ public class ChannelDemo6 {
                     } else if (key.isReadable()) {
                         SocketChannel sc = (SocketChannel) key.channel();
                         ByteBuffer buffer = ByteBuffer.allocate(128);
+                        // 客户端断开连接的时候返回的是 -1
                         int read = sc.read(buffer);
                         if(read == -1) {
                             key.cancel();
