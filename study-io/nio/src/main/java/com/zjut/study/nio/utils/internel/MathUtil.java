@@ -1,4 +1,4 @@
-package com.zjut.study.nio.utils;
+package com.zjut.study.nio.utils.internel;
 
 /**
  * ByteBufferUtil中使用到的了netty的相关工具，这里暂时用来替换，后面重写

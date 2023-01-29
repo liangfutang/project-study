@@ -1,6 +1,9 @@
 package com.zjut.study.nio.utils;
 
 
+import com.zjut.study.nio.utils.internel.MathUtil;
+import com.zjut.study.nio.utils.internel.StringUtil;
+
 import java.nio.ByteBuffer;
 
 
