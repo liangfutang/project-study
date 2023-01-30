@@ -1,6 +1,7 @@
 package com.zjut.study.nio.components;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
+import com.zjut.study.nio.utils.ByteBufferUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -45,5 +46,56 @@ public class ByteBufferClient extends CommonJunitFilter {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * ByteBuffer申请不同位置的空间
+     *  class java.nio.HeapByteBuffer    - java 堆内存，读写效率较低，受到 GC 的影响
+     *  class java.nio.DirectByteBuffer  - 直接内存，读写效率高（少一次拷贝），不会受 GC 影响，分配的效率低 (需要调用操作系统的函数)
+     */
+    @Test
+    public void allocateLocation() {
+        System.out.println(ByteBuffer.allocate(16).getClass());
+        System.out.println(ByteBuffer.allocateDirect(16).getClass());
+    }
+
+    /**
+     * 网络数据传输，数据之间使用 \n 进行分隔，在接收时，被进行了重新组合，导致粘包半包，例如原始数据有3条为
+     *     Hello,world\n
+     *     I'm zhangsan\n
+     *     How are you?\n
+     * 变成了下面的两个 byteBuffer (黏包，半包)
+     *     Hello,world\nI'm zhangsan\nHo
+     *     w are you?\n
+     * 现将错乱的数据恢复成原始的按 \n 分隔的数据
+     */
+    @Test
+    public void compact() {
+        ByteBuffer buffer = ByteBuffer.allocate(32);
+        buffer.put("Hello,world\nI'm zhangsan\nHo".getBytes());
+        this.spilt(buffer);
+        buffer.put("w are you?\n".getBytes());
+        this.spilt(buffer);
+    }
+
+
+
+//==========================================内部使用的方法====================================================
+
+    private void spilt(ByteBuffer source) {
+        source.flip();
+        for (int i=0; i<source.limit(); i++) {
+            // 找到一条完整的消息
+            if ('\n' == source.get(i)) {
+                int len = i + 1 - source.position();
+                // 将该条完整的消息单独存放
+                ByteBuffer target = ByteBuffer.allocate(len);
+                for (int j=0; j<len; j++) {
+                    target.put(source.get());
+                }
+                ByteBufferUtil.debugAll(target);
+            }
+        }
+        source.compact();
     }
 }
