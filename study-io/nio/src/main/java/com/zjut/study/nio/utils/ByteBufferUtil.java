@@ -7,6 +7,10 @@ import com.zjut.study.nio.utils.internel.StringUtil;
 import java.nio.ByteBuffer;
 
 
+/**
+ * 打印ByteBuffer内容信息的情况
+ * @author jack
+ */
 public class ByteBufferUtil {
     private static final char[] BYTE2CHAR = new char[256];
     private static final char[] HEXDUMP_TABLE = new char[256 * 4];
