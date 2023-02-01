@@ -14,6 +14,16 @@ import java.security.PrivilegedAction;
 public class StringUtil {
     public static final String NEWLINE = StringUtil.get("line.separator", "\n");
     private static final String[] BYTE2HEX_PAD = new String[256];
+    private static final String[] BYTE2HEX_NOPAD = new String[256];
+
+    static {
+        for(int i = 0; i < BYTE2HEX_PAD.length; ++i) {
+            String str = Integer.toHexString(i);
+            BYTE2HEX_PAD[i] = i > 15 ? str : '0' + str;
+            BYTE2HEX_NOPAD[i] = str;
+        }
+
+    }
 
     public static String get(final String key, String def) {
         if (key == null) {
