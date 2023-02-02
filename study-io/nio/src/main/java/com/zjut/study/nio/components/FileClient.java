@@ -8,8 +8,13 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * File及Channel相关
@@ -59,5 +64,63 @@ public class FileClient extends CommonJunitFilter {
         });
         watch.stop();
         System.out.println("耗时:" + watch.getTotalTimeMillis());
+    }
+
+    @Test
+    public void fileCount() throws IOException {
+        AtomicInteger count = new AtomicInteger();
+        Files.walkFileTree(Paths.get("D:\\java"), new SimpleFileVisitor<Path>(){
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                if (file.toString().endsWith("jar")) {
+                    count.incrementAndGet();
+                }
+                return super.visitFile(file, attrs);
+            }
+        });
+        System.out.println("jar文件数量:" + count);
+    }
+
+    @Test
+    public void fileAndDirectCount() throws IOException {
+        AtomicInteger fileCount = new AtomicInteger();
+        AtomicInteger dirCount = new AtomicInteger();
+        Files.walkFileTree(Paths.get("D:\\java"), new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                System.out.println(file);
+                fileCount.incrementAndGet();
+                return super.visitFile(file, attrs);
+            }
+
+            @Override
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                System.out.println("====>"+dir);
+                dirCount.incrementAndGet();
+                return super.preVisitDirectory(dir, attrs);
+            }
+        });
+        System.out.println("文件夹数量:" + dirCount);
+        System.out.println("文件数量:" + fileCount);
+    }
+
+    @Test
+    public void fileDelete() throws IOException {
+        String dir = "C:\\Users\\tlf\\Desktop\\code - 副本";
+        // 如果直接删除，因为里面还有文件，所以会报‘DirectoryNotEmptyException’异常
+//        Files.delete(Paths.get(dir));
+        Files.walkFileTree(Paths.get(dir), new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                Files.delete(file);
+                return super.visitFile(file, attrs);
+            }
+
+            @Override
+            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                Files.delete(dir);
+                return super.postVisitDirectory(dir, exc);
+            }
+        });
     }
 }
