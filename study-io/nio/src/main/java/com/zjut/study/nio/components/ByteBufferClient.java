@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
 
 /**
  * ByteBuffer 组件的相关测试
@@ -148,7 +149,30 @@ public class ByteBufferClient extends CommonJunitFilter {
         ByteBufferUtil.debugAll(buffer);
     }
 
+    @Test
+    public void character() {
+        // 1. 字符串转为 ByteBuffer后不会自动切换到读模式
+        ByteBuffer buffer1 = ByteBuffer.allocate(16);
+        buffer1.put("hello".getBytes());
+        ByteBufferUtil.debugAll(buffer1);
 
+        // 2. Charset 写完会自动的切换到读模式，position会换到起始位置
+        ByteBuffer buffer2 = StandardCharsets.UTF_8.encode("hello");
+        ByteBufferUtil.debugAll(buffer2);
+
+        // 3. wrap  写完会自动的切换到读模式
+        ByteBuffer buffer3 = ByteBuffer.wrap("hello".getBytes());
+        ByteBufferUtil.debugAll(buffer3);
+
+        // 4. 转为字符串
+        String str1 = StandardCharsets.UTF_8.decode(buffer2).toString();
+        System.out.println(str1);
+
+        // buffer1还在写模式，如果不切换，会导致什么也读不出来
+        buffer1.flip();
+        String str2 = StandardCharsets.UTF_8.decode(buffer1).toString();
+        System.out.println(str2);
+    }
 
 //==========================================内部使用的方法====================================================
 
