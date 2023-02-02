@@ -7,7 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
@@ -172,6 +174,22 @@ public class ByteBufferClient extends CommonJunitFilter {
         buffer1.flip();
         String str2 = StandardCharsets.UTF_8.decode(buffer1).toString();
         System.out.println(str2);
+    }
+
+    /**
+     * 集中写
+     */
+    @Test
+    public void gatheringWrites() {
+        ByteBuffer b1 = StandardCharsets.UTF_8.encode("hello");
+        ByteBuffer b2 = StandardCharsets.UTF_8.encode("world");
+        ByteBuffer b3 = StandardCharsets.UTF_8.encode("你好");
+
+        try (FileChannel channel = new RandomAccessFile("C:\\Users\\tlf\\Desktop\\code\\words2.txt", "rw").getChannel()) {
+            channel.write(new ByteBuffer[]{b1, b2, b3});
+        }  catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 //==========================================内部使用的方法====================================================
