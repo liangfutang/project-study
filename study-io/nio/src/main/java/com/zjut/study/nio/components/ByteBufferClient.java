@@ -192,6 +192,28 @@ public class ByteBufferClient extends CommonJunitFilter {
         }
     }
 
+
+    /**
+     * 分散读
+     */
+    @Test
+    public void scatteringReads() {
+        try(FileChannel channel = new RandomAccessFile("C:\\Users\\tlf\\Desktop\\code\\words2.txt", "r").getChannel()) {
+            ByteBuffer b1 = ByteBuffer.allocate(3);
+            ByteBuffer b2 = ByteBuffer.allocate(3);
+            ByteBuffer b3 = ByteBuffer.allocate(5);
+            channel.read(new ByteBuffer[]{b1,b2,b3});
+            b1.flip();
+            b2.flip();
+            b3.flip();
+            ByteBufferUtil.debugAll(b1);
+            ByteBufferUtil.debugAll(b2);
+            ByteBufferUtil.debugAll(b3);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 //==========================================内部使用的方法====================================================
 
     private void spilt(ByteBuffer source) {
