@@ -127,6 +127,28 @@ public class ByteBufferClient extends CommonJunitFilter {
     }
 
 
+    @Test
+    public void readWrite(){
+        ByteBuffer buffer = ByteBuffer.allocate(10);
+        // 放入一个字符
+        buffer.put((byte) 0x61); // 'a'
+        ByteBufferUtil.debugAll(buffer);
+        // 再放入三个字符
+        buffer.put(new byte[]{0x62, 0x63, 0x64});  // b  c  d
+        ByteBufferUtil.debugAll(buffer);
+        // 读取出一个字符
+        buffer.flip();
+        System.out.println("取出第一个字符" + (byte) buffer.get());
+        ByteBufferUtil.debugAll(buffer);
+        // 切换回写模式，并将为读写的部分向前移动整合，因为是整体向前移动，所以最后一位的内容不变，但是在后面继续写入的时候会将其覆盖掉
+        buffer.compact();
+        ByteBufferUtil.debugAll(buffer);
+        // 写入新字符
+        buffer.put(new byte[]{0x65, 0x6f});
+        ByteBufferUtil.debugAll(buffer);
+    }
+
+
 
 //==========================================内部使用的方法====================================================
 
