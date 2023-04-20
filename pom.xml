@@ -32,6 +32,7 @@
         <module>study-tdengine</module>
         <module>study-mqtt</module>
         <module>study-reactive</module>
+        <module>study-devops</module>
     </modules>
 
     <properties>
