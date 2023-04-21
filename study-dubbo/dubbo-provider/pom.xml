@@ -12,7 +12,7 @@
     <groupId>com.zjut.study.dubbo.provider</groupId>
     <artifactId>dubbo-provider</artifactId>
     <packaging>pom</packaging>
-    <version>${dubbo-provider.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <dubbo-provider.version>1.0-SNAPSHOT</dubbo-provider.version>

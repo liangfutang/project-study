@@ -11,7 +11,7 @@
 
     <groupId>com.zjut.study.basic</groupId>
     <artifactId>study-basic</artifactId>
-    <version>${project-study.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

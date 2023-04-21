@@ -11,7 +11,7 @@
 
     <groupId>com.zjut.study.mybatis.boot</groupId>
     <artifactId>mybatis-boot</artifactId>
-    <version>${mybatis-boot.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

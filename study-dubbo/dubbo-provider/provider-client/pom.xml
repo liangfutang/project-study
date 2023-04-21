@@ -11,6 +11,6 @@
 
     <groupId>com.zjut.study.dubbo.provider.client</groupId>
     <artifactId>provider-client</artifactId>
-    <version>${dubbo-provider-client.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
 </project>

@@ -28,7 +28,9 @@
         <finalName>study-springboot</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin}</version>
                 <executions>
                     <execution>
                         <goals>

@@ -11,7 +11,7 @@
 
     <groupId>com.zjut.study.dubbo.consumer.boot</groupId>
     <artifactId>consumer-boot</artifactId>
-    <version>${dubbo-consumer.version}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
