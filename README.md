@@ -59,3 +59,7 @@ mqtt中间件
 # 二. 相关资料
 [JavaGuide](https://javaguide.cn)
 [pdai](https://pdai.tech/)
+
+# 三. 解决问题小技巧
++ idea出现类文件存在，但是无法引用，maven无法下载的问题 
+ - 执行指令： mvn -U idea:idea 
