@@ -33,6 +33,7 @@
         <module>study-mqtt</module>
         <module>study-reactive</module>
         <module>study-devops</module>
+        <module>study-agent</module>
     </modules>
 
     <properties>
