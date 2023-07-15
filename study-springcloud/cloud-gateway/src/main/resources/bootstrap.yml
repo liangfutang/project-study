@@ -1,0 +1,25 @@
+server:
+  port: 8086
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      config:
+        server-addr: http://127.0.0.1:8848
+        namespace: dev
+        extension-configs: # 下面的会覆盖掉上面的
+          - data-id: api-gateway.properties
+            group: api-gateway
+            refresh: true
+      discovery:
+        server-addr: http://127.0.0.1:8848
+        namespace: dev
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
