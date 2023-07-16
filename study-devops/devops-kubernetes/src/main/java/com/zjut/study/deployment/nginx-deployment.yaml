@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  # deployment标签 = pod标签 = selector标签
+  labels:
+    app: nginx-deploy
+spec:
+  # 指定控制器启动pod的副本数
+  replicas: 1
+  template:
+    metadata:
+      name: nginx-deploy # pod名称
+      labels:
+        app: nginx-deploy  # pod标签
+    spec:
+      containers:
+        - name: nginx-deploy
+          image: nginx
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:  # 用来告知deployment控制器选择带有对应标签的pod进行管理
+    matchLabels:
+      app: nginx-deploy
