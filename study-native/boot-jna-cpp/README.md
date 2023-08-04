@@ -33,6 +33,11 @@ docker rmi boot-jna-cpp
 ## windows
 本地启动，代码读取项目运行的native文件夹中的库
 
+# 源码打包动态链接库
+1. Solve
+```shell
+gcc -fPIC -shared Solve.cpp -o Solve.so
+```
 
 # 参考示例
 [JNA Examples](https://www.eshayne.com/jnaex/index.html)   
