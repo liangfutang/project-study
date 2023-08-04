@@ -35,6 +35,7 @@
         <module>study-devops</module>
         <module>study-agent</module>
         <module>study-springcloud</module>
+        <module>study-native</module>
     </modules>
 
     <properties>
