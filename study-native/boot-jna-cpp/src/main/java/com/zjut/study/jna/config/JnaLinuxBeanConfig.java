@@ -15,6 +15,7 @@ public class JnaLinuxBeanConfig {
 
     @Bean
     public LibgetGSVService libgetGSV() {
+        System.out.println("加载 LibgetGSV");
         return LibgetGSVService.INSTANCE;
     }
 
