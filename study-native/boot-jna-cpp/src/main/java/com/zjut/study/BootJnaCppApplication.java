@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BootJnaCppApplication {
 
     public static void main(String[] args) {
+        // 预先根据启动运行环境设置环境变量，选择性启动动态链接库
         System.setProperty(JnaConstant.JNA_OS_NAME, SysUtil.sysName());
         SpringApplication.run(BootJnaCppApplication.class, args);
     }

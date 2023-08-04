@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConditionalOnProperty(value = "jna.os.name", havingValue = Constants.WINDOWS)
-public class JnaLinuxWindowsConfig {
+public class JnaWindowsConfig {
 
 }

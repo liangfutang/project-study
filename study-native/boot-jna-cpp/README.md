@@ -37,3 +37,6 @@ docker rmi boot-jna-cpp
 # 参考示例
 [JNA Examples](https://www.eshayne.com/jnaex/index.html)   
 [java-native-access](https://github.com/java-native-access/jna)
+
+# 问题点
+1. Linux下部署的时候使用`eclipse-temurin:8`作为基础镜像会导致启动失败，使用`openjdk:8-jdk-alpine`的时候则能正常启动

@@ -5,7 +5,7 @@ RUN mkdir -p /home/work/log/boot-jna-cpp/
 
 COPY target/boot-jna-cpp.jar /home/work/boot-jna-cpp/
 
-COPY native/libgetgsv.so /usr/lib/
+COPY native/*.so /usr/lib/
 
 EXPOSE 8080
 
