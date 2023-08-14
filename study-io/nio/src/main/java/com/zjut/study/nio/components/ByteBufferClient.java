@@ -55,7 +55,7 @@ public class ByteBufferClient extends CommonJunitFilter {
                     byte b = buffer.get();
                     log.info("实际字节:{}", (char)b);
                 }
-                // 清空缓存
+                // 清空缓存，重新切换回写模式
                 buffer.clear();
             }
         } catch (IOException e) {
@@ -176,7 +176,7 @@ public class ByteBufferClient extends CommonJunitFilter {
     }
 
     /**
-     * 集中写
+     * 集中写,将多个集中写到一个文件中
      */
     @Test
     public void gatheringWrites() {
@@ -193,7 +193,7 @@ public class ByteBufferClient extends CommonJunitFilter {
 
 
     /**
-     * 分散读
+     * 分散读，将文件中的内容分开写到多个ByteBuffer中
      */
     @Test
     public void scatteringReads() {
