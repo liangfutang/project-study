@@ -25,6 +25,8 @@ public class FileClient extends CommonJunitFilter {
 
     @Test
     public void fileChannelTransferTo() {
+//        FileChannel from = new FileInputStream("data.txt").getChannel();
+//        FileChannel to = new FileOutputStream("to.txt").getChannel();
         try (
                 FileChannel from = new RandomAccessFile("C:\\Users\\tlf\\Desktop\\code\\words2.txt", "r").getChannel();
                 FileChannel to = new RandomAccessFile("C:\\Users\\tlf\\Desktop\\code\\to.txt", "rw").getChannel();
