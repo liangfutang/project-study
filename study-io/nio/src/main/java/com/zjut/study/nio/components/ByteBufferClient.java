@@ -32,6 +32,14 @@ public class ByteBufferClient extends CommonJunitFilter {
         readBuffer.flip();
     }
 
+    @Test
+    public void getIndex() {
+        ByteBufferUtil.debugAll(readBuffer);
+        // 使用get读取内容不会改变 ByteBuffer 内部的position位置
+        System.out.println("获取指定位置的字符:" + (char) readBuffer.get(2));
+        ByteBufferUtil.debugAll(readBuffer);
+    }
+
     /**
      * 把文件中存储的14个字节的字符串读取出来，用小于14字节的缓冲区多次接受
      */
@@ -95,7 +103,7 @@ public class ByteBufferClient extends CommonJunitFilter {
 
 
     /**
-     * rewind 从头开始读
+     * rewind 从头开始读，对position位置重置
      */
     @Test
     public void readRewind() {
