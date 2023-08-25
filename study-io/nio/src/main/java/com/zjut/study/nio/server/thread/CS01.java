@@ -7,8 +7,12 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.channels.AsynchronousFileChannel;
+import java.nio.channels.CompletionHandler;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -103,6 +107,32 @@ public class CS01 {
         }
     }
 
+    @Test
+    public void aioFileChannel() throws IOException {
+        try (AsynchronousFileChannel channel = AsynchronousFileChannel.open(Paths.get("src/main/resources/iofiles/data.txt"), StandardOpenOption.READ)) {
+            ByteBuffer buffer = ByteBuffer.allocate(16);
+            // 参数1 ByteBuffer
+            // 参数2 读取的起始位置
+            // 参数3 附件
+            // 参数4 回调对象 CompletionHandler
+            channel.read(buffer, 0, buffer, new CompletionHandler<Integer, ByteBuffer>() {
+                @Override
+                public void completed(Integer result, ByteBuffer attachment) {
+                    log.info("read completed...{}", result);
+                    attachment.flip();
+                    ByteBufferUtil.debugAll(attachment);
+                }
+
+                @Override
+                public void failed(Throwable exc, ByteBuffer attachment) {
+                    exc.printStackTrace();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.in.read();
+    }
 
     @Test
     public void client() throws IOException {
