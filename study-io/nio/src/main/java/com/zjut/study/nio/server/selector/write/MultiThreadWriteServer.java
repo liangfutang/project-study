@@ -1,4 +1,4 @@
-package com.zjut.study.nio.server.write;
+package com.zjut.study.nio.server.selector.write;
 
 import com.zjut.study.nio.utils.ByteBufferUtil;
 import lombok.SneakyThrows;

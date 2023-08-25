@@ -1,4 +1,4 @@
-package com.zjut.study.nio.server.write;
+package com.zjut.study.nio.server.selector.write;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
