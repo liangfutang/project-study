@@ -6,7 +6,7 @@ import io.netty.buffer.CompositeByteBuf;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import static com.zjut.study.netty.ByteBufferUtil.logByteBuf;
+import static com.zjut.study.netty.utils.ByteBufferUtil.logByteBuf;
 
 /**
  * 对compositeBuffer的测试

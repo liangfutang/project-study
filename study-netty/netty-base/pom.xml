@@ -3,27 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>project-study</artifactId>
-        <groupId>com.zjut.study</groupId>
+        <artifactId>study-netty</artifactId>
+        <groupId>com.zjut.study.netty</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.zjut.study.netty</groupId>
-    <artifactId>study-netty</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <artifactId>netty-base</artifactId>
 
-    <modules>
-        <module>netty-base</module>
-    </modules>
-
+    <description>netty基础模块点</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.zjut.study.common</groupId>
-            <artifactId>study-common</artifactId>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.66.Final</version>
         </dependency>
     </dependencies>
-
 </project>

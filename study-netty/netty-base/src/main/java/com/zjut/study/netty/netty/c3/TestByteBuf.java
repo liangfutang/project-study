@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBufAllocator;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import static com.zjut.study.netty.ByteBufferUtil.logByteBuf;
+import static com.zjut.study.netty.utils.ByteBufferUtil.logByteBuf;
 
 /**
  * ByteBuf 的相关使用

@@ -1,4 +1,4 @@
-package com.zjut.study.netty;
+package com.zjut.study.netty.utils;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.util.internal.StringUtil;
