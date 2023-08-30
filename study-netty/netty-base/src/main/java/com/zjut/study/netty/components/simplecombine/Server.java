@@ -21,7 +21,7 @@ public class Server {
     public static void main(String[] args) {
         // 服务端启动器，负责组装netty组件，启动服务器
         new ServerBootstrap()
-                // (selector,thread)group组
+                // (selector,thread)group组，线程池(默认是核心数的两倍)
                 .group(new NioEventLoopGroup())
                 // 选择服务器的channel实现
                 .channel(NioServerSocketChannel.class)
