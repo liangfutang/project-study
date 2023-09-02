@@ -2,12 +2,19 @@ package com.zjut.study.netty.components.eventloop;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import io.netty.channel.DefaultEventLoopGroup;
+import io.netty.channel.EventLoop;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.util.concurrent.DefaultPromise;
+import io.netty.util.concurrent.GenericFutureListener;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -41,6 +48,88 @@ public class EventLoopApi extends CommonJunitFilter {
             log.info("定时执行:" + count.getAndIncrement());
         }, 0, 1, TimeUnit.SECONDS);
 
+        System.in.read();
+    }
+
+    /**
+     * 测试jdk的Future
+     */
+    @Test
+    public void jdkFuture() throws ExecutionException, InterruptedException {
+        ExecutorService pool = Executors.newFixedThreadPool(2);
+        Future<Integer> future = pool.submit(() -> {
+            log.info("线程池中执行计算");
+            Thread.sleep(3000);
+            return 100;
+        });
+
+        log.info("等待计算结果");
+        log.info("计算结果:{}", future.get());
+    }
+
+    /**
+     * netty的future
+     */
+    @Test
+    public void nettyFuture() throws ExecutionException, InterruptedException, IOException {
+        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
+        EventLoop eventLoop = eventLoopGroup.next();
+
+        io.netty.util.concurrent.Future<Integer> future = eventLoop.submit(() -> {
+            log.info("netty池中执行计算");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return 100;
+        });
+
+        // 等待计算结果
+//        log.info("等待计算结果");
+//        log.info("计算结果:{}", future.get());
+
+        // 监听器接受计算结果
+        future.addListener(new GenericFutureListener<io.netty.util.concurrent.Future<? super Integer>>() {
+            @Override
+            public void operationComplete(io.netty.util.concurrent.Future<? super Integer> f) throws Exception {
+                log.info("接受计算结果:{}", f.getNow());
+            }
+        });
+        System.in.read();
+    }
+
+    /**
+     * netty的promise
+     */
+    @Test
+    public void nettyPromise() throws ExecutionException, InterruptedException, IOException {
+        EventLoop eventLoop = new NioEventLoopGroup().next();
+        DefaultPromise<Integer> promise = new DefaultPromise<>(eventLoop);
+
+        new Thread(() -> {
+            try {
+//                int i = 1/0;
+                log.info("netty线程池中执行计算");
+                Thread.sleep(3000);
+                promise.setSuccess(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                promise.setFailure(e);
+            }
+        }).start();
+
+        // 等待接受结果
+//        log.info("等待接受结果");
+//        log.info("接受结果:{}", promise.get());
+
+        // 监听器接受结果
+        promise.addListener(new GenericFutureListener<io.netty.util.concurrent.Future<? super Integer>>() {
+            @Override
+            public void operationComplete(io.netty.util.concurrent.Future<? super Integer> f) throws Exception {
+                log.info("接受到的结果:{}", f.getNow());
+            }
+        });
         System.in.read();
     }
 }
