@@ -16,3 +16,15 @@ I/O任务：
 **EventLoopGroup（NioEventLoopGroup）**    
 多个 EventLoop 线程放在一起，组成一个 EventLoopGroup管理EventLoop生命周期。EventLoopGroup 提供 next 接口，可以从组里面按照一定规则（如轮询）获取其中一个 EventLoop 来处理任务。  
 为了及时接收到新连接，在服务器端，一般有两个独立的反应器，一个负责新连接的监听和接收，另一个负责 IO 事件轮询和分发。对应到 Netty 的服务器程序中，则需要设置两个 EventLoopGroup 线程组，一个 EventLoopGroup 负责新连接的监听和接收——Boss 线程组；另一个负责 IO 事件轮询和分发，并执行 Handler 处理器中的业务处理——Worker 线程组。
+
+## channel()
+Channel是连接ByteBuf和Event的桥梁，是连接客户端和服务器端的桥梁,Channel代表网络socket或能够进行IO操作的组件的连接关系。这些IO操作包括读、写、连接和绑定。Netty中的Channel提供了如下功能：
++ 查询当前Channel的状态。例如，是打开还是已连接状态等。
++ 提供Channel的参数配置。如接收缓冲区大小。
++ 提供支持的IO操作。如读、写连接和绑定
++ 提供ChannelPipeline。ChannelPipelin用于处理所有与Channel关联的IO事件和请求。
+
+## Handler()
++ ChannelInboundHandler：处理入站IO事件
++ ChannelOutboundHandler：处理出站IO事件
++ ChannelHandlerAdapter：采用适配器模式的ChannelHandler适配器, 常用的两个子类，分别是ChannelInboundHandlerAdapor、ChannelOutboundHandlerAdatper
