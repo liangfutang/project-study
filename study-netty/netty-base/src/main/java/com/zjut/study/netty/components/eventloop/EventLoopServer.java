@@ -19,7 +19,9 @@ import java.nio.charset.Charset;
 public class EventLoopServer {
     public static void main(String[] args) {
         new ServerBootstrap()
-                .group(new NioEventLoopGroup(), new NioEventLoopGroup())
+                // boss可以不用设置线程数为1，因为只有一个ServerSocket，所以只会到boss中找一个selector
+                // boss 只负责 ServerSocketChannel 上 accept 事件     worker 只负责 socketChannel 上的读写
+                .group(new NioEventLoopGroup(), new NioEventLoopGroup(2))
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
