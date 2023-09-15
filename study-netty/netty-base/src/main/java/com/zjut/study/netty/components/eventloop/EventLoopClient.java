@@ -4,9 +4,10 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Scanner;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * EventLoop 客户端
@@ -77,5 +80,91 @@ public class EventLoopClient {
         });
 
         System.in.read();
+    }
+
+    @Test
+    public void write03() throws InterruptedException {
+        Thread currentThread = Thread.currentThread();
+
+        ChannelFuture channelFuture = new Bootstrap()
+                .group(new NioEventLoopGroup())
+                .channel(NioSocketChannel.class)
+                .handler(new ChannelInboundHandlerAdapter() {
+
+                })
+                .connect(new InetSocketAddress("localhost", 8080));
+
+        Channel channel = channelFuture.sync().channel();
+        log.info("当前连接上的channel:{}", channel);
+
+        new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                String line = scanner.nextLine();
+                if ("Q".equals(line)) {
+                    log.info("断开连接");
+                    // 异步操作，此处后面的代码不一定是在该行代码后面运行
+                    channel.close();
+                    scanner.close();
+                    LockSupport.unpark(currentThread);
+                    break;
+                }
+
+                // 向服务端写入数据
+                channel.writeAndFlush(line);
+            }
+
+        }).start();
+
+        LockSupport.park();
+    }
+
+    @Test
+    public void write04() throws InterruptedException {
+        EventLoopGroup group = new NioEventLoopGroup();
+
+        ChannelFuture channelFuture = new Bootstrap()
+                .group(group)
+                .channel(NioSocketChannel.class)
+                .handler(new ChannelInitializer<NioSocketChannel>() {
+                    @Override
+                    protected void initChannel(NioSocketChannel channel) throws Exception {
+
+                    }
+                })
+                .connect(new InetSocketAddress("localhost", 8080));
+
+        Channel channel = channelFuture.sync().channel();
+        log.info("当前连接上channel:{}", channel);
+
+        new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                String line = scanner.nextLine();
+                if ("Q".equals(line)) {
+                    // 开始异步断开操作
+                    channel.close();
+                    log.info("即将开始和服务端断开...");
+                }
+                channel.writeAndFlush(line);
+            }
+        }).start();
+
+        // 获取 CloseFuture 对象， 1) 同步处理关闭， 2) 异步处理关闭
+        ChannelFuture closeFuture = channel.closeFuture();
+
+        // 方式一.
+        // 处理关闭之后的操作
+        closeFuture.sync();
+        log.info("和服务器断开连接");
+        // 优雅的关闭group
+        group.shutdownGracefully();
+        log.info("关闭完成");
+
+        // 方式二. 此处需要想办法暂停主线程(main方法或使用Park等)
+//        closeFuture.addListener((ChannelFutureListener) future -> {
+//            log.info("开始断开操作");
+//            group.shutdownGracefully();
+//        });
     }
 }
