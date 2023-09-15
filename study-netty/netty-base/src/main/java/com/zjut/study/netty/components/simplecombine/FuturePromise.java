@@ -1,7 +1,6 @@
-package com.zjut.study.netty.components.eventloop;
+package com.zjut.study.netty.components.simplecombine;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
-import io.netty.channel.DefaultEventLoopGroup;
 import io.netty.channel.EventLoop;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -19,10 +18,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * EventLoop 的 api 使用
+ * jdk喝netty中的Future喝Promise
  */
 @Slf4j
-public class EventLoopApi extends CommonJunitFilter {
+public class FuturePromise extends CommonJunitFilter {
 
     @Test
     public void test01() throws IOException {
