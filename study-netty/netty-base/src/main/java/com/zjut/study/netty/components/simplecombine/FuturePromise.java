@@ -71,6 +71,7 @@ public class FuturePromise extends CommonJunitFilter {
      */
     @Test
     public void nettyFuture() throws ExecutionException, InterruptedException, IOException {
+        // 创建执行线程
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
         EventLoop eventLoop = eventLoopGroup.next();
 
