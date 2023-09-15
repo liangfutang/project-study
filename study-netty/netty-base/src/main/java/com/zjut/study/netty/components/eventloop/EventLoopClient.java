@@ -154,14 +154,14 @@ public class EventLoopClient {
         ChannelFuture closeFuture = channel.closeFuture();
 
         // 方式一.
-        // 处理关闭之后的操作
+        // 处理关闭之后的操作，同步等待channel关闭
         closeFuture.sync();
         log.info("和服务器断开连接");
         // 优雅的关闭group
         group.shutdownGracefully();
         log.info("关闭完成");
 
-        // 方式二. 此处需要想办法暂停主线程(main方法或使用Park等)
+        // 方式二. 此处需要想办法暂停主线程(main方法或使用Park等)，异步等待channel关闭
 //        closeFuture.addListener((ChannelFutureListener) future -> {
 //            log.info("开始断开操作");
 //            group.shutdownGracefully();
