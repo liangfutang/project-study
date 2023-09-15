@@ -91,6 +91,7 @@ public class EventLoopClient {
                 .handler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel channel) throws Exception {
+                        // 必须添加编码相关的handler，否则消息不会编码，并且服务端收不到任何消息
                         channel.pipeline().addLast(new StringEncoder());
                     }
                 })
