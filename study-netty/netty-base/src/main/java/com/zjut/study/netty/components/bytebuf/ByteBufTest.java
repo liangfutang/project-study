@@ -3,6 +3,7 @@ package com.zjut.study.netty.components.bytebuf;
 import com.zjut.study.common.junit.CommonJunitFilter;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import io.netty.buffer.CompositeByteBuf;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -31,6 +32,28 @@ public class ByteBufTest extends CommonJunitFilter {
             builder.append(i);
         }
         buffer.writeBytes(builder.toString().getBytes());
+        logByteBuf(buffer);
+    }
+
+    /**
+     * 合并buf
+     */
+    @Test
+    public void composite() {
+        ByteBuf buf1 = ByteBufAllocator.DEFAULT.buffer();
+        buf1.writeBytes(new byte[]{1,2,3,4,5});
+
+        ByteBuf buf2 = ByteBufAllocator.DEFAULT.buffer();
+        buf2.writeBytes(new byte[]{6,7,8,9,10});
+
+        // 底层会产生复制，不是使用相同内存
+//        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer();
+//        buffer.writeBytes(buf1).writeBytes(buf2);
+//        logByteBuf(buffer);
+
+        // 底层使用相同的内存
+        CompositeByteBuf buffer = ByteBufAllocator.DEFAULT.compositeBuffer();
+        buffer.addComponents(true, buf1, buf2);
         logByteBuf(buffer);
     }
 }
