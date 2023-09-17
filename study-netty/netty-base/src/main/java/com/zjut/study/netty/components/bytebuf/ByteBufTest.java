@@ -56,4 +56,100 @@ public class ByteBufTest extends CommonJunitFilter {
         buffer.addComponents(true, buf1, buf2);
         logByteBuf(buffer);
     }
+
+    @Test
+    public void slice01() {
+        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(10);
+        buffer.writeBytes(new byte[]{'a','b','c','d','e','f','g','h','i','j'});
+        log.info("原始数据");
+        logByteBuf(buffer);
+
+        // 在切片过程中，没有发生数据复制
+        ByteBuf f1 = buffer.slice(0, 5);
+        ByteBuf f2 = buffer.slice(5, 5);
+
+        logByteBuf(f1);
+        logByteBuf(f2);
+    }
+
+    /**
+     * 对切片内容做替换，因为切片使用的和原始是相同内存，所以修改其中一个则都改了
+     */
+    @Test
+    public void slice02() throws InterruptedException {
+        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(10);
+        buffer.writeBytes(new byte[]{'a','b','c','d','e','f','g','h','i','j'});
+        log.info("原始数据");
+        logByteBuf(buffer);
+
+        // 在切片过程中，没有发生数据复制
+        ByteBuf f1 = buffer.slice(0, 5);
+        logByteBuf(f1);
+
+        f1.setByte(0, 'x');
+        Thread.sleep(1000);
+
+        log.info("替换后");
+        logByteBuf(buffer);
+        logByteBuf(f1);
+    }
+
+    /**
+     * 内容释放后再次读取
+     */
+    @Test
+    public void slice03() {
+        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(10);
+        buffer.writeBytes(new byte[]{'a','b','c','d','e','f','g','h','i','j'});
+        log.info("原始数据");
+        logByteBuf(buffer);
+
+        ByteBuf f1 = buffer.slice(0, 5);
+        buffer.release();
+
+        // 内存已经释放，读取不到了，会产生异常 IllegalReferenceCountException
+        logByteBuf(f1);
+    }
+
+    @Test
+    public void slice04() {
+        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(10);
+        buffer.writeBytes(new byte[]{'a','b','c','d','e','f','g','h','i','j'});
+        log.info("原始数据");
+        logByteBuf(buffer);
+
+        ByteBuf f1 = buffer.slice(0, 5);
+        f1.writeByte('x');
+
+        // 切分后不能添加，会产生异常 IndexOutOfBoundsException
+        logByteBuf(f1);
+    }
+
+    @Test
+    public void slice05() throws InterruptedException {
+        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(10);
+        buffer.writeBytes(new byte[]{'a','b','c','d','e','f','g','h','i','j'});
+        log.info("原始数据");
+        logByteBuf(buffer);
+
+        ByteBuf f1 = buffer.slice(0, 5);
+        // 多加一层引用
+        f1.retain();
+        ByteBuf f2 = buffer.slice(5, 5);
+        f2.retain();
+
+        // 释放内存，引用数减一
+        buffer.release();
+
+        Thread.sleep(1000);
+        log.info("释放内存后");
+
+        // 加过的如果在不用后不减一，会导致内存不会释放，此处如果放开，则会成功释放内存，则后面会读取不到内容而异常
+        // f1.release();
+        // f2.release();
+
+        logByteBuf(buffer);
+        logByteBuf(f1);
+        logByteBuf(f2);
+    }
 }
