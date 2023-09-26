@@ -1,4 +1,4 @@
-package com.zjut.study.netty.netty.c4;
+package com.zjut.study.netty.components.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -13,28 +13,26 @@ import lombok.extern.slf4j.Slf4j;
 import java.nio.charset.Charset;
 
 /**
- * 回声测试：服务器端
+ * 回声测试：服务端
  */
 @Slf4j
 public class EchoServer {
-
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         new ServerBootstrap()
                 .group(new NioEventLoopGroup(), new NioEventLoopGroup())
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel nsc) throws Exception {
-                        nsc.pipeline().addLast(new ChannelInboundHandlerAdapter(){
+                        nsc.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                             @Override
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 ByteBuf byteBuf = (ByteBuf) msg;
-                                log.info("服务端接收到消息:{}", byteBuf.toString(Charset.defaultCharset()));
-                                // 建议使用 ctx.alloc() 创建 ByteBuf
+                                log.info("服务端收到消息:{}", byteBuf.toString(Charset.defaultCharset()));
+                                // 准备回写客户端
                                 ByteBuf response = ctx.alloc().buffer();
                                 response.writeBytes(byteBuf);
-
-                                ctx.writeAndFlush(response);  // 向客户端写回
+                                ctx.writeAndFlush(response);
                             }
                         });
                     }
