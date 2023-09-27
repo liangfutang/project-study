@@ -6,8 +6,11 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelOutboundHandlerAdapter;
 import io.netty.channel.ChannelPromise;
 import io.netty.channel.embedded.EmbeddedChannel;
+import io.netty.channel.nio.NioEventLoopGroup;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.io.IOException;
 
 /**
  * netty提供的对 pipeline 的测试类
@@ -56,5 +59,51 @@ public class EmbeddedChannelTest {
         // 模拟出栈操作
         log.info("开始模拟出栈操作");
         channel.writeInbound(ByteBufAllocator.DEFAULT.buffer().writeBytes("world".getBytes()));
+    }
+
+    @Test
+    public void test02() throws IOException {
+        NioEventLoopGroup group = new NioEventLoopGroup();
+
+        EmbeddedChannel c1 = new EmbeddedChannel(false,false,
+                new ChannelInboundHandlerAdapter(){
+                    @Override
+                    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                        log.debug("{}",msg);
+                        super.channelRead(ctx, msg);
+                    }
+                }
+        );
+        EmbeddedChannel c2 = new EmbeddedChannel(
+                new ChannelInboundHandlerAdapter(){
+                    @Override
+                    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                        log.debug("{}",msg);
+                        super.channelRead(ctx, msg);
+                    }
+                }
+        );
+        EmbeddedChannel c3 = new EmbeddedChannel(
+                new ChannelInboundHandlerAdapter(){
+                    @Override
+                    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                        log.debug("{}",msg);
+                        super.channelRead(ctx, msg);
+                    }
+                }
+        );
+
+        group.next().register(c1);
+        group.next().register(c2);
+        group.next().register(c3);
+
+        c1.writeInbound("1");
+        c2.writeInbound("2");
+        c3.writeInbound("3");
+        c1.writeInbound("1");
+        c2.writeInbound("2");
+        c3.writeInbound("3");
+
+        System.in.read();
     }
 }
