@@ -1,8 +1,12 @@
-package com.zjut.study.netty.advance.c2;
+package com.zjut.study.netty.protocol;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LoggingHandler;
@@ -16,7 +20,7 @@ import java.nio.charset.Charset;
  * 使用redis请求协议向redis写入数据，并读取反馈数据
  */
 @Slf4j
-public class TestRedis {
+public class RedisProtocol {
 
     /*
      set name zhangsan
@@ -31,16 +35,17 @@ public class TestRedis {
     @Test
     public void test01() {
         EventLoopGroup worker = new NioEventLoopGroup();
-        final byte[] LINE = {13, 10};  // 回车换行的字符值，多个部分之间使用回车换行分隔
+        // 回车换行的字符值，多个部分之间使用回车换行分隔
+        final byte[] LINE = {13, 10};
         try {
             ChannelFuture channelFuture = new Bootstrap()
                     .group(worker)
                     .channel(NioSocketChannel.class)
                     .handler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
-                        protected void initChannel(NioSocketChannel nsc) throws Exception {
-                            nsc.pipeline().addLast(new LoggingHandler());
-                            nsc.pipeline().addLast(new ChannelInboundHandlerAdapter() {
+                        protected void initChannel(NioSocketChannel channel) throws Exception {
+                            channel.pipeline().addLast(new LoggingHandler());
+                            channel.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                                 @Override
                                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
                                     ByteBuf redisRequest = ctx.alloc().buffer();
@@ -63,8 +68,8 @@ public class TestRedis {
 
                                 @Override
                                 public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-                                    ByteBuf bufMessage = (ByteBuf) msg;
-                                    log.info("接收到redis的返回:{}", bufMessage.toString(Charset.defaultCharset()));
+                                    ByteBuf message = (ByteBuf) msg;
+                                    log.info("接受到redis的返回消息:{}", message.toString(Charset.defaultCharset()));
                                 }
                             });
                         }
