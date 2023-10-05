@@ -3,18 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>study-tdengine</artifactId>
-        <groupId>com.zjut.study.tdengine</groupId>
+        <artifactId>TDengine</artifactId>
+        <groupId>com.zjut.study</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <version>1.0-SNAPSHOT</version>
     <artifactId>tdengine-boot</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.zjut.study.common</groupId>
-            <artifactId>study-common</artifactId>
+            <groupId>com.taosdata.jdbc</groupId>
+            <artifactId>taos-jdbcdriver</artifactId>
+            <version>2.0.40</version>
         </dependency>
 
         <dependency>
@@ -37,5 +38,4 @@
             <version>1.1.21</version>
         </dependency>
     </dependencies>
-
 </project>

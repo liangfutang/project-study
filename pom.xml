@@ -29,7 +29,6 @@
         <module>study-basic</module>
         <module>study-auth</module>
         <module>study-log</module>
-        <module>study-tdengine</module>
         <module>study-mqtt</module>
         <module>study-reactive</module>
         <module>study-devops</module>
