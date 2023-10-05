@@ -10,21 +10,21 @@
     </resultMap>
 
     <select id="lastOne" resultType="java.util.Map">
-        select last_row(ts) as ts, last_row(temperature) as temperature, last_row(humidity) as humidity, last_row(note) as note,last_row(location) as location , last_row(groupid) as groupid from test.weather;
+        select last_row(*), location from td.weather;
     </select>
 
     <update id="dropDB">
         drop
-        database if exists test
+        database if exists td
     </update>
 
     <update id="createDB">
         create
-        database if not exists test
+        database if not exists td
     </update>
 
     <update id="createSuperTable">
-        create table if not exists test.weather
+        create table if not exists weather
         (
             ts
             timestamp,
@@ -41,11 +41,11 @@
             location nchar
         (
             64
-        ), groupId int)
+        ))
     </update>
 
     <update id="createTable" parameterType="com.zjut.study.tdengine.boot.domain.WeatherDO">
-        create table if not exists test.t#{groupId} using test.weather tags
+        create table if not exists t#{groupId} using weather tags
         (
             #{location},
             #{groupId}
@@ -53,7 +53,7 @@
     </update>
 
     <select id="select" resultMap="BaseResultMap">
-        select * from test.weather order by ts desc
+        select * from weather order by ts desc
         <if test="limit != null">
             limit #{limit,jdbcType=BIGINT}
         </if>
@@ -63,18 +63,18 @@
     </select>
 
     <insert id="insert" parameterType="com.zjut.study.tdengine.boot.domain.WeatherDO">
-        insert into test.t#{groupId} (ts, temperature, humidity, note)
+        insert into t#{groupId} (ts, temperature, humidity, note)
         values (#{ts}, ${temperature}, ${humidity}, #{note})
     </insert>
 
     <select id="getSubTables" resultType="String">
         select tbname
-        from test.weather
+        from weather
     </select>
 
     <select id="count" resultType="int">
         select count(*)
-        from test.weather
+        from weather
     </select>
 
     <resultMap id="avgResultSet" type="com.zjut.study.tdengine.boot.domain.WeatherDO">
@@ -85,7 +85,7 @@
 
     <select id="avg" resultMap="avgResultSet">
         select avg(temperature), avg(humidity)
-        from test.weather interval(1m)
+        from weather interval(1m)
     </select>
 
 </mapper>

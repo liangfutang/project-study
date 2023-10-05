@@ -28,7 +28,6 @@ public class WeatherService {
         for (int i = 0; i < 20; i++) {
             WeatherDO weather = new WeatherDO(new Timestamp(ts + (thirtySec * i)), 30 * random.nextFloat(), random.nextInt(100));
             weather.setLocation(locations[random.nextInt(locations.length)]);
-            weather.setGroupId(i % locations.length);
             weather.setNote("note-" + i);
             weatherMapper.createTable(weather);
             count += weatherMapper.insert(weather);
@@ -67,12 +66,10 @@ public class WeatherService {
         float temperature = (float) result.get("temperature");
         float humidity = (float) result.get("humidity");
         String note = (String) result.get("note");
-        int groupId = (int) result.get("groupid");
         String location = (String) result.get("location");
 
         WeatherDO weather = new WeatherDO(new Timestamp(ts), temperature, humidity);
         weather.setNote(note);
-        weather.setGroupId(groupId);
         weather.setLocation(location);
         return weather;
     }
