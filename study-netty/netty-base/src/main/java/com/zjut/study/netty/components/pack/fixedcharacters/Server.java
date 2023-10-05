@@ -1,23 +1,24 @@
-package com.zjut.study.netty.advance.c1;
-
+package com.zjut.study.netty.components.pack.fixedcharacters;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
+import io.netty.channel.AdaptiveRecvByteBufAllocator;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.logging.LoggingHandler;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 使用 LineBasedFrameDecoder 固定分隔符解决黏包半包问题  服务器端
  */
-@Slf4j
-public class Server3 {
+public class Server {
 
     public static void main(String[] args) {
-        new Server3().start();
+        new Server().start();
     }
 
     /**

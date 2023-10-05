@@ -1,14 +1,15 @@
-package com.zjut.study.netty.advance.c1;
+package com.zjut.study.netty.components.pack.fixedcharacters;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LoggingHandler;
-import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
 import java.util.Random;
@@ -16,8 +17,7 @@ import java.util.Random;
 /**
  * 使用固定字符解析黏包半包问题  客户端
  */
-@Slf4j
-public class Client3 {
+public class Client {
 
     public static void main(String[] args) {
         send();
@@ -62,7 +62,6 @@ public class Client3 {
             worker.shutdownGracefully();
         }
     }
-
 
     /**
      * 组装目标字符串行
