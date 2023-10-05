@@ -8,8 +8,15 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0-SNAPSHOT</version>
     <artifactId>study-db</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>TDengine</module>
+        <module>mongoDB</module>
+        <module>InfluxDB</module>
+    </modules>
 
     <description>数据存储相关</description>
 
