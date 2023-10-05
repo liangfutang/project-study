@@ -36,6 +36,7 @@
         <module>study-agent</module>
         <module>study-springcloud</module>
         <module>study-native</module>
+        <module>study-db</module>
     </modules>
 
     <properties>
