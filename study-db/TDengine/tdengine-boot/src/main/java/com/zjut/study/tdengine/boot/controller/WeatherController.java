@@ -25,7 +25,7 @@ public class WeatherController {
      */
     @GetMapping("/init")
     public Result<Integer> init() {
-        return Results.success(1);
+        return Results.success(weatherService.init());
     }
 
     /**
