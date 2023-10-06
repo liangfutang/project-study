@@ -2,7 +2,7 @@ package com.zjut.study.common.convention.result;
 
 /**
  * 提供对外的数据结果封装
- * @author jack
+ * @author tlf
  */
 public interface Result<T>{
 
@@ -10,7 +10,7 @@ public interface Result<T>{
      * 获取错误码
      * @return 错误码
      */
-    String getCode();
+    Integer getCode();
 
     /**
      * 获取成功或错误的信息
@@ -29,7 +29,7 @@ public interface Result<T>{
      * @param code 错误码
      * @return Result对象
      */
-    Result<T> setCode(String code);
+    Result<T> setCode(Integer code);
 
     /**
      * 设置成功或错误的信息

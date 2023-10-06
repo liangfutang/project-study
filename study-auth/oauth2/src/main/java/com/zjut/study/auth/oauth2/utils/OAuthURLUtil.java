@@ -2,6 +2,7 @@ package com.zjut.study.auth.oauth2.utils;
 
 import com.zjut.study.auth.oauth2.constants.OAuth2Constant;
 import com.zjut.study.auth.oauth2.enums.ThirdPartyEnum;
+import com.zjut.study.common.convention.code.ResultCodeEnum;
 import com.zjut.study.common.exception.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,7 +37,7 @@ public class OAuthURLUtil {
         Function<String, String> urlFunction = CODE_USER_AUTHORIZE_URL_MAP.get(code);
         if (Objects.isNull(urlFunction)) {
             log.error("查无对应的第三方，请联系管理人员:{}", code);
-            throw new ServiceException(code, "查无对应的第三方");
+            throw new ServiceException(ResultCodeEnum.INTERNAL_SERVER_ERROR.getCode(), "查无对应的第三方");
         }
         return urlFunction.apply(state);
     }

@@ -9,18 +9,18 @@ import com.zjut.study.common.convention.code.ServiceCode;
 public class ServiceException extends RuntimeException {
     private static final long serialVersionUID = -5102560559568169695L;
 
-    protected String code;
+    protected Integer code;
 
     public ServiceException() {
         super();
     }
 
-    public ServiceException(String code, String message) {
+    public ServiceException(Integer code, String message) {
         super(message);
         this.code = code;
     }
 
-    public ServiceException(String code, String message, Throwable cause) {
+    public ServiceException(Integer code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
@@ -35,11 +35,11 @@ public class ServiceException extends RuntimeException {
         this.code = respCode.code();
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

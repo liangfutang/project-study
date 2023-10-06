@@ -4,9 +4,11 @@ import com.zjut.study.common.convention.code.ResultCodeEnum;
 import com.zjut.study.common.convention.code.ServiceCode;
 import com.zjut.study.common.exception.ServiceException;
 
+import java.util.List;
+
 /**
  * Result工具类，用于返回Result对象
- * @author jack
+ * @author tlf
  */
 public final class Results {
 
@@ -54,7 +56,7 @@ public final class Results {
                 .setMessage(serviceCode.message());
     }
 
-    public static <T> Result<T> failure(String code, String message) {
+    public static <T> Result<T> failure(Integer code, String message) {
         return new DefaultResult<T>().setCode(code)
                 .setMessage(message);
     }
@@ -82,9 +84,40 @@ public final class Results {
      * @param <T> 对应data字段的数据类型
      * @return result 对象
      */
-    public static <T> Result<T> error(String code, String message) {
+    public static <T> Result<T> error(Integer code, String message) {
         return new DefaultResult<T>()
                 .setCode(code)
                 .setMessage(message);
+    }
+
+    /**
+     * 分页查询成功，但是结果是空的
+     * @return 返回成功结果, total=0, data=null
+     */
+    public static PageResult<Void> pageSuccess() {
+        return new DefaultPageResult<>(ResultCodeEnum.SUCCESS);
+    }
+
+    /**
+     * 分页查询成功
+     * @param list 本次查询结果
+     * @param total 当前条件下总数
+     * @return 分特查询结果
+     * @param <T> 结果类型
+     */
+    public static <T> PageResult<List<T>> pageSuccess(List<T> list, Integer total) {
+        return new DefaultPageResult<>(list, ResultCodeEnum.SUCCESS, total);
+    }
+
+    public static <T> PageResult<T> pageInvalid() {
+        return new DefaultPageResult<>(ResultCodeEnum.PARAMETER_ILLEGAL);
+    }
+
+    public static <T> PageResult<T> pageFailure(ServiceCode serviceCode) {
+        return new DefaultPageResult<>(serviceCode);
+    }
+
+    public static <T> PageResult<T> pageFailure(Integer code, String message) {
+        return new DefaultPageResult<>(null, code, message);
     }
 }

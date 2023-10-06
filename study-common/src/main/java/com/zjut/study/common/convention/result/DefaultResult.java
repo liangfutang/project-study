@@ -5,8 +5,8 @@ import com.zjut.study.common.convention.code.ResultCodeEnum;
 import java.io.Serializable;
 
 /**
- * 默认的结果
- * @author jack
+ * 默认的结果封装
+ * @author tlf
  */
 public class DefaultResult<T> implements Result<T>, Serializable {
     private static final long serialVersionUID = -8869696654132628649L;
@@ -14,7 +14,7 @@ public class DefaultResult<T> implements Result<T>, Serializable {
     /**
      * 错误码
      */
-    private String code;
+    private Integer code;
 
     /**
      * 错误消息
@@ -27,7 +27,7 @@ public class DefaultResult<T> implements Result<T>, Serializable {
     private T data;
 
     @Override
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
@@ -42,7 +42,7 @@ public class DefaultResult<T> implements Result<T>, Serializable {
     }
 
     @Override
-    public DefaultResult<T> setCode(String code) {
+    public DefaultResult<T> setCode(Integer code) {
         this.code = code;
         return this;
     }

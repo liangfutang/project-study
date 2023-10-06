@@ -7,14 +7,14 @@ import com.zjut.study.common.convention.code.ResultCodeEnum;
  * @author jack
  */
 public class ParameterException extends RuntimeException {
-    private String code;
+    private Integer code;
 
     public ParameterException() {
         super(ResultCodeEnum.PARAMETER_ILLEGAL.message());
         this.code = ResultCodeEnum.PARAMETER_ILLEGAL.code();
     }
 
-    public ParameterException(String code, String message) {
+    public ParameterException(Integer code, String message) {
         super(message);
         this.code = ResultCodeEnum.PARAMETER_ILLEGAL.code();
         this.code = code;
@@ -41,11 +41,11 @@ public class ParameterException extends RuntimeException {
         this.code = ResultCodeEnum.PARAMETER_ILLEGAL.code();
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return this.code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 }
