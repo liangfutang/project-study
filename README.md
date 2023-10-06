@@ -1,45 +1,45 @@
 # 一. 说明介绍
 ## project-study
-此项目主要用来做自己学习或者写代码过程中一些小的测试使用，每个子模块作为一个小模块知识点
+此项目主要用来做学习或者写代码过程中一些小的测试使用，每个子模块作为一个小模块知识点
 
 ## study-common
 该子模块主要用作其他子模块的一个公共模块，避免一些常用的类或方法多次创建造成的基础性的代码冗余
 
-## study-thread
-用作多线程相关的学习和测试
+## study-juc
+juc并发编程
 
 ## study-keywords
-用作关键字相关的学习和测试
+关键字相关
 
 ## study-spring
-用作spring框架相关的学习和测试
+spring框架相关
 
 ## study-tomcat
-用作tomcat相关的学习和测试
+tomcat相关
 
 ## study-springboot
-用作springboot相关的学习和测试
+springboot相关
 
 ## study-mybatis
-用作springboot相关的学习和测试
+springboot相关
 
 ## study-zookeeper
-用作zookeeper相关的学习和测试
+zookeeper相关
 
 ## study-others
-用作其他相关的相关小知识点的学习和测试
+其他相关的相关小知识点
 
 ## study-io
-用作IO相关的相关小知识点的学习和测试
+IO相关的相关小知识点
 
 ## study-netty
-用作netty相关的相关小知识点的学习和测试
+netty相关的相关小知识点
 
 ## study-dubbo
-用作dubbo相关的相关小知识点的学习和测试
+dubbo相关的相关小知识点
 
 ## study-basic
-用作java基础相关的相关小知识点的学习和测试
+java基础相关的相关小知识点
 
 ## study-auth
 用作认证、授权及oauth相关测试使用，微信公众平台oauth方式

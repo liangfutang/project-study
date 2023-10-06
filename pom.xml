@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>study-thread</module>
+        <module>study-juc</module>
         <module>study-keywords</module>
         <module>study-designpatterns</module>
         <module>study-spring</module>
