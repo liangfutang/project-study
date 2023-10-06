@@ -1,4 +1,4 @@
-package com.zjut.study.thread.completablefuture;
+package com.zjut.study.juc.completablefuture;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import com.zjut.study.common.utils.SmallThreadTool;

@@ -1,4 +1,4 @@
-package com.zjut.study.thread.threadpool;
+package com.zjut.study.juc.threadpool;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

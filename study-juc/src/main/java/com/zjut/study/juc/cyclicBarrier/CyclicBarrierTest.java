@@ -1,7 +1,7 @@
-package com.zjut.study.thread.cyclicBarrier;
+package com.zjut.study.juc.cyclicBarrier;
 
-import com.zjut.study.thread.cyclicBarrier.test01.Horse;
-import com.zjut.study.thread.cyclicBarrier.test01.HorseRace;
+import com.zjut.study.juc.cyclicBarrier.test01.Horse;
+import com.zjut.study.juc.cyclicBarrier.test01.HorseRace;
 import org.junit.Test;
 
 public class CyclicBarrierTest {

@@ -1,4 +1,4 @@
-package com.zjut.study.thread.lock;
+package com.zjut.study.juc.lock;
 
 /**
  * 测试单线程和多线程的情况下synchronized对效率的影响

@@ -1,4 +1,4 @@
-package com.zjut.study.thread.cyclicBarrier.test01;
+package com.zjut.study.juc.cyclicBarrier.test01;
 
 import java.util.LinkedList;
 import java.util.List;

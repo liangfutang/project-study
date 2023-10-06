@@ -1,12 +1,10 @@
-package com.zjut.study.thread.completablefuture;
+package com.zjut.study.juc.completablefuture;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import com.zjut.study.common.utils.SmallThreadTool;
-import com.zjut.study.thread.completablefuture.entity.Dish;
+import com.zjut.study.juc.completablefuture.entity.Dish;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 

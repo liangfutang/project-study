@@ -1,4 +1,4 @@
-package com.zjut.study.thread.lock;
+package com.zjut.study.juc.lock;
 
 import com.zjut.study.common.junit.CommonJunitFilter;
 import org.junit.Test;

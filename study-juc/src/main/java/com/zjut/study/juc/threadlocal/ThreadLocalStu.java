@@ -1,8 +1,8 @@
-package com.zjut.study.thread.threadlocal;
+package com.zjut.study.juc.threadlocal;
 
 /**
  * @Author:     liangfutang
- * @Description:  
+ * @Description:
  * @Date:    2019/5/27 16:55
  * @Version:    1.0
  */

@@ -1,6 +1,4 @@
-package com.zjut.study.thread.threadpool;
-
-import lombok.Cleanup;
+package com.zjut.study.juc.threadpool;
 
 import java.util.concurrent.*;
 

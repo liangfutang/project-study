@@ -1,4 +1,4 @@
-package com.zjut.study.thread.completablefuture.entity;
+package com.zjut.study.juc.completablefuture.entity;
 
 import com.zjut.study.common.utils.SmallThreadTool;
 
