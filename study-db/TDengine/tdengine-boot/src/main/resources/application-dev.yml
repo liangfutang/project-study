@@ -19,7 +19,7 @@ spring:
     proxy-target-class: true
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+#  mapper-locations: classpath:mapper/*.xml
   # 打印sql，开发测试时开启
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
