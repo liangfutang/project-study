@@ -47,9 +47,6 @@
 ## study-log
 日志体系
 
-## study-tdengine
-taos时序数据库
-
 ## study-mqtt
 mqtt中间件
 

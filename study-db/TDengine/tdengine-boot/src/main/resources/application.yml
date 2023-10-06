@@ -1,4 +1,27 @@
-# 默认使用dev配置，如需换成其他环境配置，需在启动参数添加配置spring.profiles.active=prod (log-back使用)
 spring:
   profiles:
     active: dev
+
+  datasource:
+    driver-class-name: com.taosdata.jdbc.rs.RestfulDriver
+    url: jdbc:TAOS-RS://127.0.0.1:6041/td?timezone=UTC-8&charset=UTF-8&locale=en_US.UTF-8
+    # 当前使用的是JDBC-RESTful方式，如使用JDBC-JNI，需要做如下切换
+    # driver-class-name: com.taosdata.jdbc.TSDBDriver
+    # url: jdbc:TAOS://localhost:6041/?timezone=UTC-8&charset=UTF-8&locale=en_US.UTF-8
+    username: root
+    password: taosdata
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 5
+      max-wait: 30000
+      validation-query: select server_status();
+  aop:
+    auto: true
+    proxy-target-class: true
+
+# 打印日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
