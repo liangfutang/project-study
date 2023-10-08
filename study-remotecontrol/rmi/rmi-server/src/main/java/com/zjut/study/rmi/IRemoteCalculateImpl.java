@@ -17,6 +17,7 @@ public class IRemoteCalculateImpl extends UnicastRemoteObject implements IRemote
      */
     protected IRemoteCalculateImpl() throws RemoteException {
         super();
+        // UnicastRemoteObject.exportObject(this, 0);  // 如果不继承UnicastRemoteObject，就需要手工导出
     }
 
     @Override
