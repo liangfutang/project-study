@@ -37,6 +37,7 @@
         <module>study-native</module>
         <module>study-db</module>
         <module>study-remotecontrol</module>
+        <module>study-search</module>
     </modules>
 
     <properties>
