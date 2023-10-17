@@ -11,7 +11,7 @@
     <version>1.0-SNAPSHOT</version>
     <artifactId>es-boot</artifactId>
 
-    <description>springbooot整合es</description>
+    <description>springbooot整合es，并整合easy-es ORM框架使用</description>
 
     <dependencies>
         <dependency>
