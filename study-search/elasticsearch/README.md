@@ -10,8 +10,7 @@ es中重要概念类比mysql中的概念如下：
 **数据类型**  
 只有text类型是分词的，其他都不分词。
 ```
-字符串类型：keyword text
-数字类型：
+字符串类型：keyword(不分词) text(分词)
 整数类型：integer long
 小数类型：float double
 布尔类型：boolean
