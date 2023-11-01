@@ -1,4 +1,5 @@
-# 一. 索引<index>
+# 一. 基本使用
+## 1.1. 索引<index>
 + 创建索引
 ```
 PUT /products
@@ -24,7 +25,7 @@ GET /_cat/indices?v
 v: 返回显示结果的标题
 ```
 
-# 二. 映射<mapping>
+## 1.2. 映射<mapping>
 决定索引中所存储的文档字段及类型,映射不能删除或修改，只能删除索引后再创建   
 
 + 创建索引&映射
@@ -63,7 +64,7 @@ GET /索引名/_mapping=====> GET /products/_mapping
 GET /products/_mapping
 ```
 
-# 二. 文档<document>
+## 1.3. 文档<document>
 + 创建文档
 ```
 # 创建文档，路径中为_id，建议和body中id保持一致
@@ -126,4 +127,18 @@ POST /products/_doc/_bulk
 {"update":{"_id":3}}
   {"doc": {"price":6.5}}
 {"delete":{"_id":2}}
+```
+
+# 二. query dsl
+语法：    
+GET /索引名/_doc/_search {json格式请求体数据)
+GET /索引名/_search {ison格式请求体数据}     #好处：再kibana上会有提示
+```
+GET /products/_doc/_search
+GET /products/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
 ```
