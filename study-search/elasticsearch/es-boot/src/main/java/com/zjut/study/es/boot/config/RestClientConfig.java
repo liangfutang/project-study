@@ -9,6 +9,9 @@ import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfig
 @Configuration
 public class RestClientConfig extends AbstractElasticsearchConfiguration {
 
+    /**
+     * ElasticsearchOperations: 使用面向对象的方式操作ES
+     */
     @Override
     public RestHighLevelClient elasticsearchClient() {
 //        client过期，使用ElasticsearchRestTemplate
