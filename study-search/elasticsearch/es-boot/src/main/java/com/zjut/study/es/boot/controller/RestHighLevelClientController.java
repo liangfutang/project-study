@@ -25,6 +25,9 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/rest")
@@ -134,6 +138,77 @@ public class RestHighLevelClientController {
         request.source(builder);
         SearchResponse response = restHighLevelClient.search(request, RequestOptions.DEFAULT);
         System.out.println("总条数:" + response.getHits().getTotalHits().value);
+        System.out.println("最大得分:" + response.getHits().getMaxScore());
+        SearchHit[] hits = response.getHits().getHits();
+        for (SearchHit hit : hits) {
+            System.out.println("id:" + hit.getId() + ",source:" + hit.getSourceAsString());
+        }
+        return Results.success();
+    }
+
+    @GetMapping("/doc/page")
+    public Result<?> getDocPage() throws IOException {
+        SearchRequest request = new SearchRequest("products");
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(QueryBuilders.matchAllQuery())
+                        .from(0).size(1)
+                        .sort("price", SortOrder.DESC)
+                        // 返回指定字段，参数1: 包含字段数组，参数2:排除字段数组
+                        .fetchSource(new String[]{"title"}, new String[]{});
+        request.source(builder);
+        SearchResponse response = restHighLevelClient.search(request, RequestOptions.DEFAULT);
+        System.out.println("总条数:" + response.getHits().getTotalHits().value);
+        // 手动指定排序后，默认的按照得分排序就会失效，这里返回NAN
+        System.out.println("最大得分:" + response.getHits().getMaxScore());
+        SearchHit[] hits = response.getHits().getHits();
+        for (SearchHit hit : hits) {
+            System.out.println("id:" + hit.getId() + ",source:" + hit.getSourceAsString());
+        }
+        return Results.success();
+    }
+
+    @GetMapping("/doc/heightlight")
+    public Result<?> getDocHeightLight() throws IOException {
+        SearchRequest request = new SearchRequest("products");
+        HighlightBuilder highlightBuilder = new HighlightBuilder();
+        highlightBuilder.requireFieldMatch(false).field("description").field("title").preTags("<span style='color:red;'>").postTags("</span>");
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(QueryBuilders.termQuery("description", "好"))
+                .highlighter(highlightBuilder);
+        request.source(builder);
+        SearchResponse response = restHighLevelClient.search(request, RequestOptions.DEFAULT);
+        System.out.println("总条数:" + response.getHits().getTotalHits().value);
+        System.out.println("最大得分:" + response.getHits().getMaxScore());
+        SearchHit[] hits = response.getHits().getHits();
+        for (SearchHit hit : hits) {
+            System.out.println("id:" + hit.getId() + ",source:" + hit.getSourceAsString());
+            // 获取高亮字段
+            Map<String, HighlightField> highlightFields = hit.getHighlightFields();
+            if (highlightFields.containsKey("description")) {
+                System.out.println("description高亮结果:" + highlightFields.get("description").fragments()[0]);
+            }
+            if (highlightFields.containsKey("title")) {
+                System.out.println("title高亮结果:" + highlightFields.get("title").fragments()[0]);
+            }
+        }
+        return Results.success();
+    }
+
+    /**
+     * query:        查询精确查询 查询计算文档得分 并根据文档得分进行返回
+     * filter query: 过滤查询 用来在大量数据中筛选出本地查询相关数据 不会计算文档得分 经常使用Lter query 结果进行缓存
+     * 注意: 一旦使用 query 和 filterQuery es 优先执行 filter Query 然后再执行 query
+     */
+    @GetMapping("/doc/filterquery")
+    public Result<?> getDocFilterQuery() throws IOException {
+        SearchRequest request = new SearchRequest("products");
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(QueryBuilders.matchAllQuery())
+                .postFilter(QueryBuilders.rangeQuery("description").gt(0).lt(12));
+        request.source(builder);
+        SearchResponse response = restHighLevelClient.search(request, RequestOptions.DEFAULT);
+        System.out.println("总条数:" + response.getHits().getTotalHits().value);
+        // 手动指定排序后，默认的按照得分排序就会失效，这里返回NAN
         System.out.println("最大得分:" + response.getHits().getMaxScore());
         SearchHit[] hits = response.getHits().getHits();
         for (SearchHit hit : hits) {
