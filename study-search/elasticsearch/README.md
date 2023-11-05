@@ -151,3 +151,78 @@ GET /products/_search
   }
 }
 ```
+
+**聚合查询:**   
+聚合:英文为Aggregation Aggs，是es除搜索功能外提供的针对es数据做统计分析的功能聚合有助于根据搜索查询提供聚合数据。
+聚合查询是数据库中重要的功能特性，ES作为搜索引擎兼数据库，同样提供了强大的聚合分析能力。它基于查询条件来对数据进行分桶、计算的方法。
+有点类似于 SQL中的 group by 再加一些函数方法的操作。    
+注意事项: text类型是不支持聚合的。
+```PUT /fruit
+# 添加索引
+{
+  "mappings": {
+    "properties": {
+      "title":{
+        "type": "keyword"
+      },
+      "price": {
+        "type": "double"
+      },
+      "description":{
+        "type": "text",
+        "analyzer": "ik_max_word"
+      }
+    }
+  }
+}
+# 添加模拟数据
+PUT /fruit/_bulk
+{"index":{}}
+  {"title":"面包","price": 19.9,"description":"小面包非常好吃"}
+{"index":{}}
+  {"title":"旺仔牛奶","price": 29.9,"description":"非常好喝"}
+{"index":{}}
+  {"title":"日本豆","price": 19.9,"description":"日本豆非常好吃"}
+{"index":{}}
+  {"title":"小馒头","price": 19.9,"description":"小馒头非常好吃"}
+{"index":{}}
+  {"title":"大辣片","price": 39.9,"description":"大辣片非常好吃"}
+{"index":{}}
+  {"title":"透心凉","price": 9.9,"description":"透心凉非常好喝"}
+{"index":{}}
+  {"title":"小浣熊","price": 19.9,"description":"童年的味道"}
+{"index":{}}
+{"title":"海苔","price": 19.9,"description":"海的味道"}
+
+# 按照价格聚合
+GET /fruit/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "size": 0,
+  "aggs": {
+    "price_group": {
+      "terms": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+# 价格最高
+GET /fruit/_search
+{
+  "query": {
+    "match_all": {}
+  },
+  "size": 0,
+  "aggs": {
+    "max_group": {
+      "max": {
+        "field": "price"
+      }
+    }
+  }
+}
+```

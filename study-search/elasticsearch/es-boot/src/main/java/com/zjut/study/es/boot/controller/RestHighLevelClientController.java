@@ -24,6 +24,11 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
+import org.elasticsearch.search.aggregations.bucket.terms.ParsedDoubleTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
@@ -37,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -213,6 +219,27 @@ public class RestHighLevelClientController {
         SearchHit[] hits = response.getHits().getHits();
         for (SearchHit hit : hits) {
             System.out.println("id:" + hit.getId() + ",source:" + hit.getSourceAsString());
+        }
+        return Results.success();
+    }
+
+
+    @GetMapping("/aggs")
+    public Result<?> getAggs() throws IOException {
+        SearchRequest request = new SearchRequest("fruit");
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        sourceBuilder.query(QueryBuilders.matchAllQuery())
+//                        .aggregation(AggregationBuilders.sum("price_sum").field("price"))
+                        .aggregation(AggregationBuilders.terms("price_group").field("price"))
+                        .size(0);
+        request.source(sourceBuilder);
+        SearchResponse response = restHighLevelClient.search(request, RequestOptions.DEFAULT);
+        // 处理聚合结果
+        Aggregations aggregations = response.getAggregations();
+        ParsedDoubleTerms parseDoubleTerms = aggregations.get("price_group");
+        List<? extends Terms.Bucket> buckets = parseDoubleTerms.getBuckets();
+        for (Terms.Bucket bucket : buckets) {
+            System.out.println(bucket.getKey() + " " + bucket.getDocCount());
         }
         return Results.success();
     }
