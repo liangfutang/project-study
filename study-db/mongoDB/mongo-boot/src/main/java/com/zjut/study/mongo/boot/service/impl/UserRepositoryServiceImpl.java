@@ -6,6 +6,8 @@ import com.zjut.study.mongo.boot.service.UserRepositoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserRepositoryServiceImpl implements UserRepositoryService {
@@ -15,6 +17,11 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
     @Override
     public User findById(String id) {
         return userRepositoryDao.findById(id).orElseGet(() -> null);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepositoryDao.findAll();
     }
 
     @Override

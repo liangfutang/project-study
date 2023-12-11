@@ -31,4 +31,9 @@ public class UserRepositoryController {
     public Result<?> selectById(@PathVariable String id) {
         return Results.success(userRepositoryService.findById(id));
     }
+
+    @GetMapping("/user/all")
+    public Result<?> selectAll() {
+        return Results.success(userRepositoryService.findAll());
+    }
 }
