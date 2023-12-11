@@ -27,8 +27,8 @@ public class UserRepositoryController {
         return Results.success(userRepositoryService.save(user));
     }
 
-    @GetMapping("/user/{id:\\d+}")
-    public Result<?> selectById(@PathVariable Integer id) {
+    @GetMapping("/user/{id}")
+    public Result<?> selectById(@PathVariable String id) {
         return Results.success(userRepositoryService.findById(id));
     }
 }

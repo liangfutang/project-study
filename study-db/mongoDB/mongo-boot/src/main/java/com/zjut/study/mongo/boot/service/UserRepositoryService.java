@@ -4,7 +4,7 @@ import com.zjut.study.mongo.boot.entity.User;
 
 public interface UserRepositoryService {
 
-    User findById(Integer id);
+    User findById(String id);
 
     User save(User user);
 }

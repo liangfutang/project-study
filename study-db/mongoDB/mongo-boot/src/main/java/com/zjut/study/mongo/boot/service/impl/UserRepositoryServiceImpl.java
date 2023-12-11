@@ -13,8 +13,8 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
     private final UserRepositoryDao userRepositoryDao;
 
     @Override
-    public User findById(Integer id) {
-        return userRepositoryDao.findById(id + "").orElseGet(() -> null);
+    public User findById(String id) {
+        return userRepositoryDao.findById(id).orElseGet(() -> null);
     }
 
     @Override
