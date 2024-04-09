@@ -2,7 +2,7 @@
 
 <configuration scan="false">
     <!--可以自己定义的变量，该文件后边使用-->
-    <property name="LOG_HOME" value="C:\Users\WEIYI\Desktop\111" />
+    <property name="LOG_HOME" value="logs" />
     <property name="appName" value="slf4j-logback"/>
 
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
@@ -28,7 +28,7 @@
     </appender>
 
     <!--additivity:false 表示不重复输出-->
-    <logger name="com.zjut.study.log.slf4j" level="info" additivity="false">
+    <logger name="com.zjut.study.log.slf4j" level="info" additivity="true">
         <appender-ref ref="stdout"/>
         <appender-ref ref="appLogAppender"/>
     </logger>
