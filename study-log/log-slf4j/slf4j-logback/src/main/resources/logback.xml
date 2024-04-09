@@ -28,7 +28,7 @@
     </appender>
 
     <!--additivity:false 表示不重复输出-->
-    <logger name="com.zjut.study.log.slf4j" level="info" additivity="true">
+    <logger name="com.zjut.study.log.slf4j" level="info" additivity="false">
         <appender-ref ref="stdout"/>
         <appender-ref ref="appLogAppender"/>
     </logger>
