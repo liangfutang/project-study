@@ -38,6 +38,7 @@
         <module>study-db</module>
         <module>study-remotecontrol</module>
         <module>study-search</module>
+        <module>study-brms</module>
     </modules>
 
     <properties>
