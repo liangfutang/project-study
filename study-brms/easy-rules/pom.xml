@@ -13,4 +13,10 @@
     <description>easy-rules规则引擎</description>
 
 
+    <dependencies>
+        <dependency>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+    </dependencies>
 </project>

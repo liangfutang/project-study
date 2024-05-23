@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <contextName>easy-rules</contextName>
+    <property name="LOG_PATH" value="${LOG_APP:-logs}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/easy-rules/info.easy-rules.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <!-- each file should be at most 30MB, keep 30 days worth of history -->
+            <MaxHistory>5</MaxHistory>
+            <MaxFileSize>50MB</MaxFileSize>
+            <TotalSizeCap>250MB</TotalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="callFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/easy-rules/call.easy-rules.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <!-- each file should be at most 30MB, keep 30 days worth of history -->
+            <MaxHistory>5</MaxHistory>
+            <MaxFileSize>50MB</MaxFileSize>
+            <TotalSizeCap>250MB</TotalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="openserviceFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/easy-rules/openservice.easy-rules.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <!-- each file should be at most 30MB, keep 30 days worth of history -->
+            <MaxHistory>5</MaxHistory>
+            <MaxFileSize>50MB</MaxFileSize>
+            <TotalSizeCap>250MB</TotalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="sqlFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_PATH}/easy-rules/sql.easy-rules.%d{yyyy-MM-ddHH}.%i.log</fileNamePattern>
+            <!-- each file should be at most 30MB, keep 30 days worth of history -->
+            <MaxHistory>5</MaxHistory>
+            <MaxFileSize>50MB</MaxFileSize>
+            <TotalSizeCap>250MB</TotalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}---[%thread]---%-5level---[%c]---[%L]---traceId:[%X{traceId}]---%msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFileAsync" class="ch.qos.logback.classic.AsyncAppender">
+        <!--队列深度-->
+        <queueSize>1024</queueSize>
+        <appender-ref ref="rollingFile"/>
+    </appender>
+
+    <logger name="openservice" level="INFO" additivity="false">
+        <appender-ref ref="openserviceFile"/>
+    </logger>
+    <logger name="call" level="INFO" additivity="false">
+        <appender-ref ref="callFile"/>
+    </logger>
+
+    <logger name="sql" level="INFO" additivity="false">
+        <appender-ref ref="sqlFile"/>
+    </logger>
+
+<!--    <springProfile name="dev,test,stage,prod">-->
+<!--        <root level="info">-->
+<!--            <appender-ref ref="rollingFileAsync"/>-->
+<!--        </root>-->
+<!--    </springProfile>-->
+
+<!--    <springProfile name="local">-->
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+        </root>
+<!--    </springProfile>-->
+
+</configuration>
