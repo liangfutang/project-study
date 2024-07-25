@@ -7,7 +7,7 @@ import com.zjut.study.mybatis.boot.entity.IsolationTestDO;
  * @author Jack
  */
 //@Mapper
-public interface IsolationTestMapper {
+public interface IsolationOneMapper {
 
     IsolationTestDO selectById(Integer id);
 
