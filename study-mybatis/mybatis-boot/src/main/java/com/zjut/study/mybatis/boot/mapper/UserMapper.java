@@ -1,15 +1,15 @@
 package com.zjut.study.mybatis.boot.mapper;
 
-import com.zjut.study.mybatis.boot.entity.IsolationTestDO;
+import com.zjut.study.mybatis.boot.entity.UserDO;
 
 
 /**
  * @author Jack
  */
 //@Mapper
-public interface IsolationOneMapper {
+public interface UserMapper {
 
-    IsolationTestDO selectById(Integer id);
+    UserDO selectById(Integer id);
 
 //    @Select({"select id, name, age from isolation_test where name = #{name} "})
 //    @Results({

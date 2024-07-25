@@ -4,38 +4,30 @@ import lombok.Data;
 
 import java.sql.Date;
 
-/**
- * 对数据库isolation_test表结果的映射
- * @author jack
- */
 @Data
-public class IsolationTestDO {
-
+public class UserDO {
     /**
-     * 主键
+     * '主键'
      */
     private Integer id;
-
     /**
-     * 姓名
+     * '姓名'
      */
     private String name;
-
     /**
-     * 年龄
+     * '年龄'
      */
     private Integer age;
-
     /**
-     * 是否审核，0:否，1:是
+     * '性别，1:男，2:女'
      */
-    private Integer audit;
+    private Integer sex;
     /**
-     * 创建时间
+     * '创建时间'
      */
     private Date createTime;
     /**
-     * 更新时间
+     * '更新时间'
      */
     private Date updateTime;
 }

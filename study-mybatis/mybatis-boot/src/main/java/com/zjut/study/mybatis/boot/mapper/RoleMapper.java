@@ -1,15 +1,15 @@
 package com.zjut.study.mybatis.boot.mapper;
 
-import com.zjut.study.mybatis.boot.entity.IsolationTestDO;
+import com.zjut.study.mybatis.boot.entity.RoleDO;
 
 
 /**
  * @author Jack
  */
 //@Mapper
-public interface IsolationTwoMapper {
+public interface RoleMapper {
 
-    IsolationTestDO selectById(Integer id);
+    RoleDO selectById(Integer id);
 
 //    @Select({"select id, name, age from isolation_test where name = #{name} "})
 //    @Results({
