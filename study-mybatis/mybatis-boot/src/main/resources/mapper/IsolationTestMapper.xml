@@ -6,6 +6,8 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="audit" jdbcType="TINYINT" property="audit"/>
         <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="create_time" jdbcType="INTEGER" property="age"/>
+        <result column="update_time" jdbcType="INTEGER" property="age"/>
     </resultMap>
 
     <sql id="base_column_list">

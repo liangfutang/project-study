@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DataSourceProperties {
 
-    private String url = "jdbc:mysql://127.0.0.1:3306/private_test?characterEncoding=utf-8&useUnicode=true&serverTimezone=UTC";
+    private String url = "jdbc:mysql://127.0.0.1:3306/mybatis-boot?characterEncoding=utf-8&useUnicode=true&serverTimezone=UTC";
     private String username = "root";
     private String password = "123456";
-    private String driverClass = "com.mysql.jdbc.Driver";
+    private String driverClass = "com.mysql.cj.jdbc.Driver";
     private String filters = "stat,wall,log4j";
     private int maxActive = 20;
     private int initialSize = 1;

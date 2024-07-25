@@ -2,6 +2,8 @@ package com.zjut.study.mybatis.boot.entity;
 
 import lombok.Data;
 
+import java.sql.Date;
+
 /**
  * 对数据库isolation_test表结果的映射
  * @author jack
@@ -28,4 +30,12 @@ public class IsolationTestDO {
      * 是否审核，0:否，1:是
      */
     private Integer audit;
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 }
