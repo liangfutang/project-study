@@ -24,7 +24,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>1.2.11</version>
+            <version>1.2.13</version>
         </dependency>
         <!--    这里是logback的核心包，其实引入这个包就够了，内部包含以上两个包，此处都引入是为了方便查看    -->
         <dependency>
