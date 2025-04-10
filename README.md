@@ -69,3 +69,7 @@ RMI、JNDI、JMS、JMX等远程调用相关
 # 三. 解决问题小技巧
 + idea出现类文件存在，但是无法引用，maven无法下载的问题 
  - 执行指令： mvn -U idea:idea 
+
+
+# 四. 当前项目即将要换名，备选名称
+java-modules、javaops-modules、service-modules、
