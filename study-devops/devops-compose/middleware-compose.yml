@@ -4,15 +4,30 @@ services:
   zookeeper:
     image: bitnami/zookeeper:3.8
     container_name: zookeeper-middleware
+    restart: unless-stopped
     ports:
       - "2181:2181"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes  # 生产环境应设为no并配置认证
     user: root  # 临时解决权限问题，生产环境应配置正确权限
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 500M
+        reservations:
+          cpus: '0.1'
+          memory: 200M
+    healthcheck: # 健康检查增强可靠性
+      test: [ "CMD", "zkCli.sh", "status" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   kafka:
     image: bitnami/kafka:3.6
     container_name: kafka-middleware
+    restart: unless-stopped
     ports:
       - "9092:9092"
     environment:
@@ -25,4 +40,16 @@ services:
     user: root
     depends_on:
       - zookeeper
-
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: 1200M
+        reservations:
+          cpus: '0.2'
+          memory: 800M
+    healthcheck: # 健康检查增强可靠性[5](@ref)
+      test: [ "CMD", "kafka-broker-api-versions.sh", "--bootstrap-server", "localhost:9093" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
