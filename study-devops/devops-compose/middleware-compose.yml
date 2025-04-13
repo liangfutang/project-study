@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: bitnami/zookeeper:3.8
+    container_name: zookeeper-middleware
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes  # 生产环境应设为no并配置认证
+    user: root  # 临时解决权限问题，生产环境应配置正确权限
+
+  kafka:
+    image: bitnami/kafka:3.6
+    container_name: kafka-middleware
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-middleware:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://192.168.2.103:9092 # 需要替换为宿主机IP
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+    user: root
+    depends_on:
+      - zookeeper
+
