@@ -81,6 +81,32 @@ services:
           cpus: '0.5'
           memory: 500M
 
+  redis:
+    image: redis:5.0.14
+    container_name: redis-middleware
+    restart: unless-stopped
+    command: redis-server /etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_config:/etc/redis:ro
+      - redis_data:/data
+    environment:
+      TZ: Asia/Shanghai
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 800M
+        reservations:
+          cpus: '0.8'
+          memory: 500M
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
 volumes:
   mysql_data:
     driver: local
@@ -100,3 +126,16 @@ volumes:
       type: none
       o: bind
       device: ./mysql/logs
+
+  redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./redis/data
+  redis_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./redis/config
