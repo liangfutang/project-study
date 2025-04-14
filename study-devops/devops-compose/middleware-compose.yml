@@ -106,6 +106,31 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+  tdengine:
+    image: tdengine/tdengine:3.2.3.0
+    container_name: tdengine-middleware
+    restart: always
+    ports:
+      - "6041:6041"
+    volumes:
+      - tdengine_data:/var/lib/taos
+      - tdengine_config:/etc/taos:ro
+      - tdengine_logs:/var/log/taos
+    environment:
+      TZ: Asia/Shanghai
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1500M
+        reservations:
+          cpus: '0.8'
+          memory: 1200M
+    healthcheck:
+      test: [ "CMD", "taos", "--help" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   mysql_data:
@@ -139,3 +164,22 @@ volumes:
       type: none
       o: bind
       device: ./redis/config
+
+  tdengine_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./tdengine/data
+  tdengine_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./tdengine/config
+  tdengine_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./tdengine/logs
