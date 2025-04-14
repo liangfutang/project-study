@@ -33,7 +33,7 @@ services:
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-middleware:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://192.168.2.103:9092 # 需要替换为宿主机IP
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://192.168.0.56:9092 # TODO 需要替换为宿主机IP
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
@@ -53,3 +53,30 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+  mysql:
+    image: mysql:5.7.38
+    container_name: mysql-middleware
+    restart: always  # 异常退出自动重启
+    environment:
+      MYSQL_ROOT_PASSWORD: "%7HKgJO6oyov34Ch"
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/config:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/logs:/var/log/mysql
+    healthcheck: # 健康检查（需 MySQL 8.0+ 镜像）[1,5](@ref)
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1000M
+        reservations:
+          cpus: '0.5'
+          memory: 500M
