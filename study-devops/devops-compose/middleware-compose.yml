@@ -248,7 +248,7 @@ services:
       resources:
         limits:
           cpus: '1.0'
-          memory: 2G
+          memory: 1500m
         reservations:
           cpus: '0.5'
           memory: 1G
@@ -269,6 +269,14 @@ services:
     depends_on:
       - zookeeper
       - mysql
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1500m
+        reservations:
+          cpus: '0.5'
+          memory: 1G
 
   dolphinscheduler-api:
     image: apache/dolphinscheduler-api:3.2.2
@@ -290,6 +298,14 @@ services:
     depends_on:
       - zookeeper
       - mysql
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1500m
+        reservations:
+          cpus: '0.5'
+          memory: 1G
 
   dolphinscheduler-alert:
     image: apache/dolphinscheduler-alert-server:3.2.2
@@ -306,6 +322,14 @@ services:
     depends_on:
       - zookeeper
       - mysql
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 800m
+        reservations:
+          cpus: '0.5'
+          memory: 500m
 
 
 volumes:
