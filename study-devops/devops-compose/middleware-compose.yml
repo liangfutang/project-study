@@ -165,6 +165,47 @@ services:
       timeout: 10s
       retries: 3
 
+  nacos:
+    image: nacos/nacos-server:v2.2.3
+    container_name: nacos-server
+    restart: unless-stopped
+    ports:
+      - "8848:8848"   # Web 控制台端口
+      - "9848:9848"   # gRPC 端口（2.0+版本必需）
+      - "9849:9849"   # Raft 端口
+    environment:
+      TZ: Asia/Shanghai
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: "192.168.0.56"
+      MYSQL_SERVICE_PORT: "3306"
+      MYSQL_SERVICE_DB_NAME: "nacos"
+      MYSQL_SERVICE_USER: "root"
+      MYSQL_SERVICE_PASSWORD: "%7HKgJO6oyov34Ch"
+      MYSQL_SERVICE_DB_PARAM: "characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=Asia/Shanghai"
+      NACOS_AUTH_ENABLE: "true"
+      # 身份标识,集群部署时节点间相关通信时安全性鉴定
+      NACOS_AUTH_IDENTITY_KEY: "NACOS_SECURE_IDENTITY"  # 自定义大写标识符
+      NACOS_AUTH_IDENTITY_VALUE: "dGhpcyBpcyBhIHNlY3JldCB2YWx1ZQ=="  # Base64编码随机值
+      # JWT密钥，控制用户登录、配置读写等操作的权限
+      NACOS_AUTH_TOKEN: "bK8ml7tJOFDnGGqlp1k+EJhycWZ2eJz1efnXn0HxP8o="  # 64位Base64编码
+      JVM_XMS: 512m
+      JVM_XMX: 1024m
+    # 根据实际需要添加
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8848/nacos/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 800m
+        reservations:
+          cpus: '0.5'
+          memory: 600m
+
 
 volumes:
   mysql_data:
