@@ -191,6 +191,8 @@ services:
       NACOS_AUTH_TOKEN: "bK8ml7tJOFDnGGqlp1k+EJhycWZ2eJz1efnXn0HxP8o="  # 64位Base64编码
       JVM_XMS: 512m
       JVM_XMX: 1024m
+    depends_on:
+      - mysql
     # 根据实际需要添加
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8848/nacos/actuator/health" ]
@@ -205,6 +207,105 @@ services:
         reservations:
           cpus: '0.5'
           memory: 600m
+
+
+  # 仅仅在新环境初始化的时候执行一次(为数据库初始化表及相关数据使用，其他时候不用执行)
+#  dolphinscheduler-schema-initializer:
+#    image: apache/dolphinscheduler-tools:3.2.2
+#    command: [ tools/bin/upgrade-schema.sh ]
+#    environment:
+#      SPRING_PROFILES_ACTIVE: mysql
+#      DATABASE: mysql
+#      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver  # 强制指定MySQL驱动
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-middleware:3306/dolphinscheduler?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: "%7HKgJO6oyov34Ch"
+#    depends_on:
+#      - mysql
+#    volumes:
+#      - dolphinscheduler-shared-local:/opt/soft
+#      - dolphinscheduler-resource-local:/dolphinscheduler
+#      - ./dolphinscheduler/libs/mysql-connector-java-8.0.16.jar:/opt/dolphinscheduler/tools/libs/mysql-connector-java-8.0.16.jar
+
+  dolphinscheduler-master:
+    image: apache/dolphinscheduler-master:3.2.2
+    container_name: dolphinscheduler-master
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+      DATABASE: mysql
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-middleware:3306/dolphinscheduler?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "%7HKgJO6oyov34Ch"
+      REGISTRY_ZOOKEEPER_CONNECT_STRING: zookeeper-middleware:2181
+    volumes:
+      - dolphinscheduler-shared-local:/opt/soft
+      - ./dolphinscheduler/libs/mysql-connector-java-8.0.16.jar:/opt/dolphinscheduler/libs/mysql-connector-java-8.0.16.jar
+      - ./dolphinscheduler/libs/mysql-connector-java-8.0.16.jar:/opt/dolphinscheduler/tools/libs/mysql-connector-java-8.0.16.jar
+    depends_on:
+      - zookeeper
+      - mysql
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+
+  dolphinscheduler-worker:
+    image: apache/dolphinscheduler-worker:3.2.2
+    container_name: dolphinscheduler-worker
+    environment:
+      DATABASE: mysql
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-middleware:3306/dolphinscheduler?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "%7HKgJO6oyov34Ch"
+      REGISTRY_ZOOKEEPER_CONNECT_STRING: zookeeper-middleware:2181
+    volumes:
+      - dolphinscheduler-worker-data:/tmp/dolphinscheduler
+      - dolphinscheduler-shared-local:/opt/soft
+      - dolphinscheduler-resource-local:/dolphinscheduler
+    depends_on:
+      - zookeeper
+      - mysql
+
+  dolphinscheduler-api:
+    image: apache/dolphinscheduler-api:3.2.2
+    container_name: dolphinscheduler-api
+    ports:
+      - "12345:12345"
+      - "25333:25333"
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+      DATABASE: mysql
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-middleware:3306/dolphinscheduler?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "%7HKgJO6oyov34Ch"
+      REGISTRY_ZOOKEEPER_CONNECT_STRING: zookeeper-middleware:2181
+    volumes:
+      - dolphinscheduler-shared-local:/opt/soft
+      - dolphinscheduler-resource-local:/dolphinscheduler
+      - ./dolphinscheduler/libs/mysql-connector-java-8.0.16.jar:/opt/dolphinscheduler/libs/mysql-connector-java-8.0.16.jar
+    depends_on:
+      - zookeeper
+      - mysql
+
+  dolphinscheduler-alert:
+    image: apache/dolphinscheduler-alert-server:3.2.2
+    container_name: dolphinscheduler-alert
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+      DATABASE: mysql
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-middleware:3306/dolphinscheduler?useSSL=false&sslMode=DISABLED&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "%7HKgJO6oyov34Ch"
+      REGISTRY_ZOOKEEPER_CONNECT_STRING: zookeeper-middleware:2181
+    volumes:
+      - ./dolphinscheduler/libs/mysql-connector-java-8.0.16.jar:/opt/dolphinscheduler/libs/mysql-connector-java-8.0.16.jar
+    depends_on:
+      - zookeeper
+      - mysql
 
 
 volumes:
@@ -265,3 +366,22 @@ volumes:
       type: none
       o: bind
       device: ./emqx/data
+
+  dolphinscheduler-shared-local:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./dolphinscheduler/sharedlocal
+  dolphinscheduler-resource-local:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./dolphinscheduler/resourcelocal
+  dolphinscheduler-worker-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./dolphinscheduler/workerdata
