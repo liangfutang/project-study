@@ -230,6 +230,7 @@ services:
   dolphinscheduler-master:
     image: apache/dolphinscheduler-master:3.2.2
     container_name: dolphinscheduler-master
+    restart: always
     environment:
       SPRING_PROFILES_ACTIVE: mysql
       DATABASE: mysql
@@ -256,6 +257,7 @@ services:
   dolphinscheduler-worker:
     image: apache/dolphinscheduler-worker:3.2.2
     container_name: dolphinscheduler-worker
+    restart: always
     environment:
       DATABASE: mysql
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-middleware:3306/dolphinscheduler?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=Asia/Shanghai
@@ -281,6 +283,7 @@ services:
   dolphinscheduler-api:
     image: apache/dolphinscheduler-api:3.2.2
     container_name: dolphinscheduler-api
+    restart: always
     ports:
       - "12345:12345"
       - "25333:25333"
@@ -310,6 +313,7 @@ services:
   dolphinscheduler-alert:
     image: apache/dolphinscheduler-alert-server:3.2.2
     container_name: dolphinscheduler-alert
+    restart: always
     environment:
       SPRING_PROFILES_ACTIVE: mysql
       DATABASE: mysql
@@ -335,6 +339,7 @@ services:
   minio:
     image: minio/minio:RELEASE.2024-06-06T09-36-42Z  # 指定最新稳定版[4](@ref)
     container_name: minio
+    restart: always
     ports:
       - "9000:9000"  # API端口
       - "9001:9001"  # 控制台端口[3](@ref)
