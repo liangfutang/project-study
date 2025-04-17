@@ -7,9 +7,10 @@ default-character-set=utf8mb4
 [mysqld]
 init_connect='SET collation_connection = utf8mb4_unicode_ci'
 init_connect='SET NAMES utf8mb4'
-default-time_zone = '+8:00'
+default-time-zone = '+08:00'
 character-set-server=utf8mb4
 collation-server=utf8mb4_unicode_ci
 skip-character-set-client-handshake
 skip-name-resolve
 max_connections = 600
+log_error_verbosity = 2  # 仅记录 ERROR 和 WARNING（默认值为3，包含NOTE）
