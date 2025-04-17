@@ -134,7 +134,7 @@ services:
       retries: 3
 
   emqx:
-    image: emqx/emqx:5.0.3
+    image: emqx/emqx:5.3.2
     container_name: emqx-middleware
     restart: unless-stopped
     ports:
