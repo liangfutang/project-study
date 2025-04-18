@@ -14,10 +14,10 @@ services:
       resources:
         limits:
           cpus: '0.3'
-          memory: 500M
+          memory: 200M
         reservations:
           cpus: '0.1'
-          memory: 200M
+          memory: 100M
     healthcheck: # 健康检查增强可靠性
       test: [ "CMD", "zkCli.sh", "status" ]
       interval: 30s
@@ -43,11 +43,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.8'
-          memory: 1200M
+          cpus: '0.9'
+          memory: 500M
         reservations:
           cpus: '0.2'
-          memory: 800M
+          memory: 200M
     healthcheck: # 健康检查增强可靠性[5](@ref)
       test: [ "CMD", "kafka-broker-api-versions.sh", "--bootstrap-server", "localhost:9093" ]
       interval: 30s
@@ -76,10 +76,10 @@ services:
       resources:
         limits:
           cpus: '1.0'
-          memory: 1000M
+          memory: 600M
         reservations:
           cpus: '0.5'
-          memory: 500M
+          memory: 300M
 
   redis:
     image: redis:5.0.14
@@ -96,11 +96,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 800M
+          cpus: '0.6'
+          memory: 200M
         reservations:
-          cpus: '0.8'
-          memory: 500M
+          cpus: '0.2'
+          memory: 50M
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
       interval: 30s
@@ -122,11 +122,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 1500M
-        reservations:
           cpus: '0.8'
-          memory: 1200M
+          memory: 600M
+        reservations:
+          cpus: '0.4'
+          memory: 200M
     healthcheck:
       test: [ "CMD", "taos", "--help" ]
       interval: 30s
@@ -154,11 +154,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 1000M
-        reservations:
-          cpus: '0.5'
+          cpus: '0.8'
           memory: 500M
+        reservations:
+          cpus: '0.4'
+          memory: 300M
     healthcheck: # 健康检查增强可靠性，根据实际选择是否需要
       test: [ "CMD", "curl", "-f", "http://localhost:18083/api/v5/status" ]
       interval: 30s
@@ -190,7 +190,7 @@ services:
       # JWT密钥，控制用户登录、配置读写等操作的权限
       NACOS_AUTH_TOKEN: "bK8ml7tJOFDnGGqlp1k+EJhycWZ2eJz1efnXn0HxP8o="  # 64位Base64编码
       JVM_XMS: 512m
-      JVM_XMX: 1024m
+      JVM_XMX: 512m
     depends_on:
       - mysql
     # 根据实际需要添加
@@ -206,7 +206,7 @@ services:
           memory: 800m
         reservations:
           cpus: '0.5'
-          memory: 600m
+          memory: 500m
 
 
   # 仅仅在新环境初始化的时候执行一次(为数据库初始化表及相关数据使用，其他时候不用执行)
@@ -248,7 +248,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
+          cpus: '0.8'
           memory: 1500m
         reservations:
           cpus: '0.5'
@@ -274,11 +274,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 1500m
+          cpus: '0.8'
+          memory: 1200m
         reservations:
           cpus: '0.5'
-          memory: 1G
+          memory: 800m
 
   dolphinscheduler-api:
     image: apache/dolphinscheduler-api:3.2.2
@@ -304,11 +304,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 1500m
+          cpus: '0.6'
+          memory: 1000m
         reservations:
-          cpus: '0.5'
-          memory: 1G
+          cpus: '0.4'
+          memory: 800m
 
   dolphinscheduler-alert:
     image: apache/dolphinscheduler-alert-server:3.2.2
@@ -329,11 +329,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 800m
-        reservations:
           cpus: '0.5'
           memory: 500m
+        reservations:
+          cpus: '0.2'
+          memory: 300m
 
 
   minio:
@@ -358,8 +358,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: 1G
+          cpus: '0.6'
+          memory: 500m
+        reservations:
+          cpus: '0.2'
+          memory: 100m
 
 
 
