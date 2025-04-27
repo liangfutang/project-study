@@ -1,8 +1,0 @@
-version: "3.0"
-
-services:
-  demo:
-    image: demo:1.1
-    container_name: "demo"
-    ports:
-      - "8080:8080"
